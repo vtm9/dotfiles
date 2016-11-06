@@ -49,6 +49,9 @@ prompt-check='2016-11-01T18:41:47.506123Z'
 [org/gnome/deja-dup/file]
 path='/home/vtm/deja-dup'
 
+[org/gnome/desktop/a11y/magnifier]
+mag-factor=3.0
+
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'Sundry']
 
@@ -164,7 +167,7 @@ font='Source Code Pro 12'
 use-theme-transparency=false
 allow-bold=true
 audible-bell=true
-background-transparency-percent=15
+background-transparency-percent=8
 scrollback-lines=819200
 
 [org/gnome/terminal/legacy]
@@ -219,11 +222,13 @@ arrow-base-color='#e6e6e6d9'
 arrow-shadow-color='#dcdcdcd9'
 
 [org/compiz/profiles/unity/plugins/unityshell]
+launcher-minimize-window=false
 icon-size=36
 edge-responsiveness=7.8363637924194336
 launcher-hide-mode=1
+num-launchers=1
 inactive-shadow-color='#000000a5'
-launcher-minimize-window=true
+launcher-capture-mouse=true
 
 [org/compiz/profiles/unity/plugins/animation]
 unminimize-effects=['animation:Glide 2']
@@ -283,7 +288,7 @@ migrated=true
 interested-media-players=['vlc.desktop']
 
 [com/canonical/unity]
-minimize-count=36
+minimize-count=40
 integrated-menus=false
 
 [com/canonical/unity/interface]
@@ -291,6 +296,9 @@ text-scale-factor=1.0
 
 [com/canonical/unity/launcher]
 favorites=['application://google-chrome.desktop', 'application://firefox.desktop', 'application://atom.desktop', 'application://Sunflower.desktop', 'application://org.gnome.Nautilus.desktop', 'application://org.gnome.Software.desktop', 'application://unity-control-center.desktop', 'application://vlc.desktop', 'application://telegramdesktop.desktop', 'application://viber.desktop', 'unity://running-apps', 'application://klavaro.desktop', 'unity://expo-icon', 'unity://devices']
+
+[com/ubuntu/user-interface]
+scale-factor={'LVDS1': 8}
 
 [desktop/unity/runner]
 history=['gconf-editor', 'gconftool-2']
