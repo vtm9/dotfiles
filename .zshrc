@@ -70,6 +70,7 @@ alias sv='sudo vim'
 alias z='vim ~/.zshrc'
 alias vr='vim ~/.vimrc'
 alias vt='vim ~/.tmux.conf'
+alias cl='clear'
 
 unalias rm
 
