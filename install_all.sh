@@ -16,3 +16,6 @@ ln -s -f ~/dotfiles/.vimrc
 
 # create link to tmux.conf
 ln -s -f ~/dotfiles/.tmux.conf
+
+# create link to tigrc
+ln -s -f ~/dotfiles/.tigrc
