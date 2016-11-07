@@ -1,6 +1,7 @@
 [org/gnome/settings-daemon/plugins/media-keys]
 magnifier-zoom-in='<Alt>Tab'
 terminal='<Control><Alt>t'
+screensaver='<Primary><Shift>l'
 
 [org/gnome/settings-daemon/peripherals/keyboard]
 numlock-state='off'
@@ -178,7 +179,7 @@ ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
 [org/gnome/software]
-check-timestamp=int64 1478418375
+check-timestamp=int64 1478542390
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
@@ -224,11 +225,12 @@ arrow-shadow-color='#dcdcdcd9'
 [org/compiz/profiles/unity/plugins/unityshell]
 launcher-minimize-window=false
 icon-size=36
-edge-responsiveness=7.8363637924194336
-launcher-hide-mode=1
 num-launchers=1
-inactive-shadow-color='#000000a5'
 launcher-capture-mouse=true
+reveal-trigger=0
+edge-responsiveness=8.0
+inactive-shadow-color='#000000a5'
+launcher-hide-mode=1
 
 [org/compiz/profiles/unity/plugins/animation]
 unminimize-effects=['animation:Glide 2']
@@ -255,7 +257,7 @@ x-offset=52
 
 [org/compiz/profiles/unity/plugins/core]
 hsize=1
-outputs=['1366x768+0+0']
+outputs=['1366x768+0+0', '1280x1024+1366+0']
 vsize=1
 active-plugins=['core', 'composite', 'opengl', 'copytex', 'imgpng', 'resize', 'regex', 'animation', 'grid', 'expo', 'wall', 'compiztoolbox', 'commands', 'place', 'workarounds', 'session', 'snap', 'vpswitch', 'move', 'mousepoll', 'unitymtgrabhandles', 'ezoom', 'fade', 'scale', 'unityshell']
 
@@ -288,8 +290,9 @@ migrated=true
 interested-media-players=['vlc.desktop']
 
 [com/canonical/unity]
-minimize-count=40
+minimize-count=41
 integrated-menus=false
+always-show-menus=false
 
 [com/canonical/unity/interface]
 text-scale-factor=1.0
