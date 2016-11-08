@@ -16,6 +16,10 @@ ln -s -f ~/dotfiles/.vimrc
 
 # create link to tmux.conf
 ln -s -f ~/dotfiles/.tmux.conf
+ln -s  ~/dotfiles/.tmux
+
+# install for tmux copy on ubuntu
+sudo apt-get install xclip
 
 # create link to tigrc
 ln -s -f ~/dotfiles/.tigrc
