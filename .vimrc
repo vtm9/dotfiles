@@ -1,3 +1,5 @@
+let mapleader = " "
+
 set nocompatible
 " filetype off
 
@@ -6,163 +8,181 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-syntastic/syntastic'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-fugitive'
 Plug 'neomake/neomake'
+Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-scripts/tComment'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'christoomey/vim-run-interactive'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dyng/ctrlsf.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'nanotech/jellybeans.vim'
-Plug 'dyng/ctrlsf.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-projectionist'
-Plug 'majutsushi/tagbar'
-Plug 'godlygeek/tabular'
-Plug 'zah/nimrod.vim'
-Plug 'rgrinberg/vim-ocaml'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
 Plug 'stephpy/vim-yaml'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
-
+Plug 'janko-m/vim-test'
+Plug 'kchmck/vim-coffee-script'
+Plug 'slim-template/vim-slim'
 call plug#end()
 " filetype plugin indent on
 
-augroup lexical
-  autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType textile call lexical#init()
-  autocmd FileType text call lexical#init({ 'spell': 0 })
-augroup END
-
-let mapleader=","
-
-" Sets how many lines of history VIM has to remember
-set history=500
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-
-" enhanced command completion
-set wildmenu
-
-set visualbell
-
-if has('mouse')
-  set mouse=a
-endif
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-set cursorline
-set hidden
-set nofoldenable
-set nowrap
-set number
-set hlsearch
-set ignorecase
-set smartcase
-
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
-
-set autoindent
-set expandtab
-set softtabstop=2
-set shiftwidth=2
-set t_Co=256
 colorscheme jellybeans
-
-" ================ Persistent Undo ==================
-" Keep undo history across sessions, by storing in file.
-" Only works all the time.
-if has('persistent_undo')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
-  set undofile
-endif
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_aggregate_errors = 1
-
-let g:jsx_ext_required = 0
-let g:vim_json_syntax_conceal = 0
-let g:lexical#spelllang = ['en_us', 'ru_ru']
-let g:easytags_async = 1
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-let g:buffergator_viewport_split_policy = "B"
-let g:buffergator_sort_regime = "mru"
-
-let g:vim_markdown_folding_disabled = 1
-
-let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_ruby_rubocop_exec = '/home/vtm/.rbenv/shims/rubocop'
-nmap <F8> :TagbarToggle<CR>
-nnoremap <F5> :UndotreeToggle<cr>
-
-" Toggle paste mode
-nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
-imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
-
-" format the entire file
-nnoremap <leader>fef :normal! gg=G``<CR>
-
-" set text wrapping toggles
-nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
-
-" find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
-" upper/lower word
-nmap <leader>u mQviwU`Q
-nmap <leader>l mQviwu`Q
-
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
-
+nmap <silent> <leader>\ :NERDTreeFind<CR>
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-nmap <silent> // :nohlsearch<CR>
-noremap ,hl :set hlsearch! hlsearch?<CR>
 
 " Allows you to enter sudo pass and save the file
 " when you forgot to open your file with sudo
 cmap w!! %!sudo tee > /dev/null %
 
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowRelativePath=1
-nnoremap <leader>b :BufExplorer<CR>
+set backspace=2   " Backspace deletes like most programs in insert mode
+set nobackup
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set autowrite     " Automatically :write before running commands
 
-au BufRead,BufNewFile {Gemfile,Capfile} set ft=ruby
-
-autocmd! BufWritePost * Neomake
-
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
 endif
-set clipboard=unnamedplus
+
+filetype plugin indent on
+
+augroup vimrcEx
+  autocmd!
+
+ " When editing a file, always jump to the last known cursor position.
+ " Don't do it for commit messages, when the position is invalid, or when
+ " inside an event handler (happens when dropping a file on gvim).
+ autocmd BufReadPost *
+   \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+   \   exe "normal g`\"" |
+   \ endif
+
+ " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+augroup END
+
+" When the type of shell script is /bin/sh, assume a POSIX-compatible
+" shell for syntax highlighting purposes.
+let g:is_posix = 1
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
+
+" Use one space, not two, after punctuation.
+set nojoinspaces
+
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+  if !exists(":Ag")
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    nnoremap \ :Ag<SPACE>
+  endif
+endif
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+
+" Numbers
+set number
+set numberwidth=5
+
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-Tab> <c-n>
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" vim-test mappings
+nnoremap <silent> <Leader>t :TestFile<CR>
+nnoremap <silent> <Leader>s :TestNearest<CR>
+nnoremap <silent> <Leader>l :TestLast<CR>
+nnoremap <silent> <Leader>a :TestSuite<CR>
+nnoremap <silent> <leader>gt :TestVisit<CR>
+
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<space>
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" configure syntastic syntax checking to check on open as well as save
+let g:syntastic_check_on_open=1
+
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
+
+" Always use vertical diffs
+set diffopt+=vertical

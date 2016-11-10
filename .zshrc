@@ -1,6 +1,9 @@
 ZSHA_BASE=~/.zsh
 source $ZSHA_BASE/antigen/antigen.zsh
 
+export EDITOR='vim'
+set -o vi
+
 antigen use oh-my-zsh
 #autoload -U colors && colors
 
@@ -32,7 +35,6 @@ antigen bundle ubuntu
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle bgnotify
-antigen bundle common-aliases
 antigen bundle command-not-found
 antigen bundle colored-man-pages
 antigen bundle psprint/zsh-navigation-tools
@@ -71,15 +73,11 @@ alias z='vim ~/.zshrc'
 alias vr='vim ~/.vimrc'
 alias vt='vim ~/.tmux.conf'
 alias cl='clear'
-
-unalias rm
+alias path='echo $PATH | tr -s ":" "\n"'
 
 mkc () {
     mkdir -p "$@" && cd "$@"
 }
 
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-export EDITOR='vim'
-
 bindkey '^ ' autosuggest-accept
