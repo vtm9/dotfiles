@@ -49,13 +49,15 @@ autoload -U compinit && compinit
 antigen apply
 
 # aliases
-alias a='atom'
+alias a='atom .'
+alias rp='bundle exec rspec spec'
 alias d='docker'
 alias di='docker images'
 alias de='docker exec -it'
 alias da='docker attach'
 alias dr='docker run -it'
-alias dps='docker ps'
+alias dsta='docker stop $(docker ps -a -q)'
+alias dps='docker ps | cut -c-$(tput cols)'
 alias doc='docker-compose'
 alias tm='tmux attach || tmux new'
 alias s='tig status'
@@ -80,4 +82,8 @@ mkc () {
 }
 
 eval "$(rbenv init -)"
+
+# Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]]  && source "$HOME/.rvm/scripts/rvm"
+
 bindkey '^ ' autosuggest-accept
