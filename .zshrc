@@ -74,6 +74,7 @@ alias vr='vim ~/.vimrc'
 alias vt='vim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
+unalias ag
 
 mkc () {
     mkdir -p "$@" && cd "$@"

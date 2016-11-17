@@ -21,7 +21,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 Plug 'neomake/neomake'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
@@ -39,17 +39,34 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'stephpy/vim-yaml'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'janko-m/vim-test'
 Plug 'kchmck/vim-coffee-script'
 Plug 'slim-template/vim-slim'
+
+Plug 'thoughtbot/vim-rspec'
+Plug 'jgdavey/tslime.vim'
+Plug 'skalnik/vim-vroom'
+Plug 'janko-m/vim-test'
 call plug#end()
 " filetype plugin indent on
 
 colorscheme jellybeans
+let g:airline_enable_fugitive=1
+let g:airline_enable_syntastic=1
+let g:airline_enable_bufferline=1
+
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_linecolumn_prefix = '¶ '
+let g:airline_fugitive_prefix = '⎇ '
+let g:airline_paste_symbol = 'ρ'
+
+set anti enc=utf-8
+set guifont=Source\ Code\ Pro\ 12
 
 " Automatically removing all trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
+let g:rspec_command = "Dispatch rspec {spec}"
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 nmap <silent> <leader>\ :NERDTreeFind<CR>
@@ -156,11 +173,11 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-test mappings
-nnoremap <silent> <Leader>t :TestFile<CR>
-nnoremap <silent> <Leader>s :TestNearest<CR>
-nnoremap <silent> <Leader>l :TestLast<CR>
-nnoremap <silent> <Leader>a :TestSuite<CR>
-nnoremap <silent> <leader>gt :TestVisit<CR>
+"nnoremap <silent> <Leader>t :TestFile<CR>
+"nnoremap <silent> <Leader>s :TestNearest<CR>
+"nnoremap <silent> <Leader>l :TestLast<CR>
+"nnoremap <silent> <Leader>a :TestSuite<CR>
+"nnoremap <silent> <leader>gt :TestVisit<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
@@ -186,3 +203,23 @@ set complete+=kspell
 
 " Always use vertical diffs
 set diffopt+=vertical
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+"let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
+"let g:rspec_command = Dispatch spring rspec {spec}\n"
+let g:rspec_command = ':w | !clear && spring rspec -I . {spec}'
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+let test#strategy = "dispatch"
+let test#ruby#rspec#options = {
+  \ 'nearest': '--backtrace',
+  \ 'file':    '--format documentation',
+  \ 'suite':   '--tag ~slow',
+  \}
+let test#ruby#rspec#file_pattern = '_spec\.rb'
