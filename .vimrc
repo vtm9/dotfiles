@@ -71,6 +71,7 @@ nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 nmap <silent> <leader>\ :NERDTreeFind<CR>
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+noremap <Leader>s :update<CR>
 
 " Allows you to enter sudo pass and save the file
 " when you forgot to open your file with sudo
@@ -132,10 +133,6 @@ if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 
   if !exists(":Ag")
@@ -172,12 +169,19 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-" vim-test mappings
-"nnoremap <silent> <Leader>t :TestFile<CR>
-"nnoremap <silent> <Leader>s :TestNearest<CR>
-"nnoremap <silent> <Leader>l :TestLast<CR>
-"nnoremap <silent> <Leader>a :TestSuite<CR>
-"nnoremap <silent> <leader>gt :TestVisit<CR>
+"LINTERS
+
+let g:syntastic_ruby_checkers          = ['rubocop', 'mri']
+let g:syntastic_ruby_rubocop_exec      = '/home/vtm/.rbenv/shims/rubocop'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set fileformat=unix
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>

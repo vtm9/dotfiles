@@ -3,6 +3,7 @@ source $ZSHA_BASE/antigen/antigen.zsh
 
 export EDITOR='vim'
 set -o vi
+export TERM="xterm-256color"
 
 antigen use oh-my-zsh
 #autoload -U colors && colors
@@ -18,7 +19,6 @@ antigen theme bhilburn/powerlevel9k powerlevel9k
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir vcs vi_mode)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rbenv)
-export TERM="xterm-256color"
 
 # **********************************************************
 # *************************PLUGINS**************************
@@ -59,6 +59,7 @@ alias dr='docker run -it'
 alias dsta='docker stop $(docker ps -a -q)'
 alias dps='docker ps | cut -c-$(tput cols)'
 alias doc='docker-compose'
+alias docu='docker-compose up -d'
 alias tm='tmux attach || tmux new'
 alias s='tig status'
 alias c='git commit -m'
@@ -87,4 +88,4 @@ eval "$(rbenv init -)"
 # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]]  && source "$HOME/.rvm/scripts/rvm"
 
-bindkey '^ ' autosuggest-accept
+bindkey '^[^ ' autosuggest-accept
