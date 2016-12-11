@@ -30,6 +30,7 @@ antigen bundle rails
 antigen bundle bundler
 antigen bundle rbenv
 antigen bundle tmux
+antigen bundle vi-mode
 
 antigen bundle ubuntu
 antigen bundle extract
