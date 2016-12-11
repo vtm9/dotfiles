@@ -39,6 +39,14 @@ cd ~/distrib/tig
 make prefix=/usr
 sudo make install prefix=/usr
 
+# install libpq for pg
+sudo apt-get -y install libpq-dev
+
+# install for vim  some apps
+sudo apt-get -y install build-essential cmake
+sudo apt-get -y install python-dev python3-dev
+sudo apt -y install silversearcher-ag
+
 # create link to zshrc
 ln -s -f ~/dotfiles/.zshrc
 

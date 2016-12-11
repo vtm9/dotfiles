@@ -23,6 +23,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-dispatch'
 Plug 'neomake/neomake'
+Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -70,7 +71,7 @@ let g:rspec_command = "Dispatch rspec {spec}"
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 nmap <silent> <leader>\ :NERDTreeFind<CR>
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 noremap <Leader>s :update<CR>
 
 " Allows you to enter sudo pass and save the file
@@ -132,7 +133,7 @@ set nojoinspaces
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
 
   if !exists(":Ag")
@@ -227,3 +228,4 @@ let test#ruby#rspec#options = {
   \ 'suite':   '--tag ~slow',
   \}
 let test#ruby#rspec#file_pattern = '_spec\.rb'
+set nonumber
