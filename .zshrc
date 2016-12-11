@@ -32,6 +32,7 @@ antigen bundle rbenv
 antigen bundle tmux
 
 antigen bundle ubuntu
+antigen bundle extract
 antigen bundle docker
 antigen bundle docker-compose
 antigen bundle bgnotify
