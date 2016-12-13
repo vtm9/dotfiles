@@ -2,7 +2,7 @@ ZSHA_BASE=~/.zsh
 source $ZSHA_BASE/antigen/antigen.zsh
 
 export EDITOR='vim'
-set -o vi
+bindkey "\e." insert-last-word
 export TERM="xterm-256color"
 
 antigen use oh-my-zsh
@@ -30,8 +30,8 @@ antigen bundle rails
 antigen bundle bundler
 antigen bundle rbenv
 antigen bundle tmux
-antigen bundle vi-mode
 
+antigen bundle vi-mode
 antigen bundle ubuntu
 antigen bundle extract
 antigen bundle docker
@@ -39,7 +39,7 @@ antigen bundle docker-compose
 antigen bundle bgnotify
 antigen bundle command-not-found
 antigen bundle colored-man-pages
-antigen bundle psprint/zsh-navigation-tools
+# antigen bundle psprint/zsh-navigation-tools
 antigen bundle zsh-users/zsh-completions.git
 antigen bundle zsh-users/zsh-autosuggestions.git
 antigen bundle zsh-users/zsh-syntax-highlighting.git
@@ -90,4 +90,6 @@ eval "$(rbenv init -)"
 # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]]  && source "$HOME/.rvm/scripts/rvm"
 
-bindkey '^[^ ' autosuggest-accept
+bindkey '^[^ ' autosuggest-execute
+bindkey "\e " autosuggest-accept
+function exists { which $1 &> /dev/null }

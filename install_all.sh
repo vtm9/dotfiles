@@ -22,6 +22,10 @@ sudo sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_V
 # instal pygment for cat
 sudo apt -y install python-pygments
 
+#install pip
+sudo apt -y install python-pip
+pip install percol
+
 # install tmux on ubuntu
 sudo apt-get -y install tmux
 
