@@ -54,6 +54,7 @@ antigen apply
 alias a='atom .'
 alias rp='bundle exec rspec spec'
 alias rbc='rubocop -a'
+alias rda='rake db:audit'
 alias d='docker'
 alias di='docker images'
 alias de='docker exec -it'
