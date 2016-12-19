@@ -29,6 +29,10 @@ pip install percol
 # install tmux on ubuntu
 sudo apt-get -y install tmux
 
+# install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # install antigen
 git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
 

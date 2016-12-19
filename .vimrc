@@ -33,6 +33,7 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'BlakeWilliams/vim-pry'
 
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
@@ -138,7 +139,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
 nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
 nmap <silent> <Leader>\ :NERDTreeFind<CR>
 
@@ -153,6 +153,8 @@ noremap <Leader>S :wq<CR>
 noremap <Leader>q :quit<CR>
 noremap <Leader>Q :quit!<CR>
 noremap <Leader>e :edit!<CR>
+nmap <leader>d :call pry#insert()<CR>
+nmap <silent> <leader>p :set paste<CR>"*p:set
 
 vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
@@ -213,3 +215,4 @@ let g:html_indent_tags = 'li\|p'
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+" set clipboard=unnamedplus
