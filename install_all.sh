@@ -44,7 +44,10 @@ mkdir ~/distrib
 git clone https://github.com/jonas/tig.git ~/distrib/tig
 sudo apt-get install libncurses5-dev libncursesw5-dev
 cd ~/distrib/tig
-make prefix=/usr
+make clean
+make configure
+./configure
+make  prefix=/usr
 sudo make install prefix=/usr
 
 # install libpq for pg
