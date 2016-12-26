@@ -39,7 +39,6 @@ antigen bundle docker-compose
 antigen bundle bgnotify
 antigen bundle command-not-found
 antigen bundle colored-man-pages
-# antigen bundle psprint/zsh-navigation-tools
 antigen bundle zsh-users/zsh-completions.git
 antigen bundle zsh-users/zsh-autosuggestions.git
 antigen bundle zsh-users/zsh-syntax-highlighting.git
@@ -96,3 +95,5 @@ eval "$(rbenv init -)"
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
 function exists { which $1 &> /dev/null }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
