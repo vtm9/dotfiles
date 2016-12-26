@@ -40,6 +40,7 @@ antigen bundle bgnotify
 antigen bundle command-not-found
 antigen bundle colored-man-pages
 antigen bundle zsh-users/zsh-completions.git
+antigen bundle zsh-users/zaw
 antigen bundle zsh-users/zsh-autosuggestions.git
 antigen bundle zsh-users/zsh-syntax-highlighting.git
 antigen bundle unixorn/autoupdate-antigen.zshplugin

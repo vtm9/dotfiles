@@ -29,6 +29,10 @@ pip install percol
 # install tmux on ubuntu
 sudo apt-get -y install tmux
 
+# install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # install antigen
 git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
 
@@ -40,7 +44,10 @@ mkdir ~/distrib
 git clone https://github.com/jonas/tig.git ~/distrib/tig
 sudo apt-get install libncurses5-dev libncursesw5-dev
 cd ~/distrib/tig
-make prefix=/usr
+make clean
+make configure
+./configure
+make  prefix=/usr
 sudo make install prefix=/usr
 
 # install libpq for pg
