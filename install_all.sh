@@ -26,6 +26,12 @@ sudo apt -y install python-pygments
 sudo apt -y install python-pip
 pip install percol
 
+# install vim 8 
+sudo add-apt-repository -y ppa:jonathonf/vim
+sudo apt update
+sudo apt install -y vim
+sudo apt install -y vim-gtk3 
+
 # install tmux on ubuntu
 sudo apt-get -y install tmux
 

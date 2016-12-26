@@ -154,7 +154,8 @@ noremap <Leader>q :quit<CR>
 noremap <Leader>Q :quit!<CR>
 noremap <Leader>e :edit!<CR>
 nmap <leader>d :call pry#insert()<CR>
-nmap <silent> <leader>p :set paste<CR>"*p:set
+nmap <Leader>p :set paste<CR>o<esc>"+p:set nopaste<cr>
+vmap <leader>y "+y
 
 vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
@@ -219,4 +220,5 @@ nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nmap <C-N><C-N> :set invnumber<CR>
 " set clipboard=unnamedplus
