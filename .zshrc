@@ -98,3 +98,4 @@ bindkey "\e " autosuggest-accept
 function exists { which $1 &> /dev/null }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+setopt hist_ignore_dups
