@@ -7,6 +7,7 @@ export TERM="xterm-256color"
 
 antigen use oh-my-zsh
 #autoload -U colors && colors
+set -o vi
 
 HYPHEN_INSENSITIVE="true"
 ENABLE_CORRECTION="false"
@@ -99,3 +100,4 @@ function exists { which $1 &> /dev/null }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 setopt hist_ignore_dups
+export FZF_CTRL_R_OPTS='--sort'
