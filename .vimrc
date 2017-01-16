@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
@@ -35,9 +36,11 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'BlakeWilliams/vim-pry'
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
+Plug 'p0deje/vim-ruby-interpolation'
 Plug 'stephpy/vim-yaml'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
@@ -221,5 +224,8 @@ nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-nmap <C-N><C-N> :set invnumber<CR>
+nmap <silent> <Leader>8  :set invnumber<CR>
 " set clipboard=unnamedplus
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A]<Space>

@@ -18,6 +18,7 @@ COMPLETION_WAITING_DOTS="true"
 # **********************************************************
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir vcs vi_mode)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rbenv)
 
@@ -37,6 +38,7 @@ antigen bundle ubuntu
 antigen bundle extract
 antigen bundle docker
 antigen bundle docker-compose
+antigen bundle felixr/docker-zsh-completion.git
 antigen bundle bgnotify
 antigen bundle command-not-found
 antigen bundle colored-man-pages
@@ -48,12 +50,13 @@ antigen bundle unixorn/autoupdate-antigen.zshplugin
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-autoload -U compinit && compinit
+# autoload -U compinit && compinit
 antigen apply
 
 # aliases
 alias a='atom .'
 alias rp='bundle exec rspec spec'
+alias srp='spring rspec spec'
 alias rbc='rubocop -a'
 alias rda='rake db:audit'
 alias d='docker'

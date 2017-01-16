@@ -1,1 +1,2 @@
 bind status D !@rm %(file)
+bind status P !git push origin
