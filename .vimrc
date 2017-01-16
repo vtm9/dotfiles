@@ -38,6 +38,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'BlakeWilliams/vim-pry'
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
 Plug 'p0deje/vim-ruby-interpolation'
@@ -68,7 +69,6 @@ let g:airline_linecolumn_prefix = '¶ '
 let g:airline_fugitive_prefix = '⎇ '
 let g:airline_paste_symbol = 'ρ'
 
-set anti enc=utf-8
 set guifont=Source\ Code\ Pro\ 12
 
 " Automatically removing all trailing whitespace
@@ -152,13 +152,16 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+noremap <Leader>j :new<CR>
+noremap <Leader>l :vnew<CR>
+
 noremap <Leader>s :update<CR>
 noremap <Leader>S :wq<CR>
 noremap <Leader>q :quit<CR>
 noremap <Leader>Q :quit!<CR>
 noremap <Leader>e :edit!<CR>
 nmap <leader>d :call pry#insert()<CR>
-nmap <Leader>p :set paste<CR>o<esc>"+p:set nopaste<cr>
+nmap <Leader>p :set paste<CR><esc>"+p: set nopaste<cr>
 vmap <leader>y "+y
 
 vmap <C-j> :m '>+1<CR>gv=gv
@@ -166,7 +169,7 @@ vmap <C-k> :m '<-2<CR>gv=gv
 " vim-rspec mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 " map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 "let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
 "let g:rspec_command = Dispatch spring rspec {spec}\n"
@@ -174,7 +177,7 @@ let g:rspec_command = ':w | !clear && spring rspec -I . {spec}'
 nmap <silent> <Leader>t :TestNearest<CR>
 nmap <silent> <Leader>T :TestFile<CR>
 nmap <silent> <Leader>a :TestSuite<CR>
-nmap <silent> <Leader>l :TestLast<CR>
+" nmap <silent> <Leader>l :TestLast<CR>
 nmap <silent> <Leader>g :TestVisit<CR>
 let test#strategy = "dispatch"
 let test#ruby#rspec#options = {

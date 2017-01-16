@@ -1,7 +1,7 @@
 ZSHA_BASE=~/.zsh
 source $ZSHA_BASE/antigen/antigen.zsh
 
-export EDITOR='vim'
+export EDITOR='nvim'
 bindkey "\e." insert-last-word
 export TERM="xterm-256color"
 
@@ -43,7 +43,7 @@ antigen bundle bgnotify
 antigen bundle command-not-found
 antigen bundle colored-man-pages
 antigen bundle zsh-users/zsh-completions.git
-antigen bundle zsh-users/zaw
+# antigen bundle zsh-users/zaw
 antigen bundle zsh-users/zsh-autosuggestions.git
 antigen bundle zsh-users/zsh-syntax-highlighting.git
 antigen bundle unixorn/autoupdate-antigen.zshplugin
@@ -77,13 +77,13 @@ alias tg='tar -czvf'
 alias ds='du -sckh * | sort -rh'
 alias today='calendar -A 0 -f /usr/share/calendar/calendar.mark | sort'
 alias cat='pygmentize -g'
-alias v='vim'
-alias v.='vim .'
+alias v='nvim'
+alias v.='nvim .'
 alias veh='sudoedit /etc/hosts'
-alias sv='sudo vim'
-alias z='vim ~/.zshrc'
-alias vr='vim ~/.vimrc'
-alias vt='vim ~/.tmux.conf'
+alias sv='sudo nvim'
+alias z='nvim ~/.zshrc'
+alias vr='nvim ~/.vimrc'
+alias vt='nvim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
 unalias ag
@@ -104,3 +104,5 @@ function exists { which $1 &> /dev/null }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
+export PGUSER=postgres
+export PAGER=less
