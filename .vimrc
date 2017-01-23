@@ -37,6 +37,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'BlakeWilliams/vim-pry'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'Numkil/ag.nvim'
 
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
@@ -59,15 +60,15 @@ colorscheme jellybeans
 set t_Co=256
 set t_ut=
 set background=dark
-let g:airline_enable_fugitive=1
-let g:airline_enable_syntastic=1
-let g:airline_enable_bufferline=1
+" let g:airline_enable_fugitive=1
+" let g:airline_enable_syntastic=1
+" let g:airline_enable_bufferline=1
 
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_fugitive_prefix = '⎇ '
-let g:airline_paste_symbol = 'ρ'
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_linecolumn_prefix = '¶ '
+" let g:airline_fugitive_prefix = '⎇ '
+" let g:airline_paste_symbol = 'ρ'
 
 set guifont=Source\ Code\ Pro\ 12
 

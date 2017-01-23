@@ -56,7 +56,7 @@ antigen apply
 # aliases
 alias a='atom .'
 alias rp='bundle exec rspec spec'
-alias srp='spring rspec spec'
+alias srp='spring rspec'
 alias rbc='rubocop -a'
 alias rda='rake db:audit'
 alias d='docker'
