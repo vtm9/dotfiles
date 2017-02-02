@@ -30,14 +30,15 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'BlakeWilliams/vim-pry'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'Numkil/ag.nvim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
@@ -60,16 +61,6 @@ colorscheme jellybeans
 set t_Co=256
 set t_ut=
 set background=dark
-" let g:airline_enable_fugitive=1
-" let g:airline_enable_syntastic=1
-" let g:airline_enable_bufferline=1
-
-" let g:airline_left_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_linecolumn_prefix = '¶ '
-" let g:airline_fugitive_prefix = '⎇ '
-" let g:airline_paste_symbol = 'ρ'
-
 set guifont=Source\ Code\ Pro\ 12
 
 " Automatically removing all trailing whitespace
@@ -102,39 +93,39 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-augroup vimrcEx
-  autocmd!
+" augroup vimrcEx
+"   autocmd!
 
- " When editing a file, always jump to the last known cursor position.
- " Don't do it for commit messages, when the position is invalid, or when
- " inside an event handler (happens when dropping a file on gvim).
- autocmd BufReadPost *
-   \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-   \   exe "normal g`\"" |
-   \ endif
+"  " When editing a file, always jump to the last known cursor position.
+"  " Don't do it for commit messages, when the position is invalid, or when
+"  " inside an event handler (happens when dropping a file on gvim).
+"  autocmd BufReadPost *
+"    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+"    \   exe "normal g`\"" |
+"    \ endif
 
- " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
-augroup END
+"  " Set syntax highlighting for specific file types
+"   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+"   autocmd BufRead,BufNewFile *.md set filetype=markdown
+"   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+" augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
 " shell for syntax highlighting purposes.
 let g:is_posix = 1
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
+" if executable('ag')
+"   " Use Ag over Grep
+"   set grepprg=ag\ --nogroup\ --nocolor
+" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"   let g:ctrlp_use_caching = 0
 
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
+"   if !exists(":Ag")
+"     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"     nnoremap \ :Ag<SPACE>
+"   endif
+" endif
 " Make it obvious where 90 characters is
 set textwidth=90
 set colorcolumn=+1
@@ -163,6 +154,7 @@ noremap <Leader>Q :quit!<CR>
 noremap <Leader>e :edit!<CR>
 nmap <leader>d :call pry#insert()<CR>
 nmap <Leader>p :set paste<CR><esc>"+p: set nopaste<cr>
+nmap <Leader>P <CR>o<CR> :set paste<CR><esc>"+p: set nopaste<cr>
 vmap <leader>y "+y
 
 vmap <C-j> :m '>+1<CR>gv=gv
@@ -194,9 +186,9 @@ set complete+=kspell
 set diffopt+=vertical
 
 let test#ruby#rspec#file_pattern = '_spec\.rb'
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 " Allows you to enter sudo pass and save the file
 " when you forgot to open your file with sudo
 cmap w!! %!sudo tee > /dev/null %
@@ -232,4 +224,17 @@ nmap <silent> <Leader>8  :set invnumber<CR>
 " set clipboard=unnamedplus
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>bb :Buffers<CR>
+nnoremap <silent> <leader>ct :!ctags --recurse . `bundle show --paths`<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A]<Space>
+nnoremap \ :Ack\
+nnoremap <silent> <leader>v :Eview<CR>
+nnoremap <silent> <leader>c :Econtroller<CR>
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+let g:ackprg = 'rg --vimgrep --no-heading'

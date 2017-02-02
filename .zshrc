@@ -92,10 +92,9 @@ mkc () {
     mkdir -p "$@" && cd "$@"
 }
 
-eval "$(rbenv init -)"
 
 # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]]  && source "$HOME/.rvm/scripts/rvm"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]]  && source "$HOME/.rvm/scripts/rvm"
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
@@ -104,5 +103,11 @@ function exists { which $1 &> /dev/null }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
-export PGUSER=postgres
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export PGUSER='postgres'
+export PGPASSWORD='password'
+export PGHOST='localhost'
 export PAGER=less
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+stty icrnl
