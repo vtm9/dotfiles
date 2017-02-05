@@ -3,14 +3,19 @@
 # dconf load / < ~/dotfiles/gnome_root_dump
 
 sudo true
+
 # install adobe fonts
 sudo git clone https://github.com/adobe-fonts/source-code-pro.git -b release /usr/share/fonts/opentype/scp
 fc-cache -f -v
 
 # install git and rbenv
-sudo apt-get -y install git-core curl
-sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+sudo apt-get -y install git-core curl libssl-dev libreadline-dev zlib1g-dev
 curl -L raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+
+# install ruby if need
+rbenv install 2.3.3
+rbenv global 2.3.3
+rbenv rehash
 
 # install docker, docker-compose
 wget -qO- https://get.docker.com/ | sh
@@ -21,16 +26,10 @@ sudo sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_V
 
 # instal pygment for cat
 sudo apt -y install python-pygments
-
-#install pip
 sudo apt -y install python-pip
-pip install percol
 
-# install vim 8 
-sudo add-apt-repository -y ppa:jonathonf/vim
-sudo apt update
-sudo apt install -y vim
-sudo apt install -y vim-gtk3 
+# install neovim
+sudo apt-get install neovim
 
 # install tmux on ubuntu
 sudo apt-get -y install tmux
@@ -43,7 +42,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 git clone https://github.com/zsh-users/antigen.git ~/.zsh/antigen
 
 # install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # install tig
 mkdir ~/distrib
@@ -59,10 +58,14 @@ sudo make install prefix=/usr
 # install libpq for pg
 sudo apt-get -y install libpq-dev
 
-# install for vim  some apps
+# install some apps for nvim
 sudo apt-get -y install build-essential cmake
 sudo apt-get -y install python-dev python3-dev
 sudo apt -y install silversearcher-ag
+
+# config unity
+sudo apt-get install compizconfig-settings-manager
+sudo apt-get install gnome-tweak-tool
 
 # create link to zshrc
 ln -s -f ~/dotfiles/.zshrc
@@ -77,7 +80,3 @@ ln -s  ~/dotfiles/.tmux
 # create link to tigrc
 ln -s -f ~/dotfiles/.tigrc
 
-# install ruby if need
-rbenv install 2.3.3
-rbenv global 2.3.3
-rbenv rehash
