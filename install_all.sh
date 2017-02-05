@@ -9,8 +9,8 @@ fc-cache -f -v
 
 # install git and rbenv
 sudo apt-get -y install git-core curl
-curl -L raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+curl -L raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 
 # install docker, docker-compose
 wget -qO- https://get.docker.com/ | sh
