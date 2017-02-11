@@ -55,8 +55,8 @@ antigen apply
 
 # aliases
 alias a='atom .'
-alias rp='bundle exec rspec spec'
 alias srp='spring rspec'
+alias srr='spring rake routes | fzf'
 alias rbc='rubocop -a'
 alias rda='rake db:audit'
 alias d='docker'
@@ -87,6 +87,7 @@ alias vt='nvim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
 unalias ag
+unalias rg
 
 mkc () {
     mkdir -p "$@" && cd "$@"
