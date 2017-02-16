@@ -80,3 +80,13 @@ ln -s  ~/dotfiles/.tmux
 # create link to tigrc
 ln -s -f ~/dotfiles/.tigrc
 
+# install https://github.com/ierton/xkb-switch
+sudo apt-get install libxkbfile-dev
+cd ~/distrib
+git clone https://github.com/ierton/xkb-switch
+cd xkb-switch
+mkdir build && cd build
+cmake ..
+make
+sudo make install
+pip install --upgrade neovim
