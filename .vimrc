@@ -16,10 +16,10 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.nvim/plugged')
 
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'vtm9/vim-pry'
+
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
@@ -42,18 +42,14 @@ Plug 'tpope/vim-ragtag'
   let g:ragtag_global_maps = 1
 " }}}
 
-Plug 'neomake/neomake'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'jgdavey/tslime.vim'
 Plug 'Valloric/MatchTagAlways'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
-Plug 'dyng/ctrlsf.vim'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'BlakeWilliams/vim-pry'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'mileszs/ack.vim'
 
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
@@ -64,25 +60,6 @@ Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'slim-template/vim-slim'
-
-Plug 'jgdavey/tslime.vim'
-Plug 'skalnik/vim-vroom'
-Plug 'janko-m/vim-test'
-" {{{
-  function! TerminalSplitStrategy(cmd) abort
-    tabnew | call termopen(a:cmd) | startinsert
-  endfunction
-  " let g:test#custom_strategies = get(g:, 'test#custom_strategies', {})
-  " let g:test#custom_strategies.terminal_split = function('TerminalSplitStrategy')
-  " let test#strategy = 'terminal_split'
-  let test#strategy = "dispatch"
-" let g:test#preserve_screen = 1
-  nnoremap <silent> <leader>rr :TestFile<CR>
-  nnoremap <silent> <leader>rf :TestNearest<CR>
-  nnoremap <silent> <leader>rs :TestSuite<CR>
-  nnoremap <silent> <leader>ra :TestLast<CR>
-  nnoremap <silent> <leader>ro :TestVisit<CR>
-" }}}
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -106,6 +83,7 @@ Plug 'junegunn/limelight.vim'
 " }}}
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " {{{
   let g:NERDTreeMinimalUI = 1
   let g:NERDTreeWinSize = 31
@@ -153,14 +131,6 @@ Plug 'junegunn/fzf.vim'
     let &clipboard = old_clipboard
     execute 'Ag' selection
   endfunction
-" }}}
-
- Plug 'Lokaltog/vim-easymotion'
-" {{{
-  let g:EasyMotion_do_mapping = 0
-  let g:EasyMotion_smartcase = 1
-  let g:EasyMotion_off_screen_search = 0
-  nmap ; <Plug>(easymotion-s2)
 " }}}
 
 Plug 'rhysd/clever-f.vim'
@@ -254,6 +224,24 @@ Plug 'lyokha/vim-xkbswitch'
   nnoremap <silent> д :call RestoreKeyboardLayout('l')<CR>
 " }}}
 
+
+Plug 'janko-m/vim-test'
+" {{{
+  function! TerminalSplitStrategy(cmd) abort
+    tabnew | call termopen(a:cmd) | startinsert
+  endfunction
+  " let g:test#custom_strategies = get(g:, 'test#custom_strategies', {})
+  " let g:test#custom_strategies.terminal_split = function('TerminalSplitStrategy')
+  " let test#strategy = 'terminal_split'
+  let test#strategy = "dispatch"
+" let g:test#preserve_screen = 1
+  nnoremap <silent> <leader>rr :TestFile<CR>
+  nnoremap <silent> <leader>rf :TestNearest<CR>
+  nnoremap <silent> <leader>rs :TestSuite<CR>
+  nnoremap <silent> <leader>ra :TestLast<CR>
+  nnoremap <silent> <leader>ro :TestVisit<CR>
+" }}}
+
 call plug#end()
 filetype plugin indent on
 
@@ -307,11 +295,18 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-set textwidth=90
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
+
+" Always use vertical diffs
+set diffopt+=vertical
+
+set fileformat=unix
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+set textwidth=120
 " set colorcolumn=+1
 
 " Get off my lawn
@@ -364,39 +359,20 @@ let test#ruby#rspec#options = {
   \ 'suite':   '--tag ~slow',
   \}
 
-" Autocomplete with dictionary words when spell check is on
-set complete+=kspell
-
-" Always use vertical diffs
-set diffopt+=vertical
-
-let test#ruby#rspec#file_pattern = '_spec\.rb'
-" autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 " Allows you to enter sudo pass and save the file
 " when you forgot to open your file with sudo
 cmap w!! %!sudo tee > /dev/null %
-
-"LINTERS
-
-set fileformat=unix
-
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nmap <silent> <Leader>8  :set invnumber<CR>
-" set clipboard=unnamedplus
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>bb :Buffers<CR>
