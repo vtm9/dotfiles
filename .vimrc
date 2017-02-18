@@ -50,6 +50,7 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'wincent/ferret'
 
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
@@ -101,17 +102,18 @@ Plug 'junegunn/fzf.vim'
 " {{{
   let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
-  nnoremap <silent> <leader>a :Buffers<CR>
-  nnoremap <silent> <leader>; :BLines<CR>
-  nnoremap <silent> <leader>o :BTags<CR>
-  nnoremap <silent> <leader>O :Tags<CR>
-  nnoremap <silent> <leader>? :History<CR>
+  nnoremap <silent> <Leader>b :Buffers<CR>
+  nnoremap <silent> <Leader>; :BLines<CR>
+  nnoremap <silent> <Leader>o :BTags<CR>
+  nnoremap <silent> <Leader>O :Tags<CR>
+  nnoremap <silent> <Leader>h :History<CR>
+  nnoremap <silent> <C-p> :GFiles<CR>
 
   nnoremap <silent> K :call SearchWordWithAg()<CR>
   vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
-  nnoremap <silent> <leader>gl :Commits<CR>
-  nnoremap <silent> <leader>ga :BCommits<CR>
-  nnoremap <silent> <leader>ft :Filetypes<CR>
+  nnoremap <silent> <Leader>gl :Commits<CR>
+  nnoremap <silent> <Leader>ga :BCommits<CR>
+  nnoremap <silent> <Leader>ft :Filetypes<CR>
 
   imap <C-x><C-f> <plug>(fzf-complete-file-ag)
   imap <C-x><C-l> <plug>(fzf-complete-line)
@@ -136,12 +138,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'rhysd/clever-f.vim'
 " {{{
   let g:clever_f_smart_case = 1
-" }}}
-
-Plug 'junegunn/vim-easy-align'
-" {{{
-  let g:easy_align_ignore_comment = 0 " align comments
-  vnoremap <silent> <Enter> :EasyAlign<cr>
 " }}}
 
 Plug 'Raimondi/delimitMate'
@@ -196,8 +192,8 @@ Plug 'scrooloose/syntastic'
 
   augroup syntasticCustomCheckers
     autocmd!
-    autocmd FileType ruby nnoremap <leader>` :SyntasticCheck rubocop<CR>
-    autocmd FileType ruby nnoremap <leader>! :call RubocopAutoCorrection()<CR>
+    autocmd FileType ruby nnoremap <Leader>` :SyntasticCheck rubocop<CR>
+    autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
   augroup END
 " }}}
 
@@ -217,11 +213,6 @@ Plug 'lyokha/vim-xkbswitch'
     call system("xkb-switch -s 'us'")
     execute 'normal! ' . a:key
   endfunction
-
-  nnoremap <silent> р :call RestoreKeyboardLayout('h')<CR>
-  nnoremap <silent> о :call RestoreKeyboardLayout('j')<CR>
-  nnoremap <silent> л :call RestoreKeyboardLayout('k')<CR>
-  nnoremap <silent> д :call RestoreKeyboardLayout('l')<CR>
 " }}}
 
 
@@ -235,11 +226,11 @@ Plug 'janko-m/vim-test'
   " let test#strategy = 'terminal_split'
   let test#strategy = "dispatch"
 " let g:test#preserve_screen = 1
-  nnoremap <silent> <leader>rr :TestFile<CR>
-  nnoremap <silent> <leader>rf :TestNearest<CR>
-  nnoremap <silent> <leader>rs :TestSuite<CR>
-  nnoremap <silent> <leader>ra :TestLast<CR>
-  nnoremap <silent> <leader>ro :TestVisit<CR>
+  nnoremap <silent> <Leader>rr :TestFile<CR>
+  nnoremap <silent> <Leader>rf :TestNearest<CR>
+  nnoremap <silent> <Leader>rs :TestSuite<CR>
+  nnoremap <silent> <Leader>ra :TestLast<CR>
+  nnoremap <silent> <Leader>ro :TestVisit<CR>
 " }}}
 
 call plug#end()
@@ -248,7 +239,7 @@ filetype plugin indent on
 colorscheme jellybeans
 
 set cursorline     " highlight current line
-set colorcolumn=80 " highlight column
+set colorcolumn=120 " highlight column
 highlight! ColorColumn ctermbg=233 guibg=#131313
 
 " Various columns
@@ -277,7 +268,7 @@ set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
+set history=500
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
@@ -307,19 +298,6 @@ set splitbelow
 set splitright
 
 set textwidth=120
-" set colorcolumn=+1
-
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
-" Y behave like D or C
-nnoremap Y y$
-
-" Select all text
-noremap vA ggVG
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -332,61 +310,31 @@ noremap <Leader>S :wq<CR>
 noremap <Leader>q :quit<CR>
 noremap <Leader>Q :quit!<CR>
 noremap <Leader>e :edit!<CR>
-nmap <leader>d :call pry#insert()<CR>
-nmap <Leader>p :set paste<CR><esc>"+p: set nopaste<cr>
-nmap <Leader>P <CR>o<CR> :set paste<CR><esc>"+p: set nopaste<cr>
-vmap <leader>y "+y
 
+nmap <Leader>d :call pry#insert()<CR>
+nmap <Leader>p :set paste<CR><esc>"+p: set nopaste<cr>
+nmap <Leader>P :set paste<CR><esc>o<Esc>"+p: set nopaste<cr>
+vmap <Leader>y "+y
+nnoremap Y y$
+noremap vA ggVG
 vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
-" vim-rspec mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-" map <Leader>s :call RunNearestSpec()<CR>
-" map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-"let g:rspec_command = 'call Send_to_Tmux("spring rspec {spec}\n")'
-"let g:rspec_command = Dispatch spring rspec {spec}\n"
-let g:rspec_command = ':w | !clear && spring rspec -I . {spec}'
-nmap <silent> <Leader>t :TestNearest<CR>
-nmap <silent> <Leader>T :TestFile<CR>
-nmap <silent> <Leader>a :TestSuite<CR>
-" nmap <silent> <Leader>l :TestLast<CR>
-nmap <silent> <Leader>g :TestVisit<CR>
-let test#strategy = "dispatch"
-let test#ruby#rspec#options = {
-  \ 'nearest': '--backtrace',
-  \ 'file':    '--format documentation',
-  \ 'suite':   '--tag ~slow',
-  \}
+nmap <silent> <C-_> gcc
+vmap <silent> <C-_> gc
 
-" Allows you to enter sudo pass and save the file
-" when you forgot to open your file with sudo
-cmap w!! %!sudo tee > /dev/null %
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
-
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
-
+nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] - <Space>
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-nmap <silent> <Leader>8  :set invnumber<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> <leader>ct :!ctags --recurse . `bundle show --paths`<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A]<Space>
-nnoremap \ :Ack\
-nnoremap <silent> <leader>v :Eview<CR>
-nnoremap <silent> <leader>c :Econtroller<CR>
+nnoremap <silent> <Leader>8  :set invnumber<CR>
+nnoremap <silent> <Leader>1 :source $MYVIMRC <CR>
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'ag --column --line-number --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-let g:ackprg = 'ag --vimgrep'
+nnoremap <silent> <Leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>v :Eview<CR>
+nnoremap <silent> <Leader>c :Econtroller<CR>
+
+nmap <Leader>/ <Plug>(FerretAck)
+nmap <Leader>z <Plug>(FerretAckWord)
+nmap <Leader>r <Plug>(FerretAcks)
