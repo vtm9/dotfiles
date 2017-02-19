@@ -47,10 +47,10 @@ Plug 'jgdavey/tslime.vim'
 Plug 'Valloric/MatchTagAlways'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
-Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'wincent/ferret'
+Plug 'airblade/vim-rooter'
 
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
@@ -103,7 +103,7 @@ Plug 'junegunn/fzf.vim'
   let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
   nnoremap <silent> <Leader>b :Buffers<CR>
-  nnoremap <silent> <Leader>; :BLines<CR>
+  nnoremap <silent> <Leader>; :Ag<CR>
   nnoremap <silent> <Leader>o :BTags<CR>
   nnoremap <silent> <Leader>O :Tags<CR>
   nnoremap <silent> <Leader>h :History<CR>
@@ -113,7 +113,6 @@ Plug 'junegunn/fzf.vim'
   vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
   nnoremap <silent> <Leader>gl :Commits<CR>
   nnoremap <silent> <Leader>ga :BCommits<CR>
-  nnoremap <silent> <Leader>ft :Filetypes<CR>
 
   imap <C-x><C-f> <plug>(fzf-complete-file-ag)
   imap <C-x><C-l> <plug>(fzf-complete-line)
@@ -152,8 +151,12 @@ Plug 'AndrewRadev/switch.vim'
   let g:switch_mapping = '\'
 " }}}
 
+Plug 'mattn/vim-textobj-url'
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
+Plug 'thinca/vim-textobj-comment'
+Plug 'andyl/vim-textobj-elixir'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
 Plug 'scrooloose/syntastic'
@@ -233,6 +236,7 @@ Plug 'janko-m/vim-test'
   nnoremap <silent> <Leader>ro :TestVisit<CR>
 " }}}
 
+Plug 'nanotech/jellybeans.vim'
 call plug#end()
 filetype plugin indent on
 
@@ -310,17 +314,18 @@ noremap <Leader>S :wq<CR>
 noremap <Leader>q :quit<CR>
 noremap <Leader>Q :quit!<CR>
 noremap <Leader>e :edit!<CR>
+map Q @q
 
 nmap <Leader>d :call pry#insert()<CR>
 nmap <Leader>p :set paste<CR><esc>"+p: set nopaste<cr>
 nmap <Leader>P :set paste<CR><esc>o<Esc>"+p: set nopaste<cr>
 vmap <Leader>y "+y
 nnoremap Y y$
-noremap vA ggVG
 vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
 nmap <silent> <C-_> gcc
 vmap <silent> <C-_> gc
+nnoremap <Leader>f :%s///gc<Left><Left><Left>
 
 nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] - <Space>
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -337,4 +342,5 @@ nnoremap <silent> <Leader>c :Econtroller<CR>
 
 nmap <Leader>/ <Plug>(FerretAck)
 nmap <Leader>z <Plug>(FerretAckWord)
-nmap <Leader>r <Plug>(FerretAcks)
+nmap <Leader>x <Plug>(FerretAcks)
+nmap <Leader>w :FZF -m ~/Projects<Space><CR>

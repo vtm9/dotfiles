@@ -1,6 +1,4 @@
 #!/bin/bash
-# TODO: create new gome dump
-# dconf load / < ~/dotfiles/gnome_root_dump
 
 sudo true
 

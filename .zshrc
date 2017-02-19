@@ -104,7 +104,11 @@ function exists { which $1 &> /dev/null }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+if  type rg > /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+else
+    export FZF_DEFAULT_COMMAND='ag --ignore-case -g ""'
+fi
 export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'
