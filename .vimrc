@@ -103,9 +103,9 @@ Plug 'junegunn/fzf.vim'
   let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
   nnoremap <silent> <Leader>b :Buffers<CR>
-  nnoremap <silent> <Leader>; :Ag<CR>
-  nnoremap <silent> <Leader>o :BTags<CR>
-  nnoremap <silent> <Leader>O :Tags<CR>
+  nnoremap <silent> <Leader>; :Rg<CR>
+  nnoremap <silent> <Leader>O :BTags<CR>
+  nnoremap <silent> <Leader>o :Tags<CR>
   nnoremap <silent> <Leader>h :History<CR>
   nnoremap <silent> <C-p> :GFiles<CR>
 
@@ -118,7 +118,7 @@ Plug 'junegunn/fzf.vim'
   imap <C-x><C-l> <plug>(fzf-complete-line)
 
   function! SearchWordWithAg()
-    execute 'Ag' expand('<cword>')
+    execute 'Rg' expand('<cword>')
   endfunction
 
   function! SearchVisualSelectionWithAg() range
@@ -130,8 +130,15 @@ Plug 'junegunn/fzf.vim'
     let selection = getreg('"')
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
-    execute 'Ag' selection
+    execute 'Rg' selection
   endfunction
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+  " command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 " }}}
 
 Plug 'rhysd/clever-f.vim'
@@ -216,8 +223,12 @@ Plug 'lyokha/vim-xkbswitch'
     call system("xkb-switch -s 'us'")
     execute 'normal! ' . a:key
   endfunction
-" }}}
 
+  nnoremap <silent> р :call RestoreKeyboardLayout('h')<CR>
+  nnoremap <silent> о :call RestoreKeyboardLayout('j')<CR>
+  nnoremap <silent> л :call RestoreKeyboardLayout('k')<CR>
+  nnoremap <silent> д :call RestoreKeyboardLayout('l')<CR>
+" }}}
 
 Plug 'janko-m/vim-test'
 " {{{
@@ -263,6 +274,10 @@ highlight! link elixirAtom rubySymbol
 set t_Co=256
 set t_ut=
 set background=dark
+
+" set guifont=Source\ Code\ Pro\ Regular\ 12
+" set guioptions-=rL
+" set anti enc=utf-8
 set guifont=Source\ Code\ Pro\ 12
 
 " Automatically removing all trailing whitespace
@@ -344,3 +359,5 @@ nmap <Leader>/ <Plug>(FerretAck)
 nmap <Leader>z <Plug>(FerretAckWord)
 nmap <Leader>x <Plug>(FerretAcks)
 nmap <Leader>w :FZF -m ~/Projects<Space><CR>
+nmap <Leader>l vae :!xmllint --format -<CR>
+
