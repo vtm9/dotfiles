@@ -21,6 +21,7 @@ COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep refs/tag
 sudo sh -c "curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
 sudo chmod +x /usr/local/bin/docker-compose
 sudo sh -c "curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose"
+sudo usermod -aG docker $USER
 
 # instal pygment for cat
 sudo apt -y install python-pygments
