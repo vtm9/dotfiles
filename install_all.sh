@@ -93,3 +93,10 @@ pip install --upgrade neovim
 # install nodejs
 curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get install nodejs
+
+# install rust
+curl https://sh.rustup.rs -sSf | sh
+cargo install ripgrep
+# gems
+gem install bundler
+gem install ripper-tags
