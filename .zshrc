@@ -102,6 +102,7 @@ bindkey "\e " autosuggest-accept
 function exists { which $1 &> /dev/null }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.cargo/env
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
 if  type rg > /dev/null; then
