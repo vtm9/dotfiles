@@ -31,7 +31,10 @@ sudo apt -y install python-pip
 sudo apt-get install neovim
 
 # install tmux on ubuntu
-sudo apt-get -y install tmux
+git clone https://github.com/tmux/tmux.git ~/distrib/tmux
+sudo apt-get install automake  libevent-dev
+cd ~/distrib/tmux && sh autogen.sh && ./configure && make
+sudo make install prefix=/usr
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -72,8 +75,8 @@ ln -s -f ~/dotfiles/.zshrc
 # create link to vimrc
 ln -s -f ~/dotfiles/.vimrc
 
-# create link to tmux.conf
-ln -s -f ~/dotfiles/.tmux.conf
+# create link to .conf
+ln -s -f ~/dotfiles/..conf
 ln -s  ~/dotfiles/.tmux
 
 # create link to tigrc
