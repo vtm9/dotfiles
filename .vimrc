@@ -29,6 +29,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
+" {{{
+  set includeexpr=true
+" }}}
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
@@ -57,6 +60,9 @@ Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
 Plug 'p0deje/vim-ruby-interpolation'
 Plug 'stephpy/vim-yaml'
+Plug 'digitalrounin/vim-yaml-folds'
+Plug 'vim-utils/vim-ruby-fold'
+Plug 'Einenlum/yaml-revealer'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
@@ -101,9 +107,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
   let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+  let g:fzf_tags_command = 'ripper-tags -R'
 
   nnoremap <silent> <Leader>b :Buffers<CR>
-  nnoremap <silent> <Leader>; :Rg<CR>
+  nnoremap <silent> <Leader>; :Rg<Space>
   nnoremap <silent> <Leader>O :BTags<CR>
   nnoremap <silent> <Leader>o :Tags<CR>
   nnoremap <silent> <Leader>h :History<CR>
@@ -340,9 +347,9 @@ vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
 nmap <silent> <C-_> gcc
 vmap <silent> <C-_> gc
-nnoremap <Leader>f :%s///gc<Left><Left><Left>
+nnoremap <Leader>f :%s///gc<Left><Left><Left><Left>
 
-nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] - <Space>
+nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] -<Space>
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
@@ -352,12 +359,17 @@ nnoremap <silent> <Leader>1 :source $MYVIMRC <CR>
 
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>v :Eview<CR>
 nnoremap <silent> <Leader>c :Econtroller<CR>
+nnoremap <silent> <Leader>e :A<CR>
+nnoremap <silent> <Leader>r :R<CR>
 
 nmap <Leader>/ <Plug>(FerretAck)
 nmap <Leader>z <Plug>(FerretAckWord)
 nmap <Leader>x <Plug>(FerretAcks)
 nmap <Leader>w :FZF -m ~/Projects<Space><CR>
-nmap <Leader>l vae :!xmllint --format -<CR>
-
+nmap <Leader>l :Lines<CR>
+set shortmess=a
+set foldlevelstart=99
+set mouse=a
