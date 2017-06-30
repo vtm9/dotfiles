@@ -1,5 +1,6 @@
 ZSHA_BASE=~/.zsh
 source $ZSHA_BASE/antigen/antigen.zsh
+export POWERLEVEL9K_INSTALLATION_PATH=$HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-bhilburn-SLASH-powerlevel9k.git
 
 export EDITOR='nvim'
 bindkey "\e." insert-last-word
