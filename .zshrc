@@ -57,7 +57,9 @@ antigen apply
 alias a='atom .'
 alias srp='spring rspec'
 alias srr='spring rake routes | fzf'
-alias srdm='spring rake db:migrate'
+alias rdm='spring rake db:migrate'
+alias rdd='spring rake db:drop'
+alias rdr='spring rake db:rollback'
 alias srst='RET spring rake db:drop db:create db:migrate'
 alias rbc='rubocop -a'
 alias d='docker'
@@ -70,6 +72,7 @@ alias dps='docker ps | cut -c-$(tput cols)'
 alias doc='docker-compose'
 alias docu='docker-compose up -d'
 alias tm='tmux attach || tmux new'
+alias tn='tmux new'
 alias s='tig status'
 alias c='git commit -m'
 alias k='kill -9'
@@ -89,6 +92,7 @@ alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
 unalias ag
 unalias rg
+# alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
 
 mkc () {
     mkdir -p "$@" && cd "$@"
@@ -106,12 +110,8 @@ function exists { which $1 &> /dev/null }
 source ~/.cargo/env
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
-if  type rg > /dev/null; then
-    # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-else
-    export FZF_DEFAULT_COMMAND='ag --ignore-case -g ""'
-fi
+# export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
+export FZF_DEFAULT_COMMAND='rg --files --ignore --hidden --follow --glob "!.git/*"'
 export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'
@@ -119,3 +119,5 @@ export PAGER=less
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 stty icrnl
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin

@@ -28,6 +28,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-rails'
 " {{{
   set includeexpr=true
@@ -53,20 +54,28 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'wincent/ferret'
+Plug 'farmergreg/vim-lastplace'
+" {{{
+let g:FerretExecutable='ag,rg'
+" }}}
+
 Plug 'airblade/vim-rooter'
 
+" Plug 'sheerun/vim-polyglot'
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
 Plug 'p0deje/vim-ruby-interpolation'
 Plug 'stephpy/vim-yaml'
 Plug 'digitalrounin/vim-yaml-folds'
-Plug 'vim-utils/vim-ruby-fold'
+" Plug 'vim-utils/vim-ruby-fold'
 Plug 'Einenlum/yaml-revealer'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'slim-template/vim-slim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -90,6 +99,7 @@ Plug 'junegunn/limelight.vim'
 " }}}
 
 Plug 'scrooloose/nerdtree'
+Plug 'tyok/nerdtree-ack'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " {{{
   let g:NERDTreeMinimalUI = 1
@@ -111,8 +121,8 @@ Plug 'junegunn/fzf.vim'
 
   nnoremap <silent> <Leader>b :Buffers<CR>
   nnoremap <silent> <Leader>; :Rg<Space>
-  nnoremap <silent> <Leader>O :BTags<CR>
-  nnoremap <silent> <Leader>o :Tags<CR>
+  nnoremap <silent> <Leader>T :BTags<CR>
+  nnoremap <silent> <Leader>t :Tags<CR>
   nnoremap <silent> <Leader>h :History<CR>
   nnoremap <silent> <C-p> :GFiles<CR>
 
@@ -141,7 +151,7 @@ Plug 'junegunn/fzf.vim'
   endfunction
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -173,46 +183,63 @@ Plug 'thinca/vim-textobj-comment'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
-Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 " {{{
-  let g:syntastic_enable_signs          = 1
-  let g:syntastic_enable_highlighting   = 1
-  let g:syntastic_cpp_check_header      = 1
-  let g:syntastic_enable_balloons       = 1
-  let g:syntastic_echo_current_error    = 1
-  let g:syntastic_check_on_wq           = 0
-  let g:syntastic_error_symbol          = '✘'
-  let g:syntastic_warning_symbol        = '!'
-  let g:syntastic_style_error_symbol    = ':('
-  let g:syntastic_style_warning_symbol  = ':('
-  let g:syntastic_elixir_checkers       = ['elixir']
-  let g:syntastic_javascript_checkers   = ['eslint']
-  let g:syntastic_enable_elixir_checker = 0
-
-  let g:syntastic_ruby_checkers     = ['rubocop', 'mri']
-  let g:syntastic_ruby_rubocop_exec = '~/.rbenv/shims/rubocop'
-  let g:syntastic_ruby_rubocop_args = '--display-cop-names --rails'
-
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-
-  function! RubocopAutoCorrection()
-    let save_pos = getpos(".")
-    echo 'Starting rubocop autocorrection...'
-    cexpr system('rubocop -D -R -f emacs -a ' . expand(@%))
-    edit
-    SyntasticCheck rubocop
-    call setpos(".", save_pos)
-    " copen
-  endfunction
-
-  augroup syntasticCustomCheckers
-    autocmd!
-    autocmd FileType ruby nnoremap <Leader>` :SyntasticCheck rubocop<CR>
-    autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
-  augroup END
+autocmd! BufWritePost * Neomake
+let g:neomake_open_list=0
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
+let g:neomake_markdown_enabled_makers = ['alex', 'markdownlint', 'proselint']
+let g:neomake_elixir_enabled_makers = ['mix', 'credo']
+let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
+function! RubocopAutoCorrection()
+  exe "w"
+  silent exe "!bundle exec rubocop -a -R % &> /dev/null"
+  silent exe "e %"
+  silent exe "Neomake"
+endfun
+  autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
 " }}}
+" Plug 'scrooloose/syntastic'
+" " {{{
+"   let g:syntastic_enable_signs          = 1
+"   let g:syntastic_enable_highlighting   = 1
+"   let g:syntastic_cpp_check_header      = 1
+"   let g:syntastic_enable_balloons       = 1
+"   let g:syntastic_echo_current_error    = 1
+"   let g:syntastic_check_on_wq           = 0
+"   let g:syntastic_error_symbol          = '✘'
+"   let g:syntastic_warning_symbol        = '!'
+"   let g:syntastic_style_error_symbol    = ':('
+"   let g:syntastic_style_warning_symbol  = ':('
+"   let g:syntastic_elixir_checkers       = ['elixir']
+"   let g:syntastic_javascript_checkers   = ['eslint']
+"   let g:syntastic_enable_elixir_checker = 0
+
+"   let g:syntastic_ruby_checkers     = ['rubocop', 'mri']
+"   let g:syntastic_ruby_rubocop_exec = '~/.rbenv/shims/rubocop'
+"   let g:syntastic_ruby_rubocop_args = '--display-cop-names --rails'
+
+"   set statusline+=%#warningmsg#
+"   set statusline+=%{SyntasticStatuslineFlag()}
+"   set statusline+=%*
+
+"   function! RubocopAutoCorrection()
+"     let save_pos = getpos(".")
+"     echo 'Starting rubocop autocorrection...'
+"     cexpr system('rubocop -D -R -f emacs -a ' . expand(@%))
+"     edit
+"     SyntasticCheck rubocop
+"     call setpos(".", save_pos)
+"     " copen
+"   endfunction
+
+"   augroup syntasticCustomCheckers
+"     autocmd!
+"     autocmd FileType ruby nnoremap <Leader>` :SyntasticCheck rubocop<CR>
+"     autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
+"   augroup END
+" " }}}
 
 Plug 'mattn/emmet-vim'
 " {{{
@@ -325,6 +352,14 @@ set splitright
 
 set textwidth=120
 
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -347,14 +382,16 @@ vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
 nmap <silent> <C-_> gcc
 vmap <silent> <C-_> gc
-nnoremap <Leader>f :%s///gc<Left><Left><Left><Left>
+nnoremap <Leader>f :%s///g<Left><Left>
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] -<Space>
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-nnoremap <silent> <Leader>8  :set invnumber<CR>
+nnoremap <silent> <Leader>8 :set invnumber<CR>
+nnoremap <silent> <Leader>7 :call NumberToggle()<cr>
 nnoremap <silent> <Leader>1 :source $MYVIMRC <CR>
 
 nnoremap <silent> <Leader>gb :Gblame<CR>
@@ -370,6 +407,10 @@ nmap <Leader>z <Plug>(FerretAckWord)
 nmap <Leader>x <Plug>(FerretAcks)
 nmap <Leader>w :FZF -m ~/Projects<Space><CR>
 nmap <Leader>l :Lines<CR>
+nmap <Leader>o o<Esc>k
+nmap <Leader>O O<Esc>j
+nmap <silent> cp "_ciw<C-R>"<Esc>
+
 set shortmess=a
 set foldlevelstart=99
 set mouse=a
