@@ -17,6 +17,7 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 call plug#begin('~/.nvim/plugged')
 
 Plug 'vtm9/vim-pry'
+Plug 'vtm9/yaml-revealer'
 
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
@@ -69,11 +70,11 @@ Plug 'p0deje/vim-ruby-interpolation'
 Plug 'stephpy/vim-yaml'
 Plug 'digitalrounin/vim-yaml-folds'
 " Plug 'vim-utils/vim-ruby-fold'
-Plug 'Einenlum/yaml-revealer'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'slim-template/vim-slim'
+Plug 'gaogao1030/vim-skim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/html5.vim'
@@ -99,7 +100,10 @@ Plug 'junegunn/limelight.vim'
 " }}}
 
 Plug 'scrooloose/nerdtree'
-Plug 'tyok/nerdtree-ack'
+Plug 'vtm9/nerdtree-ag'
+" Plug 'tyok/nerdtree-ack'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " {{{
   let g:NERDTreeMinimalUI = 1
@@ -120,7 +124,7 @@ Plug 'junegunn/fzf.vim'
   let g:fzf_tags_command = 'ripper-tags -R'
 
   nnoremap <silent> <Leader>b :Buffers<CR>
-  nnoremap <silent> <Leader>; :Rg<Space>
+  nnoremap <silent> <Leader>; :Rg!<Space>
   nnoremap <silent> <Leader>T :BTags<CR>
   nnoremap <silent> <Leader>t :Tags<CR>
   nnoremap <silent> <Leader>h :History<CR>
@@ -135,7 +139,7 @@ Plug 'junegunn/fzf.vim'
   imap <C-x><C-l> <plug>(fzf-complete-line)
 
   function! SearchWordWithAg()
-    execute 'Rg' expand('<cword>')
+    execute 'Rg!' expand('<cword>')
   endfunction
 
   function! SearchVisualSelectionWithAg() range
@@ -147,15 +151,14 @@ Plug 'junegunn/fzf.vim'
     let selection = getreg('"')
     call setreg('"', old_reg, old_regtype)
     let &clipboard = old_clipboard
-    execute 'Rg' selection
+    execute 'Rg!' selection
   endfunction
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always --fixed-strings --smart-case --hidden --follow --glob "!.git/*" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
-  " command! -bang -nargs=* Rg call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 " }}}
 
 Plug 'rhysd/clever-f.vim'
@@ -414,3 +417,5 @@ nmap <silent> cp "_ciw<C-R>"<Esc>
 set shortmess=a
 set foldlevelstart=99
 set mouse=a
+set inccommand=nosplit
+let g:rubycomplete_rails = 1
