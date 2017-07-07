@@ -2,9 +2,9 @@
 
 sudo true
 
-# install adobe fonts
-sudo git clone https://github.com/adobe-fonts/source-code-pro.git -b release /usr/share/fonts/opentype/scp
-fc-cache -f -v
+# install scp nerd fonts
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLo "scp.ttf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf
 
 # install git and rbenv
 sudo apt-get -y install git-core curl libssl-dev libreadline-dev zlib1g-dev
