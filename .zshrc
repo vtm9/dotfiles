@@ -29,7 +29,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rbenv)
 
 antigen bundle git
 antigen bundle ruby
-antigen bundle rails
 antigen bundle bundler
 antigen bundle rbenv
 antigen bundle tmux
@@ -92,7 +91,7 @@ alias vt='nvim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
 unalias ag
-unalias rg
+# unalias rg
 # alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
 
 mkc () {
@@ -112,7 +111,6 @@ source ~/.cargo/env
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
 # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
-export FZF_DEFAULT_COMMAND='rg --files --ignore --hidden --follow --glob "!.git/*"'
 export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'

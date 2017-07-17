@@ -129,6 +129,7 @@ Plug 'junegunn/fzf.vim'
   nnoremap <silent> <Leader>t :Tags<CR>
   nnoremap <silent> <Leader>h :History<CR>
   nnoremap <silent> <C-p> :GFiles<CR>
+  nnoremap <silent> <C-f> :Files<CR>
 
   nnoremap <silent> K :call SearchWordWithAg()<CR>
   vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
@@ -137,6 +138,12 @@ Plug 'junegunn/fzf.vim'
 
   imap <C-x><C-f> <plug>(fzf-complete-file-ag)
   imap <C-x><C-l> <plug>(fzf-complete-line)
+
+  command! -bang -nargs=? -complete=dir GFiles
+    \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+  command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
   function! SearchWordWithAg()
     execute 'Rg!' expand('<cword>')
@@ -195,6 +202,12 @@ let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_markdown_enabled_makers = ['alex', 'markdownlint', 'proselint']
 let g:neomake_elixir_enabled_makers = ['mix', 'credo']
 let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
+let g:neomake_ruby_rubocop_maker = {
+    \ 'exe': 'rubocop',
+    \ 'args': ['--format', 'emacs', '--force-exclusion'],
+    \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
+    \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess')
+    \ }
 function! RubocopAutoCorrection()
   exe "w"
   silent exe "!bundle exec rubocop -a -R % &> /dev/null"
@@ -203,50 +216,10 @@ function! RubocopAutoCorrection()
 endfun
   autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
 " }}}
-" Plug 'scrooloose/syntastic'
-" " {{{
-"   let g:syntastic_enable_signs          = 1
-"   let g:syntastic_enable_highlighting   = 1
-"   let g:syntastic_cpp_check_header      = 1
-"   let g:syntastic_enable_balloons       = 1
-"   let g:syntastic_echo_current_error    = 1
-"   let g:syntastic_check_on_wq           = 0
-"   let g:syntastic_error_symbol          = '✘'
-"   let g:syntastic_warning_symbol        = '!'
-"   let g:syntastic_style_error_symbol    = ':('
-"   let g:syntastic_style_warning_symbol  = ':('
-"   let g:syntastic_elixir_checkers       = ['elixir']
-"   let g:syntastic_javascript_checkers   = ['eslint']
-"   let g:syntastic_enable_elixir_checker = 0
-
-"   let g:syntastic_ruby_checkers     = ['rubocop', 'mri']
-"   let g:syntastic_ruby_rubocop_exec = '~/.rbenv/shims/rubocop'
-"   let g:syntastic_ruby_rubocop_args = '--display-cop-names --rails'
-
-"   set statusline+=%#warningmsg#
-"   set statusline+=%{SyntasticStatuslineFlag()}
-"   set statusline+=%*
-
-"   function! RubocopAutoCorrection()
-"     let save_pos = getpos(".")
-"     echo 'Starting rubocop autocorrection...'
-"     cexpr system('rubocop -D -R -f emacs -a ' . expand(@%))
-"     edit
-"     SyntasticCheck rubocop
-"     call setpos(".", save_pos)
-"     " copen
-"   endfunction
-
-"   augroup syntasticCustomCheckers
-"     autocmd!
-"     autocmd FileType ruby nnoremap <Leader>` :SyntasticCheck rubocop<CR>
-"     autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
-"   augroup END
-" " }}}
 
 Plug 'mattn/emmet-vim'
 " {{{
-  let g:user_emmet_expandabbr_key = '<c-e>'
+  let g:user_emmet_expandabbr_key = '<C-e>'
 " }}}
 
 Plug 'lyokha/vim-xkbswitch'
@@ -285,6 +258,8 @@ Plug 'janko-m/vim-test'
 " }}}
 
 Plug 'nanotech/jellybeans.vim'
+Plug 'editorconfig/editorconfig-vim'
+
 call plug#end()
 filetype plugin indent on
 

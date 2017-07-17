@@ -101,3 +101,7 @@ cargo install ripgrep
 # gems
 gem install bundler
 gem install ripper-tags
+gem install slimlint
+
+#common software
+sudo apt-get install yamllint
