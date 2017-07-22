@@ -71,6 +71,7 @@ ln -s -f ~/dotfiles/.zshrc
 
 # create link to vimrc
 ln -s -f ~/dotfiles/.vimrc
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 # create link to .conf
 ln -s -f ~/dotfiles/..conf
