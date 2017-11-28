@@ -1,4 +1,4 @@
-let g:python_host_prog='/usr/bin/python2'
+let g:python_host_prog='/usr/bin/python3'
 let mapleader = " "
 
 " Autoinstall vim-plug {{{
@@ -18,6 +18,7 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'vtm9/vim-pry'
 Plug 'vtm9/yaml-revealer'
+Plug 'vtm9/vim-interpolation'
 
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
@@ -30,7 +31,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-rails'
 " {{{
   set includeexpr=true
 " }}}
@@ -66,7 +67,6 @@ Plug 'airblade/vim-rooter'
 Plug 'isRuslan/vim-es6'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
-Plug 'p0deje/vim-ruby-interpolation'
 Plug 'stephpy/vim-yaml'
 Plug 'digitalrounin/vim-yaml-folds'
 " Plug 'vim-utils/vim-ruby-fold'
@@ -89,8 +89,24 @@ Plug 'jimenezrick/vimerl'
 " {{{
   let erlang_show_errors = 0
 " }}}
+"
 Plug 'elixir-lang/vim-elixir'
+" Plug 'archSeer/elixir.nvim'
+" Plug 'slashmili/alchemist.vim'
+Plug 'c-brenn/phoenix.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" {{{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
 
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" }}}
 Plug 'junegunn/limelight.vim'
 " {{{
   let g:limelight_default_coefficient = 0.7
@@ -120,7 +136,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
-  let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+  " let g:fzf_nvim_statusline = 0 " disable statusline overwriting
   let g:fzf_tags_command = 'ripper-tags -R'
 
   nnoremap <silent> <Leader>b :Buffers<CR>
@@ -193,28 +209,36 @@ Plug 'thinca/vim-textobj-comment'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
+"{{{
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_completion_enabled = 1
+"}}}
+
+" Plug 'neomake/neomake'
 " {{{
-autocmd! BufWritePost * Neomake
-let g:neomake_open_list=0
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_markdown_enabled_makers = ['alex', 'markdownlint', 'proselint']
-let g:neomake_elixir_enabled_makers = ['mix', 'credo']
-let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
-let g:neomake_ruby_rubocop_maker = {
-    \ 'exe': 'rubocop',
-    \ 'args': ['--format', 'emacs', '--force-exclusion'],
-    \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
-    \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess')
-    \ }
-function! RubocopAutoCorrection()
-  exe "w"
-  silent exe "!bundle exec rubocop -a -R % &> /dev/null"
-  silent exe "e %"
-  silent exe "Neomake"
-endfun
-  autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
+" autocmd! BufWritePost * Neomake
+" let g:neomake_open_list=0
+" let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_jsx_enabled_makers = ['eslint']
+" let g:neomake_markdown_enabled_makers = ['alex', 'markdownlint', 'proselint']
+" let g:neomake_elixir_enabled_makers = ['mix', 'credo']
+" let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
+" let g:neomake_ruby_rubocop_maker = {
+"     \ 'exe': 'rubocop',
+"     \ 'args': ['--format', 'emacs', '--force-exclusion'],
+"     \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
+"     \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess')
+"     \ }
+" function! RubocopAutoCorrection()
+"   exe "w"
+"   silent exe "!bundle exec rubocop -a -R % &> /dev/null"
+"   silent exe "e %"
+"   silent exe "Neomake"
+" endfun
+"   autocmd FileType ruby nnoremap <Leader>! :call RubocopAutoCorrection()<CR>
 " }}}
 
 Plug 'mattn/emmet-vim'
@@ -338,6 +362,20 @@ function! NumberToggle()
   endif
 endfunc
 
+" Put plugins and dictionaries in this dir (also on Windows)
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
+
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -374,7 +412,7 @@ nnoremap <silent> <Leader>1 :source $MYVIMRC <CR>
 
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gd :Gdiff origin/HEAD<CR>
 nnoremap <silent> <Leader>v :Eview<CR>
 nnoremap <silent> <Leader>c :Econtroller<CR>
 nnoremap <silent> <Leader>e :A<CR>
@@ -388,6 +426,8 @@ nmap <Leader>l :Lines<CR>
 nmap <Leader>o o<Esc>k
 nmap <Leader>O O<Esc>j
 nmap <silent> cp "_ciw<C-R>"<Esc>
+
+inoremap <silent> <C-p> <Esc>
 
 set shortmess=a
 set foldlevelstart=99
