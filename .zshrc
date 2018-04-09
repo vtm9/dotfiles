@@ -1,10 +1,13 @@
 ZSHA_BASE=~/.zsh
 source $ZSHA_BASE/antigen/antigen.zsh
-export POWERLEVEL9K_INSTALLATION_PATH=$HOME/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-bhilburn-SLASH-powerlevel9k.git
 
 export EDITOR='nvim'
-bindkey "\e." insert-last-word
+export ELIXIR_EDITOR="nvim"
 export TERM="xterm-256color"
+
+bindkey "\e." insert-last-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
 
 antigen use oh-my-zsh
 #autoload -U colors && colors
@@ -28,13 +31,20 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rbenv)
 # **********************************************************
 
 antigen bundle git
+antigen bundle hub
+antigen bundle aws
 antigen bundle ruby
+antigen bundle rake
+antigen bundle rails
+antigen bundle elixir
+antigen bundle lein
 antigen bundle bundler
 antigen bundle rbenv
 antigen bundle tmux
 
 antigen bundle vi-mode
 antigen bundle ubuntu
+antigen bundle archlinux
 antigen bundle extract
 antigen bundle docker
 antigen bundle docker-compose
@@ -47,20 +57,25 @@ antigen bundle zsh-users/zsh-completions.git
 antigen bundle zsh-users/zsh-autosuggestions.git
 antigen bundle zsh-users/zsh-syntax-highlighting.git
 antigen bundle unixorn/autoupdate-antigen.zshplugin
+antigen bundle gusaiani/elixir-oh-my-zsh.git
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+HIST_IGNORE_ALL_DUPS=true
 
 # autoload -U compinit && compinit
 antigen apply
 
 # aliases
 alias a='atom .'
-alias srp='spring rspec'
-alias srr='spring rake routes | fzf'
-alias rdm='spring rake db:migrate'
-alias rdd='spring rake db:drop'
-alias rdr='spring rake db:rollback'
-alias srst='RET spring rake db:drop db:create db:migrate'
+alias srp='bin/spring rspec'
+alias srr='bin/spring rails routes | fzf'
+alias rdm='bin/spring rails db:migrate'
+alias rdd='bin/spring rails db:drop'
+alias rdc='bin/spring rails db:create'
+alias rds='bin/spring rails db:setup'
+alias rdsd='bin/spring rails db:seed'
+alias rdr='bin/spring rails db:rollback'
+alias srst='RET spring bin/rails db:drop db:create db:migrate'
 alias rbc='rubocop -a'
 alias d='docker'
 alias di='docker images'
@@ -68,6 +83,7 @@ alias de='docker exec -i -t'
 alias da='docker attach'
 alias dr='docker run -i -t'
 alias dsta='docker stop $(docker ps -a -q)'
+alias dra='docker rm -f $(docker ps -a -q)'
 alias dps='docker ps | cut -c-$(tput cols)'
 alias doc='docker-compose'
 alias docu='docker-compose up -d'
@@ -75,6 +91,7 @@ alias tm='tmux attach || tmux new'
 alias tn='tmux new'
 alias s='tig status'
 alias c='git commit -m'
+alias gfu='git fetch upstream'
 alias k='kill -9'
 alias p='ps aux G'
 alias tg='tar -czvf'
@@ -90,8 +107,7 @@ alias vr='nvim ~/.vimrc'
 alias vt='nvim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
-unalias ag
-# unalias rg
+unalias rg
 # alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
 
 mkc () {
@@ -107,7 +123,7 @@ bindkey "\e " autosuggest-accept
 function exists { which $1 &> /dev/null }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.cargo/env
+
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
 # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
@@ -116,7 +132,21 @@ export PGPASSWORD='password'
 export PGHOST='localhost'
 export PAGER=less
 export PATH="$HOME/.rbenv/bin:$PATH"
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 eval "$(rbenv init -)"
 stty icrnl
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+export DB_USERNAME=postgres
+export DB_PASSWORD=postgres
+export DB_HOSTNAME=localhost
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+alias rake="noglob bundle exec rake"
+
+export PATH=~/.npm-global/bin:$PATH
+
+# aoutoenv
+source /usr/share/autoenv/activate.sh

@@ -2,17 +2,13 @@
 
 sudo true
 
-# install scp nerd fonts
-mkdir -p ~/.local/share/fonts
-cd ~/.local/share/fonts && curl -fLo "scp.ttf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete.ttf
-
-# install git and rbenv
+# install utils
 sudo apt-get -y install git-core curl libssl-dev libreadline-dev zlib1g-dev
-curl -L raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 
 # install ruby if need
-rbenv install 2.3.3
-rbenv global 2.3.3
+curl -L raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+rbenv install 2.4.3
+rbenv global 2.4.3
 rbenv rehash
 
 # install docker, docker-compose
@@ -73,12 +69,14 @@ ln -s -f ~/dotfiles/.zshrc
 ln -s -f ~/dotfiles/.vimrc
 ln -s ~/.vimrc ~/.config/nvim/init.vim
 
-# create link to .conf
-ln -s -f ~/dotfiles/..conf
-ln -s  ~/dotfiles/.tmux
+# create link to .tmux
+ln -s  ~/dotfiles/.tmux.conf
 
 # create link to tigrc
 ln -s -f ~/dotfiles/.tigrc
+
+# create link to inputrc
+ln -s -f ~/dotfiles/.inputrc
 
 # install https://github.com/ierton/xkb-switch
 sudo apt-get install libxkbfile-dev
@@ -92,7 +90,7 @@ sudo make install
 pip install --upgrade neovim
 
 # install nodejs
-curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install nodejs
 
 # install rust
@@ -102,7 +100,7 @@ cargo install ripgrep
 # gems
 gem install bundler
 gem install ripper-tags
-gem install slimlint
+gem install slim_lint
 
 #common software
 sudo apt-get install yamllint
