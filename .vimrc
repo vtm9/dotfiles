@@ -90,6 +90,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'wincent/ferret'
 " {{{
+let g:FerretExecutable='ag,rg'
+let g:FerretQFOptions=0
 nmap <Leader>/ <Plug>(FerretAck)
 nmap <Leader>z <Plug>(FerretAckWord)
 nmap <Leader>x <Plug>(FerretAcks)
@@ -105,13 +107,10 @@ function! FerretSearchVisualSelection() range
   let &clipboard = old_clipboard
   execute 'Ack' selection
 endfunction
+
 " }}}
 "
 Plug 'farmergreg/vim-lastplace'
-" {{{
-let g:FerretExecutable='ag,rg'
-" }}}
-
 Plug 'airblade/vim-rooter'
 " {{{
 let g:rooter_patterns = ['Rakefile', 'mix.exs', '.git/']
@@ -145,7 +144,7 @@ let erlang_show_errors = 0
 " }}}
 Plug 'honza/vim-snippets'
 
-Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
+" Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
@@ -313,6 +312,8 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 
 Plug 'w0rp/ale'
 "{{{
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 let g:ale_set_highlights = 0
 let g:ale_completion_enabled = 1
 let g:ale_php_phpcs_standard = 'PSR2'
