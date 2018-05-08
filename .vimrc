@@ -23,7 +23,6 @@ let g:dispatch_quickfix_height = 90
 
 let g:dispatch_compilers = {'elixir': 'exunit'}
 
-
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-db'
 Plug 'tpope/vim-sensible'
@@ -113,13 +112,14 @@ endfunction
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['Rakefile', 'mix.exs', '.git/']
+let g:rooter_patterns = ['Makefile','Rakefile', 'mix.exs', '.git/']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'sbruhns/rails-i18n-vim'
 " Plug 'digitalrounin/vim-yaml-folds'
 " Plug 'Einenlum/yaml-revealer', { 'for': 'yaml' }
 " Plug 'vim-utils/vim-ruby-fold'
@@ -196,17 +196,34 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'ap/vim-css-color'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 " {{{
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#disable_auto_complete = 1
+
+" inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
+"
+" Use deoplete.
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 1
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:deoplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
+\}
 
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
-
-function! s:check_back_space() abort
+" use tab
+imap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
+endfunction"}}}
 " }}}
 Plug 'junegunn/limelight.vim'
 " {{{
@@ -214,6 +231,16 @@ let g:limelight_default_coefficient = 0.7
 let g:limelight_conceal_ctermfg = 238
 nmap <silent> gl :Limelight!!<CR>
 xmap gl <Plug>(Limelight)
+" }}}
+
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-easy-align'
+" {{{
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " }}}
 
 Plug 'scrooloose/nerdtree'
@@ -542,3 +569,4 @@ augroup filetypedetect
 augroup END
 
 
+map <Leader>ct :silent !ripper-tags -R --exclude=vendor

@@ -30,6 +30,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rbenv)
 # *************************PLUGINS**************************
 # **********************************************************
 
+antigen bundle asdf
 antigen bundle git
 antigen bundle hub
 antigen bundle aws
@@ -75,7 +76,7 @@ alias rdc='bin/spring rails db:create'
 alias rds='bin/spring rails db:setup'
 alias rdsd='bin/spring rails db:seed'
 alias rdr='bin/spring rails db:rollback'
-alias srst='RET spring bin/rails db:drop db:create db:migrate'
+alias rdst='bin/spring rails db:drop db:create db:migrate db:seed'
 alias rbc='rubocop -a'
 alias d='docker'
 alias di='docker images'
@@ -132,7 +133,6 @@ export PGPASSWORD='password'
 export PGHOST='localhost'
 export PAGER=less
 export PATH="$HOME/.rbenv/bin:$PATH"
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 eval "$(rbenv init -)"
 stty icrnl
 export GOPATH=$HOME/go
@@ -144,9 +144,19 @@ export DB_PASSWORD=postgres
 export DB_HOSTNAME=localhost
 
 export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
 alias rake="noglob bundle exec rake"
 
 export PATH=~/.npm-global/bin:$PATH
 
 # aoutoenv
 source /usr/share/autoenv/activate.sh
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
