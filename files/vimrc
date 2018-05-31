@@ -55,21 +55,24 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+    \ 'do': 'zsh /install.sh',
     \ }
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-nnoremap <silent> L :call LanguageClient_textDocument_hover()<CR>
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_devel = 1 " Use rust debug build
 let g:LanguageClient_serverCommands = {
-      \ 'php': ['php', expand('~/.nvim/plugged/php-language-server/bin/php-language-server.php')],
-      \ 'javascript': ['node', expand('~/.nvim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
-      \ 'javascript.jsx': ['node', expand('~/.nvim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+      \ 'javascript': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
+      \ 'javascript.jsx': ['node', expand('~/.vim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
       \ 'ruby': ['language_server-ruby'],
       \ }
 
-Plug 'hackhowtofaq/vim-solargraph'
+" Plug 'hackhowtofaq/vim-solargraph'
 Plug 'roxma/nvim-completion-manager'
+" Plug 'rhysd/vim-grammarous' FIX JAVA
 Plug 'Shougo/echodoc.vim'
 Plug 'godlygeek/tabular'
 
@@ -178,7 +181,8 @@ Plug 'othree/yajs.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'chr4/nginx.vim'
+" Plug 'chr4/nginx.vim'
+Plug 'fatih/vim-nginx'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'reedes/vim-lexical'
 let g:vim_markdown_folding_disabled = 1
@@ -198,12 +202,12 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'ap/vim-css-color'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 " {{{
 " let g:deoplete#enable_at_startup = 1
 " let g:deoplete#disable_auto_complete = 1
 
-" inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
 
 " function! s:check_back_space() abort
 "   let col = col('.') - 1
@@ -212,10 +216,10 @@ Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 "
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-let g:deoplete#sources#omni#input_patterns = {
-\   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
-\}
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" let g:deoplete#sources#omni#input_patterns = {
+" \   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
+" \}
 
 " use tab
 imap <silent><expr> <TAB>

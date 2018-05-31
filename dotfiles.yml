@@ -1,0 +1,17 @@
+---
+- hosts: all
+  tasks:
+    - file:
+        force: yes
+        src: "{{ curdir }}/files/{{ item }}"
+        dest: ~/.{{ item }}
+        state: link
+      with_items:
+        - zshrc
+        - tigrc
+        - inputrc
+        - tmux.conf
+
+    - git:
+        repo: https://github.com/zsh-users/antigen.git
+        dest: ~/.zsh/antigen

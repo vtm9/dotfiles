@@ -1,0 +1,93 @@
+---
+
+- hosts: all
+
+  tasks:
+    - pacman:
+        name: "{{ item }}"
+        state: latest
+      ignore_errors: true
+      with_items:
+        - telegram-desktop
+        - ripgrep
+        - the_silver_searcher
+        - zsh
+        - fzf
+        - libpq-dev
+        - python-dev
+        - python3-dev
+    - pip:
+        extra_args: "--user"
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - neovim
+        - pylint
+        - ansible-lint
+        - yamllint
+        - bashate
+        - sexpdata
+        - websocket-client
+        - jedi
+        - psutil
+        - setproctitle
+      tags:
+        - all
+
+    - gem: name={{ item }} state=latest
+      # become: true
+      ignore_errors: true
+      with_items:
+        - bundler
+        - ripper-tags
+        - slim_lint
+        - rake
+        - neovim
+        - mdl
+        - sqlint
+        - rubocop
+        - mailcatcher
+        - language_server
+        - fastri
+      tags:
+        - all
+        - ruby
+
+    - npm: name={{ item }} global=true state=latest
+      become: true
+      ignore_errors: true
+      with_items:
+        - prettier
+        - typescript
+        - typings
+        - pug-lint
+        - livedown
+        - js-yaml
+        - stylelint
+        - js-beautify
+        - jsonlint
+        - eslint
+        - neovim
+        - babel-eslint
+        - eslint-plugin-jest
+        - eslint-plugin-flowtype
+        - eslint-plugin-import
+        - eslint-import-resolver-webpack
+        - eslint-plugin-markdown
+        - eslint-plugin-jsx-a11y
+        - eslint-config-airbnb
+        - eslint-config-airbnb-base
+        - eslint-plugin-react
+        - eslint-plugin-babel
+        - eslint-plugin-jest
+      tags:
+        - all
+        - eslint
+
+    - copy:
+        src: ./files/eslintrc
+        dest: ~/.eslintrc
+        backup: true
+      tags:
+        - all
+        - eslint
