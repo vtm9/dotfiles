@@ -1,4 +1,4 @@
-let g:python_host_prog='/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python'
 let mapleader = " "
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
@@ -68,6 +68,7 @@ let g:LanguageClient_serverCommands = {
       \ 'ruby': ['language_server-ruby'],
       \ }
 
+Plug 'hackhowtofaq/vim-solargraph'
 Plug 'roxma/nvim-completion-manager'
 Plug 'Shougo/echodoc.vim'
 Plug 'godlygeek/tabular'
@@ -177,6 +178,7 @@ Plug 'othree/yajs.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'chr4/nginx.vim'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'reedes/vim-lexical'
 let g:vim_markdown_folding_disabled = 1
@@ -348,6 +350,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
       \   'markdown': [],
       \   'javascript': ['eslint', 'flow'],
+      \   'scss': ['scss-lint'],
       \}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
@@ -437,6 +440,15 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
+
+function! EditMacro()
+  call inputsave()
+  let g:regToEdit = input('Register to edit: ')
+  call inputrestore()
+  execute "nnoremap <Plug>em :let @" . eval("g:regToEdit") . "='<C-R><C-R>" . eval("g:regToEdit")
+endfunction
+
+nmap <Leader>em :call EditMacro()<CR> <Plug>em
 
 " Put plugins and dictionaries in this dir (also on Windows)
 let vimDir = '$HOME/.vim'

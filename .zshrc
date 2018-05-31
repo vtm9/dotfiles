@@ -68,17 +68,16 @@ antigen apply
 
 # aliases
 alias a='atom .'
-alias srp='bin/spring rspec'
-alias srr='bin/spring rails routes | fzf'
-alias rdm='bin/spring rails db:migrate'
-alias rdd='bin/spring rails db:drop'
-alias rdc='bin/spring rails db:create'
-alias rds='bin/spring rails db:setup'
-alias rdsd='bin/spring rails db:seed'
-alias rdr='bin/spring rails db:rollback'
-alias rdst='bin/spring rails db:drop db:create db:migrate db:seed'
+alias rp='bin/rake rspec'
+alias rr='bin/rake routes | fzf'
+alias rdm='bin/rake db:migrate'
+alias rdd='bin/rake db:drop'
+alias rdc='bin/rake db:create'
+alias rds='bin/rake db:setup'
+alias rdsd='bin/rake db:seed'
+alias rdr='bin/rake db:rollback'
+alias rdst='bin/rake db:drop db:create db:migrate db:seed'
 alias rbc='rubocop -a'
-alias d='docker'
 alias di='docker images'
 alias de='docker exec -i -t'
 alias da='docker attach'
@@ -88,7 +87,7 @@ alias dra='docker rm -f $(docker ps -a -q)'
 alias dps='docker ps | cut -c-$(tput cols)'
 alias doc='docker-compose'
 alias docu='docker-compose up -d'
-alias tm='tmux attach || tmux new'
+alias ta='tmux attach || tmux new'
 alias tn='tmux new'
 alias s='tig status'
 alias c='git commit -m'
@@ -142,6 +141,9 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export DB_USERNAME=postgres
 export DB_PASSWORD=postgres
 export DB_HOSTNAME=localhost
+export MYSQL_PWD=root
+export MYSQL_HOST=127.0.0.1
+export MYSQL_USER=root
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
@@ -151,7 +153,7 @@ alias rake="noglob bundle exec rake"
 export PATH=~/.npm-global/bin:$PATH
 
 # aoutoenv
-source /usr/share/autoenv/activate.sh
+# source /usr/share/autoenv/activate.sh
 
 . $HOME/.asdf/asdf.sh
 
@@ -160,3 +162,4 @@ source /usr/share/autoenv/activate.sh
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash
+export PATH=/usr/local/tflint/bin:$PATH
