@@ -511,6 +511,22 @@ nnoremap <silent> <Leader>r :R<CR>
 nmap <Leader>o o<Esc>k
 nmap <Leader>O O<Esc>j
 nmap <silent> cp "_ciw<C-R>"<Esc>
+" This allows for change paste motion cp{motion}
+"
+nmap <silent> cP :set opfunc=ChangePaste<CR>g@
+function! ChangePaste(type, ...)
+if a:0  " Invoked from Visual mode, use '< and '> marks.
+    silent exe "normal! `<" . a:type . "`>\"_c" . @"
+elseif a:type == 'line'
+    silent exe "normal! '[V']\"_c" . @"
+elseif a:type == 'block'
+    silent exe "normal! `[\<C-V>`]\"_c" . @"
+else
+    silent exe "normal! `[v`]\"_c" . @"
+endif
+endfunction
+
+nnoremap <expr> ,c <SID>ExecuteCountOrMotion()
 
 inoremap <silent> <C-p> <Esc>
 
@@ -518,7 +534,6 @@ inoremap <silent> <C-p> <Esc>
 map <leader>vl :vsp $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
 
-nnoremap ff :normal! gg=G``<CR>
 cmap w!! %!sudo tee > /dev/null %
 
 set shortmess=atI
@@ -586,3 +601,5 @@ augroup END
 
 
 map <Leader>ct :silent !ripper-tags -R --exclude=vendor
+
+
