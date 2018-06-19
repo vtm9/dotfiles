@@ -68,6 +68,7 @@ antigen apply
 
 # aliases
 alias a='atom .'
+alias bi='bundle install --jobs 20 --retry 5'
 alias rp='bin/rake rspec'
 alias rr='bin/rake routes | fzf'
 alias rdm='bin/rake db:migrate'

@@ -57,6 +57,7 @@
       become: true
       ignore_errors: true
       with_items:
+        - yaml-language-server
         - prettier
         - typescript
         - typings
