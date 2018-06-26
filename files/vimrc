@@ -81,7 +81,7 @@ let g:LanguageClient_serverCommands = {
       \ }
 
 " Plug 'hackhowtofaq/vim-solargraph'
-Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/nvim-completion-manager'
 " Plug 'rhysd/vim-grammarous' FIX JAVA
 Plug 'Shougo/echodoc.vim'
 Plug 'godlygeek/tabular'
@@ -101,25 +101,39 @@ Plug 'vim-airline/vim-airline'
 "}}}
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'dyng/ctrlsf.vim'
+" {{{
+let g:ctrlsf_ackprg = 'rg'
+let g:ctrlsf_case_sensitive = 'smart'
+
+nmap     <C-F>f <Plug>CtrlSFPrompt
+nmap     <C-F>w <Plug>CtrlSFCwordExec
+vmap     <C-F> <Plug>CtrlSFVwordExec
+" nmap     <C-F>w <Plug>CtrlSFCwordPath
+" nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+" }}}
 Plug 'wincent/ferret'
 " {{{
-let g:FerretExecutable='ag,rg'
-let g:FerretQFOptions=0
-nmap <Leader>/ <Plug>(FerretAck)
-nmap <Leader>z <Plug>(FerretAckWord)
-nmap <Leader>x <Plug>(FerretAcks)
-vmap <silent>z :call FerretSearchVisualSelection()<CR>
-function! FerretSearchVisualSelection() range
-  let old_reg = getreg('"')
-  let old_regtype = getregtype('"')
-  let old_clipboard = &clipboard
-  set clipboard&
-  normal! ""gvy
-  let selection = getreg('"')
-  call setreg('"', old_reg, old_regtype)
-  let &clipboard = old_clipboard
-  execute 'Ack' selection
-endfunction
+" let g:FerretExecutable='ag,rg'
+" let g:FerretQFOptions=0
+" nmap <Leader>/ <Plug>(FerretAck)
+" nmap <Leader>z <Plug>(FerretAckWord)
+" nmap <Leader>x <Plug>(FerretAcks)
+" vmap <silent>z :call FerretSearchVisualSelection()<CR>
+" function! FerretSearchVisualSelection() range
+"   let old_reg = getreg('"')
+"   let old_regtype = getregtype('"')
+"   let old_clipboard = &clipboard
+"   set clipboard&
+"   normal! ""gvy
+"   let selection = getreg('"')
+"   call setreg('"', old_reg, old_regtype)
+"   let &clipboard = old_clipboard
+"   execute 'Ack' selection
+" endfunction
 
 " }}}
 "
@@ -290,7 +304,7 @@ nnoremap <silent> <Leader>T :BTags<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <C-f> :Files<CR>
+" nnoremap <silent> <C-f> :Files<CR>
 nnoremap <Leader>w :FZF -m ~/Projects<Space><CR>
 nnoremap <silent> L :call SearchWordWithAg()<CR>
 vnoremap <silent> L :call SearchVisualSelectionWithAg()<CR>
