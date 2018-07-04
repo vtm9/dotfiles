@@ -183,11 +183,16 @@ Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm 
 Plug 'elzr/vim-json'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'isRuslan/vim-es6'
 Plug 'mitermayer/vim-prettier', {
       \ 'do': 'yarn install',
       \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
+"{{{
+
+
+"}}}
 Plug 'moll/vim-node'
 Plug 'othree/javascript-libraries-syntax.vim'
 " {{{
@@ -477,7 +482,7 @@ function! EditMacro()
   execute "nnoremap <Plug>em :let @" . eval("g:regToEdit") . "='<C-R><C-R>" . eval("g:regToEdit")
 endfunction
 
-nmap <Leader>em :call EditMacro()<CR> <Plug>em
+nmap <Leader>E :call EditMacro()<CR> <Plug>em
 
 " Put plugins and dictionaries in this dir (also on Windows)
 let vimDir = '$HOME/.vim'
@@ -627,4 +632,21 @@ augroup END
 
 map <Leader>ct :silent !ripper-tags -R --exclude=vendor
 
+filetype plugin on
+
+function! s:SetCommentString()
+  let stack = map(synstack(line("."), col(".")), "synIDattr(synIDtrans(v:val), 'name')")
+  let cstr=&commentstring
+  for id in stack
+    if id[0:1] ==# "js"
+      let cstr="//%s"
+    endif
+    if id[0:2] ==# "jsx"
+      let cstr="{/*%s*/}"
+    endif
+  endfor
+  let &commentstring=cstr
+endfunction
+
+autocmd CursorMoved *.jsx call s:SetCommentString()
 

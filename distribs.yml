@@ -59,6 +59,7 @@
       with_items:
         - yaml-language-server
         - prettier
+        - htmlhint
         - typescript
         - typings
         - pug-lint
