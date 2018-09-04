@@ -33,10 +33,10 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/rbenv-ctags'
+Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+Plug 'tpope/rbenv-ctags', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim', 'haml', 'coffee', 'javascript'] }
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
@@ -73,10 +73,10 @@ let g:LanguageClient_autoStop = 0
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 let g:LanguageClient_devel = 1 " Use rust debug build
 let g:LanguageClient_loadSettings = 1
+      " \'ruby': ['solargraph', 'stdio'],
 let g:LanguageClient_serverCommands = {
       \ 'javascript': ['node', expand('~/.nvim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
       \ 'javascript.jsx': ['node', expand('~/.nvim/plugged/javascript-typescript-langserver/lib/language-server-stdio.js')],
-      \ 'ruby': ['tcp://127.0.0.1:7658'],
       \ 'yaml': ['~/.nvim/plugged/yaml-language-server/out/server/src/server.js', '--stdio'],
       \ }
 
@@ -143,7 +143,7 @@ Plug 'airblade/vim-rooter'
 let g:rooter_patterns = ['Makefile','Rakefile', 'mix.exs', '.git/']
 " }}}
 
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
@@ -160,7 +160,7 @@ Plug 'gaogao1030/vim-skim', { 'for': ['skim'] }
 
 " Plug 'elixir-lang/vim-elixir'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
-Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+" Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'mhinz/vim-mix-format', { 'for': 'elixir' }
 " {{{
@@ -179,6 +179,7 @@ Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'rhysd/vim-clang-format'
 
 " Javascript
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'elzr/vim-json'
 Plug 'pangloss/vim-javascript'
@@ -201,7 +202,7 @@ let g:used_javascript_libs = 'jquery'
 
 Plug 'mattn/emmet-vim'
 " {{{
-let g:user_emmet_expandabbr_key = '<C-e>'
+let g:user_emmet_expandabbr_key = '<C-i>'
 " }}}
 Plug 'othree/html5.vim'
 Plug 'Valloric/MatchTagAlways'
@@ -232,9 +233,10 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'ap/vim-css-color'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
+" Plug 'fishbullet/deoplete-ruby'
+" Plug 'uplus/deoplete-solargraph'
 " {{{
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 " let g:deoplete#disable_auto_complete = 1
 
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
@@ -245,7 +247,7 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() 
 " endfunction
 "
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 " let g:monster#completion#rcodetools#backend = "async_rct_complete"
 " let g:deoplete#sources#omni#input_patterns = {
 " \   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
@@ -384,10 +386,12 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
       \   'markdown': [],
       \   'javascript': ['eslint', 'flow'],
+      \   'html': ['alex'],
       \   'scss': ['scss-lint'],
       \}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'html': ['alex'],
 \   'ruby': ['rubocop'],
 \}
 " Move between linting errors
@@ -405,11 +409,23 @@ Plug 'janko-m/vim-test'
   nnoremap <silent> <Leader>tl :TestLast<CR>
   nnoremap <silent> <Leader>tv :TestVisit<CR>
 
+Plug 'sunaku/vim-ruby-minitest'
 Plug 'nanotech/jellybeans.vim'
 Plug 'editorconfig/editorconfig-vim'
 
+
+Plug 'NLKNguyen/papercolor-theme'
+
+" Plug 'morhetz/gruvbox'
 call plug#end()
 
+" colorscheme gruvbox
+" let g:gruvbox_contrast_dark = "hard" " soft, oedium, hard
+" set background=dark
+
+" set background=light
+" set background=dark
+" colorscheme PaperColor
 colorscheme jellybeans
 
 set cursorline     " highlight current line
@@ -508,7 +524,7 @@ noremap <Leader>s :update<CR>
 noremap <Leader>S :wq<CR>
 noremap <Leader>q :quit<CR>
 noremap <Leader>Q :quit!<CR>
-noremap <Leader>e :edit!<CR>
+" noremap <Leader>e :edit!<CR>
 map Q @q
 
 nmap <Leader>d :call pry#insert()<CR>
@@ -533,8 +549,6 @@ nnoremap <silent> <Leader>7 :call NumberToggle()<cr>
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff origin/HEAD<CR>
-nnoremap <silent> <Leader>v :Eview<CR>
-nnoremap <silent> <Leader>c :Econtroller<CR>
 nnoremap <silent> <Leader>e :A<CR>
 nnoremap <silent> <Leader>r :R<CR>
 
@@ -557,6 +571,7 @@ endif
 endfunction
 
 nnoremap <expr> ,c <SID>ExecuteCountOrMotion()
+nnoremap <Leader>= <esc>gg=G``
 
 inoremap <silent> <C-p> <Esc>
 
@@ -650,3 +665,4 @@ endfunction
 
 autocmd CursorMoved *.jsx call s:SetCommentString()
 
+command E Ex

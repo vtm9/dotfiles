@@ -11,6 +11,7 @@
         - tigrc
         - inputrc
         - tmux.conf
+        - xinitrc
 
     - git:
         repo: https://github.com/zsh-users/antigen.git
