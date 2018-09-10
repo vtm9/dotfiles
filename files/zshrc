@@ -1,10 +1,6 @@
-ZSHA_BASE=~/.zsh
-source $ZSHA_BASE/antigen/antigen.zsh
-
-#Change first day of week to Monday
-export LC_TIME=en_GB.UTF-8
-#Change to metric system
-export LC_MEASUREMENT=en_GB.UTF-8
+xset r rate 175 48
+source <(antibody init)
+ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 
 export EDITOR='nvim'
 export ELIXIR_EDITOR="nvim"
@@ -14,8 +10,7 @@ bindkey "\e." insert-last-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 
-antigen use oh-my-zsh
-#autoload -U colors && colors
+antibody bundle robbyrussell/oh-my-zsh
 set -o vi
 
 HYPHEN_INSENSITIVE="true"
@@ -25,51 +20,41 @@ COMPLETION_WAITING_DOTS="true"
 # **********************************************************
 # *************************THEME**************************
 # **********************************************************
-antigen theme bhilburn/powerlevel9k powerlevel9k
+antibody bundle bhilburn/powerlevel9k
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir vcs vi_mode)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(rbenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 # **********************************************************
 # *************************PLUGINS**************************
 # **********************************************************
 
-antigen bundle asdf
-antigen bundle git
-antigen bundle hub
-antigen bundle aws
-antigen bundle ruby
-antigen bundle rake
-antigen bundle rails
-antigen bundle elixir
-antigen bundle lein
-antigen bundle bundler
-antigen bundle rbenv
-antigen bundle tmux
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/asdf
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/git
+# antibody bundle robbyrussell/oh-my-zsh folder:plugins/rails
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/bundler
 
-antigen bundle vi-mode
-antigen bundle ubuntu
-antigen bundle archlinux
-antigen bundle extract
-antigen bundle docker
-antigen bundle docker-compose
-antigen bundle felixr/docker-zsh-completion.git
-antigen bundle bgnotify
-antigen bundle command-not-found
-antigen bundle colored-man-pages
-antigen bundle zsh-users/zsh-completions.git
-# antigen bundle zsh-users/zaw
-antigen bundle zsh-users/zsh-autosuggestions.git
-antigen bundle zsh-users/zsh-syntax-highlighting.git
-antigen bundle unixorn/autoupdate-antigen.zshplugin
-antigen bundle gusaiani/elixir-oh-my-zsh.git
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/vi-mode
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/archlinux
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/extract
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/docker
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/docker-compose
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/bgnotify
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/command-not-found
+antibody bundle robbyrussell/oh-my-zsh folder:plugins/colored-man-pages
+antibody bundle zsh-users/zsh-completions.git
+antibody bundle felixr/docker-zsh-completion.git
+antibody bundle zsh-users/zsh-autosuggestions.git
+antibody bundle zsh-users/zsh-syntax-highlighting.git
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+DISABLE_AUTO_UPDATE=true
 HIST_IGNORE_ALL_DUPS=true
+HISTSIZE=1000
+SAVEHIST=1000
 
-# autoload -U compinit && compinit
-antigen apply
+autoload -U compinit && compinit
 
 # aliases
 alias a='atom .'
@@ -84,7 +69,7 @@ alias rdc='bin/rake db:create'
 alias rds='bin/rake db:setup'
 alias rdsd='bin/rake db:seed'
 alias rdr='bin/rake db:rollback'
-alias rdst='bin/rake db:drop db:create db:migrate db:seed'
+alias rdst='bin/rake db:drop db:create db:migrate:with_data db:seed'
 alias rbc='rubocop -a'
 alias di='docker images'
 alias de='docker exec -i -t'
@@ -115,12 +100,8 @@ alias vr='nvim ~/.config/nvim/init.vim'
 alias vt='nvim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
-unalias rg
+# unalias rg
 # alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
-
-mkc () {
-    mkdir -p "$@" && cd "$@"
-}
 
 
 # Add RVM to PATH for scripting
@@ -139,24 +120,12 @@ export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'
 export PAGER=less
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-stty icrnl
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-export DB_USERNAME=postgres
-export DB_PASSWORD=postgres
-export DB_HOSTNAME=localhost
-export MYSQL_PWD=root
-export MYSQL_HOST=127.0.0.1
-export MYSQL_USER=root
-
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
-
-alias rake="noglob bundle exec rake"
 
 export PATH=~/.npm-global/bin:$PATH
 
@@ -164,5 +133,5 @@ export PATH=~/.npm-global/bin:$PATH
 # source /usr/share/autoenv/activate.sh
 
 . $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-# xset r rate 175 48
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
