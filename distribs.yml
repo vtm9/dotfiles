@@ -16,6 +16,7 @@
         - libpq-dev
         - python-dev
         - python3-dev
+        - kitty
     - pip:
         extra_args: "--user"
         name: '{{ item }}'

@@ -10,6 +10,8 @@ bindkey "\e." insert-last-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
 
+ZSH_THEME='robbyrussell'
+# ZSH_THEME='agnoster'
 antibody bundle robbyrussell/oh-my-zsh
 set -o vi
 
@@ -20,7 +22,7 @@ COMPLETION_WAITING_DOTS="true"
 # **********************************************************
 # *************************THEME**************************
 # **********************************************************
-antibody bundle bhilburn/powerlevel9k
+# antibody bundle bhilburn/powerlevel9k
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir vcs vi_mode)
@@ -54,7 +56,10 @@ HIST_IGNORE_ALL_DUPS=true
 HISTSIZE=1000
 SAVEHIST=1000
 
-autoload -U compinit && compinit
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
 
 # aliases
 alias a='atom .'
