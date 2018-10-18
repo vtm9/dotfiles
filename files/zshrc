@@ -1,3 +1,4 @@
+DISABLE_AUTO_UPDATE=true
 xset r rate 175 48
 source <(antibody init)
 ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
@@ -32,26 +33,25 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 # *************************PLUGINS**************************
 # **********************************************************
 
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/asdf
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/git
-# antibody bundle robbyrussell/oh-my-zsh folder:plugins/rails
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/bundler
+antibody bundle robbyrussell/oh-my-zsh path:plugins/asdf
+antibody bundle robbyrussell/oh-my-zsh path:plugins/git
+antibody bundle robbyrussell/oh-my-zsh path:plugins/mix
+antibody bundle robbyrussell/oh-my-zsh path:plugins/bundler
 
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/vi-mode
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/archlinux
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/extract
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/docker
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/docker-compose
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/bgnotify
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/command-not-found
-antibody bundle robbyrussell/oh-my-zsh folder:plugins/colored-man-pages
+antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
+antibody bundle robbyrussell/oh-my-zsh path:plugins/archlinux
+antibody bundle robbyrussell/oh-my-zsh path:plugins/extract
+antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
+antibody bundle robbyrussell/oh-my-zsh path:plugins/docker-compose
+antibody bundle robbyrussell/oh-my-zsh path:plugins/bgnotify
+antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found
+antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 antibody bundle zsh-users/zsh-completions.git
 antibody bundle felixr/docker-zsh-completion.git
 antibody bundle zsh-users/zsh-autosuggestions.git
 antibody bundle zsh-users/zsh-syntax-highlighting.git
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-DISABLE_AUTO_UPDATE=true
 HIST_IGNORE_ALL_DUPS=true
 HISTSIZE=1000
 SAVEHIST=1000
@@ -60,6 +60,7 @@ autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
+antibody bundle robbyrussell/oh-my-zsh path:plugins/rails
 
 # aliases
 alias a='atom .'
@@ -105,7 +106,70 @@ alias vr='nvim ~/.config/nvim/init.vim'
 alias vt='nvim ~/.tmux.conf'
 alias cl='clear'
 alias path='echo $PATH | tr -s ":" "\n"'
-# unalias rg
+alias i='iex'
+alias ips='iex -S mix phx.server'
+alias ism='iex -S mix'
+alias m='mix'
+alias mab='mix archive.build'
+alias mai='mix archive.install'
+alias mat='mix app.tree'
+alias mc='mix compile'
+alias mcf='mix compile --force'
+alias mcv='mix compile --verbose'
+alias mcl='mix clean'
+alias mca='mix do clean, deps.clean --all'
+alias mco='mix coveralls'
+alias mcoh='mix coveralls.html'
+alias mdoc='mix docs'
+alias mdl='mix dialyzer'
+alias mdlp='mix dialyzer --plt'
+alias mcr='mix credo'
+alias mcrs='mix credo --strict'
+alias mcx='mix compile.xref'
+alias mdc='mix deps.compile'
+alias mdg='mix deps.get'
+alias mdgc='mix do deps.get, deps.compile'
+alias mdu='mix deps.update'
+alias mdt='mix deps.tree'
+alias mdua='mix deps.update --all'
+alias mdun='mix deps.unlock'
+alias mduu='mix deps.unlock --unused'
+alias meb='mix escript.build'
+alias mec='mix ecto.create'
+alias mecm='mix do ecto.create, ecto.migrate'
+alias med='mix ecto.drop'
+alias mem='mix ecto.migrate'
+alias megm='mix ecto.gen.migration'
+alias merb='mix ecto.rollback'
+alias mers='mix ecto.reset'
+alias mes='mix ecto.setup'
+alias mge='mix gettext.extract'
+alias mgem='mix gettext.extract --merge'
+alias mgm='mix gettext.merge priv/gettext'
+alias mho='mix hex.outdated'
+alias mlh='mix local.hex'
+alias mn='mix new'
+alias mns='mix new --sup'
+alias mpd='mix phx.digest'
+alias mpgc='mix phx.gen.channel'
+alias mpgh='mix phx.gen.html'
+alias mpgj='mix phx.gen.json'
+alias mpgm='mix phx.gen.model'
+alias mpgs='mix phx.gen.secret'
+alias mpn='mix phx.new'
+alias mpr='mix phx.routes'
+alias mps='mix phx.server'
+alias mr='mix run'
+alias mrnh='mix run --no-halt'
+alias mrl='mix release'
+alias mt='mix test'
+alias mtc='mix test --cover'
+alias mtf='mix test --failed'
+alias mts='mix test --stale'
+alias mtw='mix test.watch'
+alias mx='mix xref'
+alias mf='mix format'
+unalias rg
 # alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
 
 

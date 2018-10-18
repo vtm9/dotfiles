@@ -7,15 +7,16 @@
         name: "{{ item }}"
         state: latest
       ignore_errors: true
+      become: true
       with_items:
         - telegram-desktop
         - ripgrep
         - the_silver_searcher
         - zsh
         - fzf
-        - libpq-dev
-        - python-dev
-        - python3-dev
+        # - libpq-dev
+        # - python-dev
+        # - python3-dev
         - kitty
     - pip:
         extra_args: "--user"
@@ -31,6 +32,7 @@
         - websocket-client
         - jedi
         - psutil
+        - yamllint
         - setproctitle
       tags:
         - all
@@ -47,8 +49,12 @@
         - mdl
         - sqlint
         - rubocop
+        - solargraph
         - mailcatcher
         - language_server
+        - brakeman
+        - rails_best_practices
+        - reek
         - fastri
       tags:
         - all
@@ -59,6 +65,7 @@
       ignore_errors: true
       with_items:
         - yaml-language-server
+        - javascript-typescript-langserver
         - prettier
         - htmlhint
         - typescript
@@ -94,3 +101,15 @@
       tags:
         - all
         - eslint
+
+
+    - file:
+        dest: ~/.elixir.d/elixir-ls
+        state: directory
+      tags: elixir
+
+    - unarchive:
+        src: "https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.24/elixir-ls.zip"
+        dest: ~/.elixir.d/elixir-ls
+        remote_src: true
+      tags: elixir
