@@ -35,6 +35,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/asdf
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
+antibody bundle robbyrussell/oh-my-zsh path:plugins/aws
 antibody bundle robbyrussell/oh-my-zsh path:plugins/mix
 antibody bundle robbyrussell/oh-my-zsh path:plugins/bundler
 
@@ -50,6 +51,7 @@ antibody bundle zsh-users/zsh-completions.git
 antibody bundle felixr/docker-zsh-completion.git
 antibody bundle zsh-users/zsh-autosuggestions.git
 antibody bundle zsh-users/zsh-syntax-highlighting.git
+antibody bundle littleq0903/gcloud-zsh-completion
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 HIST_IGNORE_ALL_DUPS=true
@@ -90,8 +92,10 @@ alias ta='tmux attach || tmux new'
 alias tn='tmux new'
 alias s='tig status'
 alias c='git commit -m'
+alias gcd='git checkout development'
 alias gfu='git fetch upstream'
-alias k='kill -9'
+alias k='kubectl'
+alias kgpd='kubectl get po -n development'
 alias p='ps aux G'
 alias tg='tar -czvf'
 alias ds='du -sckh * | sort -rh'
@@ -191,12 +195,14 @@ export PGHOST='localhost'
 export PAGER=less
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:~/.local/bin
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 export PATH=~/.npm-global/bin:$PATH
+export PATH=$PATH:~/.cabal/bin
 
 # aoutoenv
 # source /usr/share/autoenv/activate.sh
@@ -204,3 +210,10 @@ export PATH=~/.npm-global/bin:$PATH
 . $HOME/.asdf/asdf.sh
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# source /usr/bin/aws_zsh_completer.sh
+source $(ls /opt/google-cloud-sdk/*.zsh.inc)
+
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey "^[m" copy-earlier-word

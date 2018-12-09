@@ -18,6 +18,9 @@
         # - python-dev
         # - python3-dev
         - kitty
+      tags:
+        - all
+        - arch
     - pip:
         extra_args: "--user"
         name: '{{ item }}'
@@ -34,12 +37,14 @@
         - psutil
         - yamllint
         - setproctitle
+        - flake8
+        - autopep8
       tags:
         - all
+        - py
 
-    - gem: name={{ item }} state=latest
-      # become: true
-      ignore_errors: true
+    - name: Install gems
+      shell: gem install {{ item }}
       with_items:
         - bundler
         - ripper-tags
@@ -61,7 +66,7 @@
         - ruby
 
     - npm: name={{ item }} global=true state=latest
-      become: true
+      # become: true
       ignore_errors: true
       with_items:
         - yaml-language-server
@@ -92,7 +97,7 @@
         - eslint-plugin-jest
       tags:
         - all
-        - eslint
+        - js
 
     - copy:
         src: ./files/eslintrc
@@ -100,7 +105,7 @@
         backup: true
       tags:
         - all
-        - eslint
+        - js
 
 
     - file:
@@ -112,4 +117,6 @@
         src: "https://github.com/JakeBecker/elixir-ls/releases/download/v0.2.24/elixir-ls.zip"
         dest: ~/.elixir.d/elixir-ls
         remote_src: true
-      tags: elixir
+      tags:
+        - all
+        - elixir

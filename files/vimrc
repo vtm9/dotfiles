@@ -77,7 +77,7 @@ set signcolumn=yes
 " Show parameter doc.
 Plug 'Shougo/echodoc.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'ConradIrwin/vim-bracketed-paste'
+" Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
 
 Plug 'autozimu/LanguageClient-neovim', {
@@ -101,7 +101,6 @@ let g:LanguageClient_serverCommands = {
       \ 'java': ['/usr/local/bin/jdtls'],
       \ 'ruby': ['solargraph', 'stdio'],
       \ 'python': ['pyls'],
-      \ 'elixir': ['sh', expand('~/.elixir.d/elixir-ls/language_server.sh')],
       \ }
 
 " Plug 'hackhowtofaq/vim-solargraph'
@@ -164,7 +163,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['Makefile', 'package.json', 'mix.exs', '.git/']
+let g:rooter_patterns = ['Rakefile', 'package.json', 'mix.exs', '.git/']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -185,7 +184,7 @@ Plug 'gaogao1030/vim-skim', { 'for': ['skim'] }
 
 " Plug 'elixir-lang/vim-elixir'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
-" Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
+Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'mhinz/vim-mix-format', { 'for': 'elixir' }
 " {{{
@@ -213,7 +212,7 @@ Plug 'mitermayer/vim-prettier', {
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
+" Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
 Plug 'elzr/vim-json'
 Plug 'leafgarland/typescript-vim'
 " Plug 'maxmellon/vim-jsx-pretty'
@@ -246,6 +245,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 " Plug 'chr4/nginx.vim'
 Plug 'fatih/vim-nginx'
+Plug 'andrewstuart/vim-kubernetes'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
 Plug 'reedes/vim-lexical'
 let g:vim_markdown_folding_disabled = 1
@@ -339,13 +339,12 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_tags_command = 'ripper-tags -R'
 
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>; :Rg!<Space>
+nnoremap <silent> <Leader>; :Rg!<space>
 nnoremap <silent> <Leader>T :BTags<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
-" nnoremap <silent> <C-f> :Files<CR>
-nnoremap <Leader>w :FZF -m ~/Projects<Space><CR>
+" nnoremap <silent> <C-[> :Files<CR>
 nnoremap <silent> L :call SearchWordWithAg()<CR>
 vnoremap <silent> L :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <Leader>gl :Commits<CR>
@@ -401,6 +400,7 @@ let g:switch_mapping = '\'
 " }}}
 
 Plug 'mattn/vim-textobj-url'
+Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
@@ -427,14 +427,16 @@ let g:ale_linters = {
       \   'html': ['alex'],
       \   'slim': ['slimlint'],
       \   'scss': ['scss-lint'],
+      \   'json': ['fixjson'],
       \}
 let g:ale_fixers = {
       \   'javascript': ['eslint'],
       \   'html': ['alex'],
       \   'scss': ['stylelint'],
       \   'slim': ['slimlint'],
-      \   'python': ['black'],
+      \   'python': ['autopep8'],
       \   'ruby': ['rubocop'],
+      \   'json': ['fixjson'],
       \}
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
