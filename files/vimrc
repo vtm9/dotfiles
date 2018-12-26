@@ -111,6 +111,7 @@ Plug 'godlygeek/tabular'
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jgdavey/tslime.vim'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
 Plug 'vim-airline/vim-airline'
@@ -344,7 +345,7 @@ nnoremap <silent> <Leader>T :BTags<CR>
 nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
-" nnoremap <silent> <C-[> :Files<CR>
+nnoremap <silent> <C-q> :Files<CR>
 nnoremap <silent> L :call SearchWordWithAg()<CR>
 vnoremap <silent> L :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <Leader>gl :Commits<CR>
@@ -423,7 +424,7 @@ let g:ale_linters = {
       \   'markdown': [],
       \   'javascript': ['eslint', 'flow'],
       \   'python': ['flake8'],
-      \   'elixir': ['elixir-ls', 'mix', 'credo'],
+      \   'elixir': ['mix'],
       \   'html': ['alex'],
       \   'slim': ['slimlint'],
       \   'scss': ['scss-lint'],
@@ -434,6 +435,7 @@ let g:ale_fixers = {
       \   'html': ['alex'],
       \   'scss': ['stylelint'],
       \   'slim': ['slimlint'],
+      \   'elixir': ['mix_format'],
       \   'python': ['autopep8'],
       \   'ruby': ['rubocop'],
       \   'json': ['fixjson'],
@@ -447,6 +449,8 @@ nnoremap <Leader>l :ALEFix<CR>
 
 Plug 'janko-m/vim-test'
   let test#strategy = "dispatch"
+  let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
+
   nnoremap <silent> <Leader>tf :TestFile<CR>
   nnoremap <silent> <Leader>tn :TestNearest<CR>
   nnoremap <silent> <Leader>ts :TestSuite<CR>

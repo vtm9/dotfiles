@@ -203,6 +203,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:~/.cabal/bin
+export LOG_DEBUG=1
 
 # aoutoenv
 # source /usr/share/autoenv/activate.sh
