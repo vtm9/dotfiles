@@ -25,6 +25,12 @@
         dest: ~/.config/flake8
         state: link
 
+    - file:
+        force: yes
+        src: "{{ curdir }}/files/docker"
+        dest: ~/.docker/config.json
+        state: link
+
     - git:
         repo: https://github.com/zsh-users/antigen.git
         dest: ~/.zsh/antigen
