@@ -18,6 +18,9 @@ install_pip:
 install_pacman:
 	ansible-playbook distribs.yml -i local -v --tags arch
 
+install_elixir:
+	ansible-playbook distribs.yml -i local -v --tags elixir
+
 nvim_configure:
 	ansible-playbook nvim.yml -i local -vvv -e curdir=$(CURDIR) -K
 

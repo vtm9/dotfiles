@@ -76,6 +76,7 @@
         - typescript
         - typings
         - pug-lint
+        - yarn
         - livedown
         - js-yaml
         - stylelint
