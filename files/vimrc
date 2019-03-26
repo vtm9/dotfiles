@@ -77,6 +77,11 @@ set signcolumn=yes
 " Show parameter doc.
 Plug 'Shougo/echodoc.vim'
 Plug 'ntpeters/vim-better-whitespace'
+" {{{
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+" }}}
 " Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
 
@@ -388,10 +393,11 @@ Plug 'rhysd/clever-f.vim'
 let g:clever_f_smart_case = 1
 " }}}
 
-Plug 'Raimondi/delimitMate'
+" double brackets
+" Plug 'Raimondi/delimitMate'
 " {{{
-let delimitMate_expand_cr = 2
-let delimitMate_expand_space = 1 " {|} => { | }
+" let delimitMate_expand_cr = 2
+" let delimitMate_expand_space = 1 " {|} => { | }
 " }}}
 
 Plug 'AndrewRadev/splitjoin.vim'
@@ -421,8 +427,8 @@ let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
       \   'ruby': ['rubocop', 'brakeman'],
-      \   'markdown': [],
-      \   'javascript': ['eslint', 'flow'],
+      \   'markdown': ['prettier'],
+      \   'javascript': ['eslint', 'tsserver'],
       \   'python': ['flake8'],
       \   'elixir': ['mix'],
       \   'html': ['alex'],
@@ -432,10 +438,12 @@ let g:ale_linters = {
       \}
 let g:ale_fixers = {
       \   'javascript': ['eslint'],
-      \   'html': ['alex'],
-      \   'scss': ['stylelint'],
-      \   'slim': ['slimlint'],
+      \   'markdown': ['prettier'],
+      \   'html': ['prettier'],
+      \   'scss': ['stylelint', 'prettier'],
+      \   'css': ['stylelint', 'prettier'],
       \   'elixir': ['mix_format'],
+      \   'yaml': ['prettier'],
       \   'python': ['autopep8'],
       \   'ruby': ['rubocop'],
       \   'json': ['fixjson'],
@@ -669,9 +677,9 @@ set inccommand=nosplit
 nmap j gj
 nmap k gk
 
-augroup common
-  autocmd BufEnter * EnableStripWhitespaceOnSave
-augroup END
+" augroup common
+  " autocmd BufEnter * EnableStripWhitespaceOnSave
+" augroup END
 
 augroup filetypedetect
   " autocmd!
