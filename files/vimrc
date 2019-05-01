@@ -54,6 +54,8 @@ let g:ragtag_global_maps = 1
 Plug 'ervandew/supertab'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
+Plug 'cohama/lexima.vim'
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 set completeopt=noinsert,menuone,noselect
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -169,7 +171,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['Rakefile', 'package.json', 'mix.exs', '.git/']
+let g:rooter_patterns = ['Makefile', 'mix.exs', '.git/']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -266,7 +268,7 @@ Plug 'tpope/vim-classpath', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
 
-Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
+" Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
 Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'ap/vim-css-color'
@@ -432,6 +434,7 @@ let g:ale_linters = {
       \   'python': ['flake8'],
       \   'elixir': ['mix'],
       \   'html': ['alex'],
+      \   'clojure': ['joker'],
       \   'slim': ['slimlint'],
       \   'scss': ['scss-lint'],
       \   'json': ['fixjson'],
@@ -441,12 +444,13 @@ let g:ale_fixers = {
       \   'markdown': ['prettier'],
       \   'html': ['prettier'],
       \   'scss': ['stylelint', 'prettier'],
+      \   'clojure': ['joker'],
       \   'css': ['stylelint', 'prettier'],
       \   'elixir': ['mix_format'],
       \   'yaml': ['prettier'],
       \   'python': ['autopep8'],
       \   'ruby': ['rubocop'],
-      \   'json': ['fixjson'],
+      \   'json': ['jq'],
       \}
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>

@@ -1,4 +1,4 @@
-DISABLE_AUTO_UPDATE=true
+lISABLE_AUTO_UPDATE=true
 xset r rate 175 48
 source <(antibody init)
 ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
@@ -219,3 +219,16 @@ source $(ls /opt/google-cloud-sdk/*.zsh.inc)
 autoload -Uz copy-earlier-word
 zle -N copy-earlier-word
 bindkey "^[m" copy-earlier-word
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+
+# # Set alias to shorten command to run emulator
+alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
+alias ip="curl ipinfo.io/ip"
+alias ipl="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
