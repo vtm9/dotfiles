@@ -1,4 +1,4 @@
-lISABLE_AUTO_UPDATE=true
+ISABLE_AUTO_UPDATE=true
 xset r rate 175 48
 source <(antibody init)
 ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
@@ -65,9 +65,10 @@ kitty + complete setup zsh | source /dev/stdin
 antibody bundle robbyrussell/oh-my-zsh path:plugins/rails
 
 # aliases
-alias a='atom .'
+
 alias bi='bundle install --jobs 20 --retry 5'
 alias ss='spring server'
+alias sn='/usr/bin/shutdown now'
 alias st='spring stop'
 alias rp='bin/rake rspec'
 alias rr='bin/rake routes | fzf'
@@ -174,7 +175,7 @@ alias mts='mix test --stale'
 alias mtw='mix test.watch'
 alias mx='mix xref'
 alias mf='mix format'
-unalias rg
+# unalias rg
 # alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
 
 
@@ -216,10 +217,6 @@ eval "$(rbenv init -)"
 # source /usr/bin/aws_zsh_completer.sh
 source $(ls /opt/google-cloud-sdk/*.zsh.inc)
 
-autoload -Uz copy-earlier-word
-zle -N copy-earlier-word
-bindkey "^[m" copy-earlier-word
-
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -232,3 +229,16 @@ alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
 alias ip="curl ipinfo.io/ip"
 alias ipl="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+
+alias to-gdm 'sudo systemctl disable lightdm.service && sudo systemctl enable gdm.service'
+alias to-ldm 'sudo systemctl disable gdm.service && sudo systemctl enable lightdm.service'
+
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+# insert-first-word () { zle insert-last-word -- -1 1 }
+# zle -N insert-first-word
+bindkey '^[.' insert-last-word
