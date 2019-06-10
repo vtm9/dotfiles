@@ -1,0 +1,15 @@
+{
+  "diagnostic-languageserver.filetypes": {
+    "elixir": ["mix_credo", "mix_credo_compile"],
+    "php": "phpcs"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "elixir": "mix_format"
+  },
+  "languageserver": {
+    "elixirLS": {
+      "command": "/home/vtm/Projects/github/elixir-ls/rel/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+    }
+  }
+}
