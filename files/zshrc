@@ -242,3 +242,6 @@ alias lt='ls --tree'
 # insert-first-word () { zle insert-last-word -- -1 1 }
 # zle -N insert-first-word
 bindkey '^[.' insert-last-word
+
+# added by travis gem
+[ -f /home/vtm/.travis/travis.sh ] && source /home/vtm/.travis/travis.sh

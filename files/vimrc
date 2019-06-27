@@ -166,7 +166,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['Makefile', 'mix.exs', '.git/']
+let g:rooter_patterns = ['Makefile', 'mix.exs', '.git/', 'package.json']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -209,9 +209,9 @@ Plug 'rhysd/vim-clang-format'
 
 Plug 'pangloss/vim-javascript'
 
-Plug 'mitermayer/vim-prettier', {
-      \ 'do': 'npm install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+" Plug 'mitermayer/vim-prettier', {
+      " \ 'do': 'npm install',
+      " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
@@ -220,9 +220,11 @@ Plug 'elzr/vim-json'
 Plug 'leafgarland/typescript-vim'
 " Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'isRuslan/vim-es6'
-Plug 'mitermayer/vim-prettier', {
-      \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
+ Plug 'posva/vim-vue'
+
+" Plug 'mitermayer/vim-prettier', {
+      " \ 'do': 'yarn install',
+      " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 "{{{
 
@@ -327,10 +329,17 @@ let g:NERDTreeChDirMode = 2
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeCascadeOpenSingleChildDir = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeMouseMode=3
+let g:NERDTreeShowHidden=1
+
+let NERDTreeMapJumpNextSibling='<C-N>'
+let NERDTreeMapJumpPrevSibling='<C-O>'
 
 nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
 nmap <silent> <Leader>\ :NERDTreeFind<CR>
 " }}}
+
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -409,45 +418,42 @@ Plug 'thinca/vim-textobj-comment'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 "{{{
-"let g:ale_set_loclist = 1
-"let g:ale_set_quickfix = 0
-"let g:ale_sign_column_always = 1
-"let g:ale_set_highlights = 0
-"let g:ale_completion_enabled = 1
-"let g:ale_php_phpcs_standard = 'PSR2'
-"let g:ale_elixir_elixir_ls_release = expand('~/.elixir.d/elixir-ls')
-"let g:airline#extensions#ale#enabled = 1
-"let g:ale_linters = {
-"      \   'ruby': ['rubocop', 'brakeman'],
-"      \   'markdown': ['prettier'],
-"      \   'javascript': ['eslint', 'tsserver'],
-"      \   'python': ['flake8'],
-"      \   'elixir': ['mix'],
-"      \   'html': ['alex'],
-"      \   'clojure': ['joker'],
-"      \   'slim': ['slimlint'],
-"      \   'scss': ['scss-lint'],
-"      \   'json': ['fixjson'],
-"      \}
-"let g:ale_fixers = {
-"      \   'javascript': ['eslint'],
-"      \   'markdown': ['prettier'],
-"      \   'html': ['prettier'],
-"      \   'scss': ['stylelint', 'prettier'],
-"      \   'clojure': ['joker'],
-"      \   'css': ['stylelint', 'prettier'],
-"      \   'elixir': ['mix_format'],
-"      \   'yaml': ['prettier'],
-"      \   'python': ['autopep8'],
-"      \   'ruby': ['rubocop'],
-"      \   'json': ['jq'],
-"      \}
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+let g:ale_completion_enabled = 0
+let g:airline#extensions#ale#enabled = 1
+let g:ale_linters = { 'ruby': ['rubocop', 'brakeman'] }
+      " \   'markdown': ['prettier'],
+      " \   'javascript': ['eslint', 'tsserver'],
+      " \   'typescript.jsx': ['eslint', 'tsserver'],
+      " \   'python': ['flake8'],
+      " \   'elixir': ['mix'],
+      " \   'html': ['alex'],
+      " \   'clojure': ['joker'],
+      " \   'slim': ['slimlint'],
+      " \   'scss': ['scss-lint'],
+      " \   'json': ['fixjson']
+let g:ale_fixers = {
+     \   'ruby': ['rubocop'],
+     \   'javascript': ['eslint'],
+     \   'typescript': ['eslint'],
+     \   'markdown': ['prettier'],
+     \   'html': ['prettier'],
+     \   'scss': ['stylelint', 'prettier'],
+     \   'clojure': ['joker'],
+     \   'css': ['stylelint', 'prettier'],
+     \   'elixir': ['mix_format'],
+     \   'yaml': ['prettier'],
+     \   'python': ['autopep8'],
+     \   'json': ['jq']
+     \ }
 "" Move between linting errors
 "nnoremap ]r :ALENextWrap<CR>
 "nnoremap [r :ALEPreviousWrap<CR>
-" nnoremap <Leader>l :ALEFix<CR>
 ""}}}
 
 
@@ -455,26 +461,27 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 " {{{
 
+      " \ 'coc-solargraph',
 let g:coc_global_extensions = [
-      \ 'coc-tsserver',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
       \ 'coc-json',
-      \ 'coc-eslint',
       \ 'coc-prettier',
+      \ 'coc-tsserver',
       \ 'coc-python',
       \ 'coc-java',
-      \ 'coc-solargraph',
       \ 'coc-yaml',
       \ 'coc-highlight',
       \ 'coc-ultisnips',
+      \ 'coc-eslint',
       \ 'coc-snippets',
       \ 'coc-pairs',
       \ 'coc-docker',
       \ 'coc-diagnostic',
+      \ 'coc-rls',
       \]
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
@@ -506,7 +513,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
-nmap <leader> uf  <Plug>(coc-fix-current)
+" nmap <leader> uf  <Plug>(coc-fix-current)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -514,7 +521,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 " nmap <silent> gr <Plug>(coc-references)
 nmap <leader>gr <Plug>(coc-rename)
-nnoremap <Leader>l :Format<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -529,12 +535,13 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight link CocErrorSign GruvboxRed
 
 " Remap for rename current word
 
 " Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -555,6 +562,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+nnoremap <Leader>l :Format<CR>
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -880,3 +889,7 @@ vnoremap <silent> # :<C-U>
 
 
 :unmap <leader>qf
+
+nnoremap <Leader>a :ALEFix<CR>
+
+highlight link CocErrorSign GruvboxRed
