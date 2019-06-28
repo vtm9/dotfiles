@@ -9,6 +9,7 @@
       with_items:
         - zshrc
         - tigrc
+        - gitignore
         - gemrc
         - inputrc
         - tmux.conf
