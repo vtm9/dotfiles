@@ -116,12 +116,16 @@ Plug 'jgdavey/tslime.vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+"{{{
+let g:lightline = { 'colorscheme': 'PaperColor' }
+"}}}
+" Plug 'vim-airline/vim-airline'
 "{{{
   " Show airline with single file
-  set laststatus=2
+  " set laststatus=2
   " Use powerline font
-  let g:airline_powerline_fonts = 1
+  " let g:airline_powerline_fonts = 1
   " Enable tabline
   " let g:airline#extensions#tabline#enabled = 1
 "}}}
@@ -425,7 +429,7 @@ let g:ale_set_quickfix = 0
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 let g:ale_completion_enabled = 0
-let g:airline#extensions#ale#enabled = 1
+" let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = { 'ruby': ['rubocop', 'brakeman'] }
       " \   'markdown': ['prettier'],
       " \   'javascript': ['eslint', 'tsserver'],
@@ -619,6 +623,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'NLKNguyen/papercolor-theme'
 
 
+
 Plug 'mattn/emmet-vim'
 " {{{
 let g:user_emmet_expandabbr_key = '<C-e>'
@@ -633,7 +638,11 @@ call plug#end()
 " set background=light
 " set background=dark
 " colorscheme PaperColor
-colorscheme jellybeans
+" colorscheme jellybeans
+set t_Co=256   " This is may or may not needed.
+
+set background=light
+colorscheme PaperColor
 
 set cursorline     " highlight current line
 set colorcolumn=120 " highlight column
@@ -890,6 +899,9 @@ vnoremap <silent> # :<C-U>
 
 :unmap <leader>qf
 
+
 nnoremap <Leader>a :ALEFix<CR>
 
 highlight link CocErrorSign GruvboxRed
+
+
