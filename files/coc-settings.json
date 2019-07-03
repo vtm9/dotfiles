@@ -1,12 +1,8 @@
 {
   "eslint.trace.server": "verbose",
-"eslint.packageManager": "yarn",
-"eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript"
-  ],
+  "eslint.packageManager": "yarn",
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript"],
   "eslint.filetypes": [
     "javascript",
     "javascript.jsx",
@@ -19,10 +15,7 @@
   "languageserver": {
     "elixirLS": {
       "command": "/home/vtm/Projects/github/elixir-ls/rel/language_server.sh",
-      "filetypes": [
-        "elixir",
-        "eelixir"
-      ]
+      "filetypes": ["elixir", "eelixir"]
     }
   }
 }

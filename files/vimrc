@@ -29,7 +29,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
@@ -54,7 +54,7 @@ let g:ragtag_global_maps = 1
 " Plug 'ervandew/supertab'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
-Plug 'cohama/lexima.vim'
+" Plug 'cohama/lexima.vim'
 
 set completeopt=noinsert,menuone,noselect
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -404,6 +404,7 @@ let g:clever_f_smart_case = 1
 " Plug 'Raimondi/delimitMate'
 " {{{
 " let delimitMate_expand_cr = 2
+"
 " let delimitMate_expand_space = 1 " {|} => { | }
 " }}}
 
@@ -905,3 +906,19 @@ nnoremap <Leader>a :ALEFix<CR>
 highlight link CocErrorSign GruvboxRed
 
 
+let g:lightline = { 'colorscheme': 'PaperColor' }
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
