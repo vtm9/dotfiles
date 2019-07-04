@@ -6,6 +6,7 @@ ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SL
 export EDITOR='nvim'
 export ELIXIR_EDITOR="nvim"
 export TERM="xterm-256color"
+export BAT_THEME="Monokai Extended Light"
 
 bindkey "\e." insert-last-word
 bindkey '^[[1;5D' backward-word
@@ -191,6 +192,7 @@ function exists { which $1 &> /dev/null }
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
 # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
+  export FZF_DEFAULT_OPTS=' --color light'
 export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'

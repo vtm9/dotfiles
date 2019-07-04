@@ -427,21 +427,25 @@ Plug 'w0rp/ale'
 "{{{
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
+let g:ale_linters_explicit = 1
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 let g:ale_completion_enabled = 0
 " let g:airline#extensions#ale#enabled = 1
-let g:ale_linters = { 'ruby': ['rubocop', 'brakeman'] }
-      " \   'markdown': ['prettier'],
-      " \   'javascript': ['eslint', 'tsserver'],
-      " \   'typescript.jsx': ['eslint', 'tsserver'],
-      " \   'python': ['flake8'],
-      " \   'elixir': ['mix'],
-      " \   'html': ['alex'],
-      " \   'clojure': ['joker'],
-      " \   'slim': ['slimlint'],
-      " \   'scss': ['scss-lint'],
-      " \   'json': ['fixjson']
+let g:ale_linters = {
+      \   'ruby': ['rubocop', 'brakeman'],
+      \   'markdown': ['prettier'],
+      \   'javascript': ['eslint'],
+      \   'typescript.jsx': ['eslint'],
+      \   'typescript': ['eslint' ],
+      \   'python': ['flake8'],
+      \   'elixir': ['mix'],
+      \   'html': ['alex'],
+      \   'clojure': ['joker'],
+      \   'slim': ['slimlint'],
+      \   'scss': ['scss-lint'],
+      \   'json': ['fixjson']
+      \ }
 let g:ale_fixers = {
      \   'ruby': ['rubocop'],
      \   'javascript': ['eslint'],

@@ -1,8 +1,8 @@
 {
+"prettier.eslintIntegration": true,
   "eslint.trace.server": "verbose",
   "eslint.packageManager": "yarn",
-  "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript"],
+  "eslint.autoFixOnSave": false,
   "eslint.filetypes": [
     "javascript",
     "javascript.jsx",
