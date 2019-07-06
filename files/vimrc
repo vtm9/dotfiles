@@ -118,7 +118,6 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
 Plug 'itchyny/lightline.vim'
 "{{{
-let g:lightline = { 'colorscheme': 'PaperColor' }
 "}}}
 " Plug 'vim-airline/vim-airline'
 "{{{
@@ -322,9 +321,6 @@ nmap ga <Plug>(EasyAlign)
 
 Plug 'scrooloose/nerdtree'
 Plug 'vtm9/nerdtree-ag'
-" Plug 'tyok/nerdtree-ack'
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " {{{
 let g:NERDTreeMinimalUI = 1
@@ -342,6 +338,19 @@ let NERDTreeMapJumpPrevSibling='<C-O>'
 
 nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
 nmap <silent> <Leader>\ :NERDTreeFind<CR>
+
+let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "●",
+      \ "Staged"    : "✔",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "❗",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "~",
+      \ "Clean"     : "✔︎",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "❓"
+      \ }
 " }}}
 
 
@@ -467,10 +476,10 @@ let g:ale_fixers = {
 
 
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " {{{
 
-      " \ 'coc-solargraph',
+nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-lists',
@@ -478,7 +487,10 @@ let g:coc_global_extensions = [
       \ 'coc-sh',
       \ 'coc-css',
       \ 'coc-json',
+      \ 'coc-solargraph',
+      \ 'coc-yank',
       \ 'coc-prettier',
+      \ 'coc-word',
       \ 'coc-tsserver',
       \ 'coc-python',
       \ 'coc-java',
@@ -579,16 +591,27 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
+"
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'PaperColor',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \   'left': [ [ 'mode', 'paste' ], [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \   'cocstatus': 'coc#status'
       \ },
       \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 " Using CocList
 " Show all diagnostics
@@ -912,7 +935,6 @@ nnoremap <Leader>a :ALEFix<CR>
 highlight link CocErrorSign GruvboxRed
 
 
-let g:lightline = { 'colorscheme': 'PaperColor' }
 
 
 let g:fzf_colors =
@@ -929,3 +951,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+
+
