@@ -6,8 +6,8 @@
   "prettier.eslintIntegration": true,
   "eslint.trace.server": "verbose",
   "eslint.packageManager": "yarn",
-  "eslint.autoFix": true,
-  "eslint.autoFixOnSave": true,
+  "eslint.autoFix": false,
+  "eslint.autoFixOnSave": false,
   "eslint.filetypes": [
     "javascript",
     "javascript.jsx",
@@ -22,36 +22,19 @@
       "filetypes": ["elixir", "eelixir"]
     }
   },
-  "diagnostic-languageserver.linters": {
-    "languagetool": {
-      "command": "languagetool",
-      "filetypes": [],
-      "debounce": 200,
-      "args": ["-"],
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "sourceName": "languagetool",
-      "formatLines": 2,
-      "formatPattern": [
-        "^\\d+?\\.\\)\\s+Line\\s+(\\d+),\\s+column\\s+(\\d+),\\s+([^\\n]+)\nMessage:\\s+(.*)$",
-        {
-          "line": 1,
-          "column": 2,
-          "message": [4, 3]
-        }
-      ]
-    }
-  },
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good", "markdownlint"],
     "ruby": ["solargraph"],
     "javascript": ["eslint"],
     "typescript": ["eslint"],
+    "javascriptreact": ["eslint"],
+    "javascript.jsx": ["eslint"],
     "typescriptreact": ["eslint"],
     "typescript.jsx": ["eslint"],
     "sh": "shellcheck"
   },
   "solargraph.diagnostics": true,
   "solargraph.hover": true,
-  "solargraph.autoformat": true
+  "solargraph.autoformat": true,
+  "solargraph.useBundler": true
 }

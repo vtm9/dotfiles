@@ -169,10 +169,11 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['Makefile', 'mix.exs', '.git/', 'package.json']
+let g:rooter_patterns = [ '.gitignore', 'Gemfile', 'Makefile', 'mix.exs', '.git/', 'package.json']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
@@ -488,16 +489,13 @@ let g:coc_global_extensions = [
       \ 'coc-css',
       \ 'coc-json',
       \ 'coc-solargraph',
-      \ 'coc-yank',
       \ 'coc-prettier',
       \ 'coc-word',
-      \ 'coc-tsserver',
       \ 'coc-python',
       \ 'coc-java',
       \ 'coc-yaml',
       \ 'coc-highlight',
       \ 'coc-ultisnips',
-      \ 'coc-eslint',
       \ 'coc-snippets',
       \ 'coc-pairs',
       \ 'coc-docker',
@@ -634,8 +632,10 @@ endfunction
 " }}}
 
 
+Plug 'bogado/file-line'
 Plug 'janko-m/vim-test'
   let test#strategy = "dispatch"
+  let test#neovim#term_position = "topleft"
   let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
 
   nnoremap <silent> <Leader>tf :TestFile<CR>
@@ -951,6 +951,3 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-
-

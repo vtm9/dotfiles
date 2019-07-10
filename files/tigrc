@@ -1,2 +1,4 @@
 bind status D !@rm %(file)
 bind status P !git push origin
+set main-options = --exclude=refs/stash --exclude=refs/pr --all
+
