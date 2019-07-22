@@ -49,15 +49,7 @@ Plug 'tpope/vim-ragtag'
 let g:ragtag_global_maps = 1
 " }}}
 
-
-
-" Plug 'ervandew/supertab'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-" Plug 'cohama/lexima.vim'
-
 set completeopt=noinsert,menuone,noselect
-autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
@@ -79,36 +71,8 @@ let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 " }}}
-" Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'hashivim/vim-terraform'
 
-" Plug 'autozimu/LanguageClient-neovim', {
-" {{{
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-
-" let g:LanguageClient_autoStart = 1
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-
-" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-" " autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
-" " \ 'yaml': ['yaml-language-server', '--stdio']
-" let g:LanguageClient_serverCommands = {
-"       \ 'php': ['php', expand('~/.vim/plugged/php-language-server/bin/php-language-server.php')],
-"       \ 'java': ['/usr/local/bin/jdtls'],
-"       \ 'ruby': ['solargraph', 'stdio'],
-"       \ 'python': ['pyls'],
-"       \ }
-
-"       " \ 'javascript': ['javascript-typescript-stdio'],
-"       " \ 'javascript.jsx': ['javascript-typescript-stdio'],
-" }}}
-
-Plug 'Shougo/echodoc.vim'
 Plug 'godlygeek/tabular'
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -189,52 +153,19 @@ Plug 'onemanstartup/vim-slim', { 'for': ['slim', 'slime'] }
 " Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
 Plug 'gaogao1030/vim-skim', { 'for': ['skim'] }
 
-" Plug 'elixir-lang/vim-elixir'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-" Plug 'mhinz/vim-mix-format', { 'for': 'elixir' }
-" {{{
-" nnoremap <silent> <Leader>m :MixFormat<CR>
-" }}}
-Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
-" {{{
-let erlang_show_errors = 0
-" }}}
-"
-
-" Plug 'felixfbecker/php-language-server', { 'for': 'php', 'do': 'composer install && composer run-script parse-stubs'}
+Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
+Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
 Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
-Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'rhysd/vim-clang-format'
 
 " Javascript
 
-Plug 'pangloss/vim-javascript'
-
-" Plug 'mitermayer/vim-prettier', {
-      " \ 'do': 'npm install',
-      " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
-
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-" Plug 'sourcegraph/javascript-typescript-langserver', {'do': 'npm install && npm run build'}
-Plug 'elzr/vim-json'
+Plug 'chemzqm/vim-jsx-improve'
 Plug 'leafgarland/typescript-vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'isRuslan/vim-es6'
- Plug 'posva/vim-vue'
-
-" Plug 'mitermayer/vim-prettier', {
-      " \ 'do': 'yarn install',
-      " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
-Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
-"{{{
-
-
-"}}}
-Plug 'moll/vim-node'
+Plug 'posva/vim-vue'
 Plug 'othree/javascript-libraries-syntax.vim'
 " {{{
 let g:used_javascript_libs = 'jquery'
@@ -248,7 +179,6 @@ Plug 'othree/yajs.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'chr4/nginx.vim'
 Plug 'fatih/vim-nginx'
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
@@ -270,38 +200,6 @@ Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'ap/vim-css-color'
 
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'fishbullet/deoplete-ruby'
-" Plug 'uplus/deoplete-solargraph'
-" {{{
-" autocmd FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#disable_auto_complete = 1
-
-" inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : deoplete#mappings#manual_complete()
-
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction
-"
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-" let g:monster#completion#rcodetools#backend = "async_rct_complete"
-" let g:deoplete#sources#omni#input_patterns = {
-" \   "ruby" : '[^. *\t]\.\w*\|\h\w*::'
-" \}
-
-" use tab
-" imap <silent><expr> <TAB>
-"   \ pumvisible() ? "\<C-n>" :
-"   \ <SID>check_back_space() ? "\<TAB>" :
-"   \ deoplete#mappings#manual_complete()
-" function! s:check_back_space() abort "{{{
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~ '\s'
-" endfunction"}}}
-" " }}}
 Plug 'junegunn/limelight.vim'
 " {{{
 let g:limelight_default_coefficient = 0.7
@@ -482,11 +380,15 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
+      \ 'coc-tsserver',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
+      \ 'coc-go',
+      \ 'coc-stylelint',
+      \ 'coc-elixir',
       \ 'coc-json',
       \ 'coc-solargraph',
       \ 'coc-prettier',
@@ -498,10 +400,13 @@ let g:coc_global_extensions = [
       \ 'coc-ultisnips',
       \ 'coc-snippets',
       \ 'coc-pairs',
-      \ 'coc-docker',
       \ 'coc-diagnostic',
       \ 'coc-rls',
+      \ 'coc-eslint',
+      \ 'coc-docker',
+      \ 'coc-jest',
       \]
+
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -538,7 +443,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references)
 nmap <leader>gr <Plug>(coc-rename)
 
 " Use K to show documentation in preview window
@@ -878,7 +783,6 @@ augroup filetypedetect
   " au BufEnter *.json setl ft=javascript
   " au BufEnter *.coffee setl sw=2 expandtab
   " au BufEnter *.py setl ts=4 sw=4 sts=4
-  autocmd BufEnter *.php setlocal ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   " au BufEnter *.js setl ts=2 sw=2 sts=2
