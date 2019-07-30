@@ -18,10 +18,7 @@ call plug#begin('~/.nvim/plugged')
 
 Plug 'vtm9/vim-pry'
 Plug 'vtm9/vim-interpolation'
-Plug 'vtm9/vim-dispatch'
-let g:dispatch_quickfix_height = 90
 
-let g:dispatch_compilers = {'elixir': 'exunit'}
 
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-db'
@@ -149,8 +146,7 @@ Plug 'sbruhns/rails-i18n-vim'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'onemanstartup/vim-slim', { 'for': ['slim', 'slime'] }
-" Plug 'slim-template/vim-slim', { 'for': ['slim', 'slime'] }
+Plug 'onemanstartup/vim-slim', { 'for': ['slim', 'slime', 'slimleex'] }
 Plug 'gaogao1030/vim-skim', { 'for': ['skim'] }
 
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
@@ -538,9 +534,12 @@ endfunction
 
 
 Plug 'bogado/file-line'
+Plug 'skywind3000/asyncrun.vim'
+  let g:asyncrun_open = 70
+  let g:asyncrun_win_loc = 2
+
 Plug 'janko-m/vim-test'
-  let test#strategy = "dispatch"
-  let test#neovim#term_position = "topleft"
+  let test#strategy = "asyncrun"
   let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
 
   nnoremap <silent> <Leader>tf :TestFile<CR>
@@ -785,6 +784,7 @@ augroup filetypedetect
   " au BufEnter *.py setl ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
+  autocmd BufNewFile,BufRead *.slimleex setlocal filetype=slim
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
   " au BufEnter *.tex setl wrap tw=79 fo=tcqor
@@ -855,3 +855,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+:inoremap <S-Tab> <C-V><Tab>
+
