@@ -177,12 +177,6 @@ alias mts='mix test --stale'
 alias mtw='mix test.watch'
 alias mx='mix xref'
 alias mf='mix format'
-# unalias rg
-# alias gcw='echo c \'$(git branch 2> /dev/null | sed -e "/^[^*]/d\" -e "s/.*\/\(.*\)/\1/")'
-
-
-# Add RVM to PATH for scripting
-# [[ -s "$HOME/.rvm/scripts/rvm" ]]  && source "$HOME/.rvm/scripts/rvm"
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept

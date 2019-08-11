@@ -130,7 +130,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = [ '.gitignore', 'Gemfile', 'Makefile', 'mix.exs', '.git/', 'package.json']
+let g:rooter_patterns = [ 'Gemfile', 'mix.exs', 'package.json', '.git/', 'Makefile']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -159,9 +159,13 @@ Plug 'rhysd/vim-clang-format'
 
 " Javascript
 
-Plug 'chemzqm/vim-jsx-improve'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
+
 Plug 'othree/javascript-libraries-syntax.vim'
 " {{{
 let g:used_javascript_libs = 'jquery'
@@ -376,7 +380,6 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
-      \ 'coc-tsserver',
       \ 'coc-html',
       \ 'coc-lists',
       \ 'coc-phpls',
@@ -798,22 +801,6 @@ augroup END
 map <Leader>ct :silent !ripper-tags -R --exclude=vendor
 
 filetype plugin on
-
-function! s:SetCommentString()
-  let stack = map(synstack(line("."), col(".")), "synIDattr(synIDtrans(v:val), 'name')")
-  let cstr=&commentstring
-  for id in stack
-    if id[0:1] ==# "js"
-      let cstr="//%s"
-    endif
-    if id[0:2] ==# "jsx"
-      let cstr="{/*%s*/}"
-    endif
-  endfor
-  let &commentstring=cstr
-endfunction
-
-autocmd CursorMoved *.jsx call s:SetCommentString()
 
 command E Ex
 
