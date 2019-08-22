@@ -1,4 +1,4 @@
-ISABLE_AUTO_UPDATE=true
+DISABLE_AUTO_UPDATE=true
 xset r rate 175 48
 source <(antibody init)
 ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
@@ -36,7 +36,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/asdf
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-antibody bundle robbyrussell/oh-my-zsh path:plugins/aws
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/github
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/aws
 antibody bundle robbyrussell/oh-my-zsh path:plugins/mix
 antibody bundle robbyrussell/oh-my-zsh path:plugins/bundler
 
@@ -241,4 +242,4 @@ alias lt='ls --tree'
 bindkey '^[.' insert-last-word
 
 # added by travis gem
-[ -f /home/vtm/.travis/travis.sh ] && source /home/vtm/.travis/travis.sh
+# [ -f /home/vtm/.travis/travis.sh ] && source /home/vtm/.travis/travis.sh

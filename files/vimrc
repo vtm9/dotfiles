@@ -130,7 +130,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = [ 'Gemfile', 'mix.exs', 'package.json', '.git/', 'Makefile']
+let g:rooter_patterns = [ 'Gemfile', 'mix.exs', '.git/', 'Makefile']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -261,8 +261,6 @@ let g:fzf_tags_command = 'ripper-tags -R'
 
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>; :Rg!<space>
-nnoremap <silent> <Leader>T :BTags<CR>
-nnoremap <silent> <Leader>t :Tags<CR>
 nnoremap <silent> <Leader>h :History<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <C-q> :Files<CR>
