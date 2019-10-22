@@ -1,4 +1,5 @@
 {
+  "suggest.noselect": false,
   "diagnostic.infoSign": "？",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✕",
@@ -36,5 +37,6 @@
   "solargraph.diagnostics": true,
   "solargraph.hover": true,
   "solargraph.autoformat": true,
-  "solargraph.useBundler": true
+  "solargraph.useBundler": true,
+  "solargraph.bundlerPath": "~/.rbenv/shims/bundle"
 }

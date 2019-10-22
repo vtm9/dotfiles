@@ -815,16 +815,11 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
-
 :unmap <leader>qf
-
 
 nnoremap <Leader>a :ALEFix<CR>
 
 highlight link CocErrorSign GruvboxRed
-
-
-
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],

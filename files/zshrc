@@ -1,3 +1,4 @@
+zmodload zsh/zprof
 DISABLE_AUTO_UPDATE=true
 xset r rate 175 48
 source <(antibody init)
@@ -36,38 +37,42 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/asdf
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/kubectl
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/github
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/aws
 antibody bundle robbyrussell/oh-my-zsh path:plugins/mix
-antibody bundle robbyrussell/oh-my-zsh path:plugins/bundler
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/helm
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/bundler
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
-antibody bundle robbyrussell/oh-my-zsh path:plugins/archlinux
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/archlinux
 antibody bundle robbyrussell/oh-my-zsh path:plugins/extract
 antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
-antibody bundle robbyrussell/oh-my-zsh path:plugins/docker-compose
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/docker-compose
 antibody bundle robbyrussell/oh-my-zsh path:plugins/bgnotify
 antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found
-antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
+# antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 antibody bundle zsh-users/zsh-completions.git
 antibody bundle felixr/docker-zsh-completion.git
 antibody bundle zsh-users/zsh-autosuggestions.git
 antibody bundle zsh-users/zsh-syntax-highlighting.git
-antibody bundle littleq0903/gcloud-zsh-completion
+# antibody bundle littleq0903/gcloud-zsh-completion
 
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 HIST_IGNORE_ALL_DUPS=true
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 
 autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
-antibody bundle robbyrussell/oh-my-zsh path:plugins/rails
 
 # aliases
 
+alias open='xdg-open'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 alias bi='bundle install --jobs 20 --retry 5'
 alias ss='spring server'
 alias sn='/usr/bin/shutdown now'
@@ -98,8 +103,6 @@ alias s='tig status'
 alias c='git commit -m'
 alias gcd='git checkout development'
 alias gfu='git fetch upstream'
-alias k='kubectl'
-alias kgpd='kubectl get po -n development'
 alias p='ps aux G'
 alias tg='tar -czvf'
 alias ds='du -sckh * | sort -rh'
@@ -178,6 +181,7 @@ alias mts='mix test --stale'
 alias mtw='mix test.watch'
 alias mx='mix xref'
 alias mf='mix format'
+alias gdmb="!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
@@ -188,7 +192,7 @@ function exists { which $1 &> /dev/null }
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
 # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
-  export FZF_DEFAULT_OPTS=' --color light'
+export FZF_DEFAULT_OPTS=' --color light'
 export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'
@@ -205,15 +209,9 @@ export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:~/.cabal/bin
 export LOG_DEBUG=1
 
-# aoutoenv
-# source /usr/share/autoenv/activate.sh
-
 . $HOME/.asdf/asdf.sh
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-
-# source /usr/bin/aws_zsh_completer.sh
-source $(ls /opt/google-cloud-sdk/*.zsh.inc)
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -222,24 +220,14 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
 
-# # Set alias to shorten command to run emulator
 alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
 alias ip="curl ipinfo.io/ip"
 alias ipl="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-
-alias to-gdm 'sudo systemctl disable lightdm.service && sudo systemctl enable gdm.service'
-alias to-ldm 'sudo systemctl disable gdm.service && sudo systemctl enable lightdm.service'
 
 alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
-
-# insert-first-word () { zle insert-last-word -- -1 1 }
-# zle -N insert-first-word
 bindkey '^[.' insert-last-word
-
-# added by travis gem
-# [ -f /home/vtm/.travis/travis.sh ] && source /home/vtm/.travis/travis.sh
