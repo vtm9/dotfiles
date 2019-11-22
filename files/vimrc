@@ -130,7 +130,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = [ 'Gemfile', 'mix.exs', '.git/', 'Makefile']
+let g:rooter_patterns = ['.gitignore', 'mix.exs', 'Gemfile', '.git/', 'Makefile']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -149,7 +149,7 @@ Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'onemanstartup/vim-slim', { 'for': ['slim', 'slime', 'slimleex'] }
 Plug 'gaogao1030/vim-skim', { 'for': ['skim'] }
 
-Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'elixir-editors/vim-elixir'
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
 Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
@@ -329,63 +329,19 @@ Plug 'thinca/vim-textobj-comment'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'nelstrom/vim-textobj-rubyblock'
 
-Plug 'w0rp/ale'
-"{{{
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_linters_explicit = 1
-let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
-let g:ale_completion_enabled = 0
-" let g:airline#extensions#ale#enabled = 1
-let g:ale_linters = {
-      \   'ruby': ['rubocop', 'brakeman'],
-      \   'markdown': ['prettier'],
-      \   'javascript': ['eslint'],
-      \   'typescript.jsx': ['eslint'],
-      \   'typescript': ['eslint' ],
-      \   'python': ['flake8'],
-      \   'elixir': ['mix'],
-      \   'html': ['alex'],
-      \   'clojure': ['joker'],
-      \   'slim': ['slimlint'],
-      \   'scss': ['scss-lint'],
-      \   'json': ['fixjson']
-      \ }
-let g:ale_fixers = {
-     \   'ruby': ['rubocop'],
-     \   'javascript': ['eslint'],
-     \   'typescript': ['eslint'],
-     \   'markdown': ['prettier'],
-     \   'html': ['prettier'],
-     \   'scss': ['stylelint', 'prettier'],
-     \   'clojure': ['joker'],
-     \   'css': ['stylelint', 'prettier'],
-     \   'elixir': ['mix_format'],
-     \   'yaml': ['prettier'],
-     \   'python': ['autopep8'],
-     \   'json': ['jq']
-     \ }
-"" Move between linting errors
-"nnoremap ]r :ALENextWrap<CR>
-"nnoremap [r :ALEPreviousWrap<CR>
-""}}}
-
-
-
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " {{{
 
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
       \ 'coc-html',
+      \ 'coc-elixir',
       \ 'coc-lists',
       \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
       \ 'coc-go',
       \ 'coc-stylelint',
-      \ 'coc-elixir',
       \ 'coc-json',
       \ 'coc-solargraph',
       \ 'coc-prettier',
@@ -403,7 +359,6 @@ let g:coc_global_extensions = [
       \ 'coc-docker',
       \ 'coc-jest',
       \]
-
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -817,8 +772,6 @@ vnoremap <silent> # :<C-U>
 
 :unmap <leader>qf
 
-nnoremap <Leader>a :ALEFix<CR>
-
 highlight link CocErrorSign GruvboxRed
 
 let g:fzf_colors =
@@ -837,4 +790,3 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 :inoremap <S-Tab> <C-V><Tab>
-

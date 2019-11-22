@@ -17,12 +17,6 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "languageserver": {
-    "elixirLS": {
-      "command": "/home/vtm/Projects/github/elixir-ls/rel/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
-    }
-  },
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good", "markdownlint"],
     "ruby": ["solargraph"],
@@ -34,9 +28,10 @@
     "typescript.jsx": ["eslint"],
     "sh": "shellcheck"
   },
+  "solargraph.commandPath": "/home/vtm/.rbenv/versions/2.6.4/bin/solargraph",
   "solargraph.diagnostics": true,
-  "solargraph.hover": true,
   "solargraph.autoformat": true,
-  "solargraph.useBundler": true,
-  "solargraph.bundlerPath": "~/.rbenv/shims/bundle"
+  "solargraph.formatting": true,
+  "solargraph.hover": true,
+  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
 }
