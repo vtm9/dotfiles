@@ -32,6 +32,5 @@
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
-  "solargraph.hover": true,
-  "elixir.pathToElixirLS": "~/.elixir-ls/release/language_server.sh"
+  "solargraph.hover": true
 }
