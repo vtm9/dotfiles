@@ -60,8 +60,6 @@ set completeopt=noinsert,menuone,noselect
 " Always draw the signcolumn.
 set signcolumn=yes
 
-" Show parameter doc.
-Plug 'Shougo/echodoc.vim'
 Plug 'ntpeters/vim-better-whitespace'
 " {{{
 let g:better_whitespace_enabled=1
@@ -130,7 +128,7 @@ Plug 'wincent/ferret'
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['.gitignore', 'mix.exs', 'Gemfile', '.git/', 'Makefile']
+let g:rooter_patterns = ['mix.exs', 'docker-compose.yml', '.gitignore',  'Gemfile', '.git/', 'Makefile']
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
@@ -566,7 +564,7 @@ set backspace=2   " Backspace deletes like most programs in insert mode
 set history=500
 set ruler         " show the cursor position all the time
 set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
+" set laststatus=2  " Always display the status line
 
 set tabstop=2
 set shiftround
@@ -685,7 +683,6 @@ map <leader>vr :source $MYVIMRC<CR>
 
 cmap w!! %!sudo tee > /dev/null %
 
-set shortmess=atI
 set foldlevelstart=99
 if has('mouse')
   set mouse=a
@@ -714,9 +711,10 @@ set showcmd       " display incomplete commands
 set autowrite     " Automatically :write before running commands
 set expandtab
 set softtabstop=2
-set shiftwidth=2
+" set shiftwidth=2
+set noshowmode
 
-set cmdheight=2
+set cmdheight=1
 set scrolloff=3
 set inccommand=nosplit
 
@@ -790,3 +788,4 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 :inoremap <S-Tab> <C-V><Tab>
+nmap ge :CocCommand explorer<CR>
