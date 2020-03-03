@@ -1,4 +1,5 @@
 {
+  "explorer.icon.enableNerdfont": true,
   "suggest.noselect": false,
   "diagnostic.infoSign": "？",
   "diagnostic.warningSign": "⚠",
@@ -28,7 +29,7 @@
     "typescript.jsx": ["eslint"],
     "sh": "shellcheck"
   },
-  "solargraph.commandPath": "/home/vtm/.rbenv/versions/2.6.4/bin/solargraph",
+  "solargraph.commandPath": "/home/vtm/.asdf/shims/solargraph",
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,

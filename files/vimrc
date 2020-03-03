@@ -87,7 +87,7 @@ Plug 'itchyny/lightline.vim'
   " Enable tabline
   " let g:airline#extensions#tabline#enabled = 1
 "}}}
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 " {{{
@@ -97,50 +97,21 @@ let g:ctrlsf_case_sensitive = 'smart'
 nmap     <C-F>f <Plug>CtrlSFPrompt
 nmap     <C-F>w <Plug>CtrlSFCwordExec
 vmap     <C-F> <Plug>CtrlSFVwordExec
-" nmap     <C-F>w <Plug>CtrlSFCwordPath
-" nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 " }}}
-Plug 'wincent/ferret'
-" {{{
-" let g:FerretExecutable='ag,rg'
-" let g:FerretQFOptions=0
-" nmap <Leader>/ <Plug>(FerretAck)
-" nmap <Leader>z <Plug>(FerretAckWord)
-" nmap <Leader>x <Plug>(FerretAcks)
-" vmap <silent>z :call FerretSearchVisualSelection()<CR>
-" function! FerretSearchVisualSelection() range
-"   let old_reg = getreg('"')
-"   let old_regtype = getregtype('"')
-"   let old_clipboard = &clipboard
-"   set clipboard&
-"   normal! ""gvy
-"   let selection = getreg('"')
-"   call setreg('"', old_reg, old_regtype)
-"   let &clipboard = old_clipboard
-"   execute 'Ack' selection
-" endfunction
-
-" }}}
-"
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['mix.exs', 'docker-compose.yml', '.gitignore',  'Gemfile', '.git/', 'Makefile']
+let g:rooter_patterns = ['Makefile', 'mix.exs', '.git/',  'docker-compose.yml', '.gitignore',  'Gemfile', ]
 " }}}
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
-Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
+" Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
-Plug 'sbruhns/rails-i18n-vim'
-" Plug 'digitalrounin/vim-yaml-folds'
-" Plug 'Einenlum/yaml-revealer', { 'for': 'yaml' }
-" Plug 'vim-utils/vim-ruby-fold'
-" Plug 'chrisbra/csv.vim', { 'for': 'csv' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
@@ -170,7 +141,7 @@ let g:used_javascript_libs = 'jquery'
 " }}}
 
 Plug 'othree/html5.vim'
-Plug 'Valloric/MatchTagAlways'
+" Plug 'Valloric/MatchTagAlways'
 
 Plug 'othree/yajs.vim'
 
@@ -232,6 +203,7 @@ let g:NERDTreeShowHidden=1
 
 let NERDTreeMapJumpNextSibling='<C-N>'
 let NERDTreeMapJumpPrevSibling='<C-O>'
+
 
 nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
 nmap <silent> <Leader>\ :NERDTreeFind<CR>
@@ -489,10 +461,10 @@ endfunction
 
 Plug 'bogado/file-line'
 Plug 'skywind3000/asyncrun.vim'
-  let g:asyncrun_open = 70
-  let g:asyncrun_win_loc = 2
+  let g:asyncrun_open = 1000
 
 Plug 'janko-m/vim-test'
+  let test#neovim#term_position = "topleft"
   let test#strategy = "asyncrun"
   let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
 
@@ -505,10 +477,7 @@ Plug 'janko-m/vim-test'
 Plug 'sunaku/vim-ruby-minitest'
 Plug 'nanotech/jellybeans.vim'
 Plug 'editorconfig/editorconfig-vim'
-
 Plug 'NLKNguyen/papercolor-theme'
-
-
 
 Plug 'mattn/emmet-vim'
 " {{{
@@ -788,4 +757,3 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 :inoremap <S-Tab> <C-V><Tab>
-nmap ge :CocCommand explorer<CR>

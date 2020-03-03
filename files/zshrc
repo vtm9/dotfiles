@@ -182,6 +182,16 @@ alias mtw='mix test.watch'
 alias mx='mix xref'
 alias mf='mix format'
 alias gdmb="!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
+alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
+alias ip="curl ipinfo.io/ip"
+alias ipl="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias r='ranger'
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
@@ -209,8 +219,9 @@ export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:~/.cabal/bin
 export LOG_DEBUG=1
 
-. $HOME/.asdf/asdf.sh
-eval "$(direnv hook zsh)"
+# . $HOME/.asdf/asdf.sh
+# export PATH="$HOME/.asdf/bin:$PATH"
+# eval "$(asdf exec direnv hook zsh)"
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -219,16 +230,6 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
 
-alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
-alias ip="curl ipinfo.io/ip"
-alias ipl="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-
-alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
 bindkey '^[.' insert-last-word
 
 
