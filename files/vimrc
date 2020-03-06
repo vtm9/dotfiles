@@ -80,12 +80,12 @@ Plug 'itchyny/lightline.vim'
 "}}}
 " Plug 'vim-airline/vim-airline'
 "{{{
-  " Show airline with single file
-  " set laststatus=2
-  " Use powerline font
-  " let g:airline_powerline_fonts = 1
-  " Enable tabline
-  " let g:airline#extensions#tabline#enabled = 1
+" Show airline with single file
+" set laststatus=2
+" Use powerline font
+" let g:airline_powerline_fonts = 1
+" Enable tabline
+" let g:airline#extensions#tabline#enabled = 1
 "}}}
 " Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
@@ -331,7 +331,7 @@ let g:coc_global_extensions = [
       \]
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -461,18 +461,18 @@ endfunction
 
 Plug 'bogado/file-line'
 Plug 'skywind3000/asyncrun.vim'
-  let g:asyncrun_open = 1000
+let g:asyncrun_open = 1000
 
 Plug 'janko-m/vim-test'
-  let test#neovim#term_position = "topleft"
-  let test#strategy = "asyncrun"
-  let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
+let test#neovim#term_position = "topleft"
+let test#strategy = "asyncrun"
+let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
 
-  nnoremap <silent> <Leader>tf :TestFile<CR>
-  nnoremap <silent> <Leader>tn :TestNearest<CR>
-  nnoremap <silent> <Leader>ts :TestSuite<CR>
-  nnoremap <silent> <Leader>tl :TestLast<CR>
-  nnoremap <silent> <Leader>tv :TestVisit<CR>
+nnoremap <silent> <Leader>tf :TestFile<CR>
+nnoremap <silent> <Leader>tn :TestNearest<CR>
+nnoremap <silent> <Leader>ts :TestSuite<CR>
+nnoremap <silent> <Leader>tl :TestLast<CR>
+nnoremap <silent> <Leader>tv :TestVisit<CR>
 
 Plug 'sunaku/vim-ruby-minitest'
 Plug 'nanotech/jellybeans.vim'
@@ -620,6 +620,7 @@ nnoremap <silent> <Leader>7 :call NumberToggle()<cr>
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff origin/HEAD<CR>
+nnoremap <silent> <Leader>gv :GV!<CR>
 nnoremap <silent> <Leader>e :A<CR>
 nnoremap <silent> <Leader>r :R<CR>
 
@@ -630,19 +631,19 @@ nmap <silent> cp "_ciw<C-R>"<Esc>
 "
 nmap <silent> cP :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
-if a:0  " Invoked from Visual mode, use '< and '> marks.
+  if a:0  " Invoked from Visual mode, use '< and '> marks.
     silent exe "normal! `<" . a:type . "`>\"_c" . @"
-elseif a:type == 'line'
+  elseif a:type == 'line'
     silent exe "normal! '[V']\"_c" . @"
-elseif a:type == 'block'
+  elseif a:type == 'block'
     silent exe "normal! `[\<C-V>`]\"_c" . @"
-else
+  else
     silent exe "normal! `[v`]\"_c" . @"
-endif
+  endif
 endfunction
 
 nnoremap <expr> ,c <SID>ExecuteCountOrMotion()
-nnoremap <Leader>= <esc>gg=G``
+nnoremap <Leader>+ <esc>gg=G``
 
 inoremap <silent> <C-p> <Esc>
 
@@ -696,7 +697,7 @@ nmap j gj
 nmap k gk
 
 " augroup common
-  " autocmd BufEnter * EnableStripWhitespaceOnSave
+" autocmd BufEnter * EnableStripWhitespaceOnSave
 " augroup END
 
 augroup filetypedetect
@@ -727,33 +728,33 @@ command E Ex
 nmap <F8> :TagbarToggle<CR>
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy/<C-R><C-R>=substitute(
+      \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy?<C-R><C-R>=substitute(
+      \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 :unmap <leader>qf
 
 highlight link CocErrorSign GruvboxRed
 
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 :inoremap <S-Tab> <C-V><Tab>
