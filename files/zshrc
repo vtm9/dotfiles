@@ -37,7 +37,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 antibody bundle robbyrussell/oh-my-zsh path:plugins/asdf
 antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/kubectl
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/github
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/aws
 antibody bundle robbyrussell/oh-my-zsh path:plugins/mix
@@ -58,6 +57,8 @@ antibody bundle zsh-users/zsh-autosuggestions.git
 antibody bundle zsh-users/zsh-syntax-highlighting.git
 # antibody bundle littleq0903/gcloud-zsh-completion
 
+antibody bundle johanhaleby/kubetail.git
+
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
 HIST_IGNORE_ALL_DUPS=true
 HISTSIZE=5000
@@ -74,6 +75,7 @@ alias open='xdg-open'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias bi='bundle install --jobs 20 --retry 5'
+alias bu='bundle update --jobs 20 --retry 5'
 alias ssrv='spring server'
 alias sn='/usr/bin/shutdown now'
 alias st='spring stop'
@@ -99,7 +101,7 @@ alias docu='docker-compose up -d'
 alias ta='tmux attach || tmux new'
 alias tn='tmux new'
 alias s='tig status'
-alias c='git commit -m'
+alias c='git commit --verbose'
 alias gcd='git checkout development'
 alias gfu='git fetch upstream'
 alias p='ps aux G'
@@ -192,6 +194,8 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 alias r='ranger'
+alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/staging'
+alias k8sp='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/production'
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept

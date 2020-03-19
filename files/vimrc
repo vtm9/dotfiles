@@ -305,6 +305,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
       \ 'coc-html',
+      \ 'coc-git',
       \ 'coc-elixir',
       \ 'coc-lists',
       \ 'coc-phpls',
