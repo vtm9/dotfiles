@@ -105,7 +105,6 @@ selection:
 dynamic_title: true
 
 key_bindings:
-  - { key: T, mods: Control, action: None }
   - { key: Q, mods: Control, action: Quit }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
