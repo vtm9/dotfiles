@@ -1,23 +1,23 @@
 {
-  "explorer.icon.enableNerdfont": true,
   "suggest.noselect": false,
+  "suggest.triggerCompletionWait": 300,
+  "suggest.autoTrigger": "trigger",
+  "suggest.maxCompleteItemCount": 30,
+
+  "git.addedSign.text": "++",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.text": "~~",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.text": "--",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.text": "==",
+  "git.changeRemovedSign.hlGroup": "GitGutterChange",
+  "git.addGBlameToVirtualText": true,
+
   "diagnostic.infoSign": "？",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✕",
-  "suggest.maxCompleteItemCount": 30,
-  "prettier.eslintIntegration": true,
-  "eslint.trace.server": "verbose",
-  "eslint.packageManager": "yarn",
-  "eslint.autoFix": false,
-  "eslint.autoFixOnSave": false,
-  "eslint.filetypes": [
-    "javascript",
-    "javascript.jsx",
-    "typescript",
-    "typescript.jsx",
-    "javascriptreact",
-    "typescriptreact"
-  ],
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good", "markdownlint"],
     "ruby": ["solargraph"],
@@ -29,6 +29,56 @@
     "typescript.jsx": ["eslint"],
     "sh": "shellcheck"
   },
+  "diagnostic.filetypeMap": {
+    "markdown": ["write-good", "markdownlint"],
+    "sh": "shellcheck"
+  },
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextPrefix": "---",
+
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+
+  "cSpell.showStatus": true,
+  "cSpell.allowCompoundWords": true,
+  "cSpell.ignorePaths": [
+    "**/package-lock.json",
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/objects/**",
+    ".vscode"
+  ],
+  "cSpellExt.enableDictionaries": [
+    "russian",
+    "node",
+    "aws",
+    "bash",
+    "django",
+    "dotnet",
+    "elixir",
+    "fullstack",
+    "golang",
+    "haskell",
+    "java",
+    "lua",
+    "php",
+    "pyhton",
+    "ruby",
+    "rust",
+    "scala",
+    "software-terms",
+    "typescript"
+  ],
+  "cSpell.language": "en,ru",
+  "cSpell.enabledLanguageIds": [
+    "javascript",
+    "typescript",
+    "json",
+    "markdown",
+    "plaintext",
+    "yml"
+  ],
+
   "solargraph.commandPath": "/home/vtm/.asdf/shims/solargraph",
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,

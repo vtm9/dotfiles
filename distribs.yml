@@ -19,6 +19,7 @@
         # - python-dev
         # - python3-dev
         - kitty
+        - alacritty
       tags:
         - all
         - arch

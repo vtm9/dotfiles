@@ -19,19 +19,14 @@ call plug#begin('~/.nvim/plugged')
 Plug 'vtm9/vim-pry'
 Plug 'vtm9/vim-interpolation'
 
-
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-db'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
-Plug 'tpope/rbenv-ctags', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'slim', 'haml', 'coffee', 'javascript'] }
 Plug 'tpope/vim-rake'
@@ -47,17 +42,6 @@ let g:ragtag_global_maps = 1
 " }}}
 
 set completeopt=noinsert,menuone,noselect
-
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-" {{{
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" }}}
-"
-" Always draw the signcolumn.
 set signcolumn=yes
 
 Plug 'ntpeters/vim-better-whitespace'
@@ -66,28 +50,13 @@ let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 " }}}
-Plug 'hashivim/vim-terraform'
 
 Plug 'godlygeek/tabular'
-
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jgdavey/tslime.vim'
-Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
 Plug 'itchyny/lightline.vim'
-"{{{
-"}}}
-" Plug 'vim-airline/vim-airline'
-"{{{
-" Show airline with single file
-" set laststatus=2
-" Use powerline font
-" let g:airline_powerline_fonts = 1
-" Enable tabline
-" let g:airline#extensions#tabline#enabled = 1
-"}}}
-" Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 " {{{
@@ -104,14 +73,16 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['Makefile', 'mix.exs', '.git/',  'docker-compose.yml', '.gitignore',  'Gemfile', ]
+let g:rooter_patterns = ['mix.exs', 'Gemfile', '.git/',  'docker-compose.yml', '.gitignore',  ]
 " }}}
 
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
 " Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
+Plug 'martinda/Jenkinsfile-vim-syntax'
+Plug 'hashivim/vim-terraform'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
@@ -123,7 +94,6 @@ Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
 Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
 Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
 Plug 'jwalton512/vim-blade', { 'for': 'php' }
-Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
 Plug 'rhysd/vim-clang-format'
 
 " Javascript
@@ -163,9 +133,6 @@ Plug 'tpope/vim-leiningen', { 'for': 'clojure' }
 Plug 'tpope/vim-classpath', { 'for': 'clojure' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'venantius/vim-eastwood', { 'for': 'clojure' }
-
-" Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'scheme', 'racket'] }
-Plug 'wlangstroth/vim-racket', { 'for': 'racket' }
 
 Plug 'ap/vim-css-color'
 
@@ -329,6 +296,11 @@ let g:coc_global_extensions = [
       \ 'coc-eslint',
       \ 'coc-docker',
       \ 'coc-jest',
+      \ 'coc-tsserver',
+      \ 'coc-tslint',
+      \ 'coc-spell-checker',
+      \ 'coc-cspell-dicts',
+      \ 'coc-explorer'
       \]
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
