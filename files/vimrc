@@ -448,7 +448,7 @@ nnoremap <silent> <Leader>tl :TestLast<CR>
 nnoremap <silent> <Leader>tv :TestVisit<CR>
 
 Plug 'sunaku/vim-ruby-minitest'
-Plug 'nanotech/jellybeans.vim'
+" Plug 'nanotech/jellybeans.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'NLKNguyen/papercolor-theme'
 

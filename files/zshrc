@@ -59,10 +59,10 @@ antibody bundle zsh-users/zsh-syntax-highlighting.git
 
 antibody bundle johanhaleby/kubetail.git
 
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=10
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
 HIST_IGNORE_ALL_DUPS=true
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=50000
+SAVEHIST=50000
 
 autoload -Uz compinit
 compinit
@@ -101,6 +101,7 @@ alias docu='docker-compose up -d'
 alias ta='tmux attach || tmux new'
 alias tn='tmux new'
 alias s='tig status'
+alias n='nautilus .'
 alias c='git commit --verbose'
 alias gcd='git checkout development'
 alias gfu='git fetch upstream'

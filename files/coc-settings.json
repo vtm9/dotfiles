@@ -34,7 +34,7 @@
     "sh": "shellcheck"
   },
   "diagnostic.virtualText": true,
-  "diagnostic.virtualTextPrefix": "---",
+  "diagnostic.virtualTextPrefix": " -->",
 
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
