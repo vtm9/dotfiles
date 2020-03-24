@@ -29,12 +29,6 @@
 
     - file:
         force: yes
-        src: "{{ curdir }}/files/docker"
-        dest: ~/.docker/config.json
-        state: link
-
-    - file:
-        force: yes
         src: "{{ curdir }}/files/alacritty.yml"
         dest: ~/.config/alacritty/alacritty.yml
         state: link
