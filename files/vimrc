@@ -194,7 +194,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
 " let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-let g:fzf_tags_command = 'ripper-tags -R'
 
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>; :Rg!<space>
@@ -494,7 +493,8 @@ highlight! link elixirAtom rubySymbol
 " set t_ut=
 " set background=dark
 
-" set guifont=Source\ Code\ Pro\ Regular\ 12
+" set guifont=Source\ Code\ Pro\ Regular\ 11
+set guifont=JetBrains\ Mono\ Regular\ 12
 " set guioptions-=rL
 " set anti enc=utf-8
 " set guifont=Source\ Code\ Pro\ 12
