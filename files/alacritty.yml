@@ -7,6 +7,7 @@ env:
   TERM: xterm-256color
 
 window:
+  dynamic_title: true
   startup_mode: Maximized
   decorations: none
   padding:
@@ -102,7 +103,6 @@ selection:
   # clipboard.
   save_to_clipboard: true
 
-dynamic_title: true
 
 key_bindings:
   - { key: Q, mods: Control|Shift, action: Quit }

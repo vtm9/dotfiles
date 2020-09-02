@@ -9,6 +9,13 @@ export ELIXIR_EDITOR="nvim"
 export TERM="xterm-256color"
 export BAT_THEME="Monokai Extended Light"
 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+
 bindkey "\e." insert-last-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
@@ -67,11 +74,13 @@ SAVEHIST=50000
 autoload -Uz compinit
 compinit
 # Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+# kitty + complete setup zsh | source /dev/stdin
 
 # aliases
 
+alias rg='rg --hidden'
 alias open='xdg-open'
+alias k='kubectl'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias bi='bundle install --jobs 20 --retry 5'
@@ -103,6 +112,7 @@ alias tn='tmux new'
 alias s='tig status'
 alias n='nautilus .'
 alias c='git commit --verbose'
+alias c!='git commit --verbose --amend'
 alias gcd='git checkout development'
 alias gfu='git fetch upstream'
 alias p='ps aux G'
@@ -196,8 +206,12 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 alias r='ranger'
-alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/staging'
-alias k8sp='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/production'
+# SHORE ALIASES
+alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/stage'
+alias k8sso='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/staging'
+alias k8sp='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/prod'
+alias k8spo='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/production'
+alias rabbitstage='kubectl port-forward --namespace shore svc/rabbitmq 15672:15672'
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
@@ -221,7 +235,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
-export PATH=~/.npm-global/bin:$PATH
 export PATH=$PATH:~/.cabal/bin
 export LOG_DEBUG=1
 
@@ -229,13 +242,8 @@ export LOG_DEBUG=1
 # export PATH="$HOME/.asdf/bin:$PATH"
 # eval "$(asdf exec direnv hook zsh)"
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
 
 bindkey '^[.' insert-last-word
 
-
+eval "$(gh completion -s zsh)"
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh

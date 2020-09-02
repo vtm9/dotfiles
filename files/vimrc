@@ -73,10 +73,10 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
 " {{{
-let g:rooter_patterns = ['mix.exs', 'Gemfile', '.git/',  'docker-compose.yml', '.gitignore',  ]
+let g:rooter_patterns = ['Gemfile', 'mix.exs',  '.git/',  'docker-compose.yml', '.gitignore',  ]
 " }}}
 
-" Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
 Plug 'kristijanhusak/vim-carbon-now-sh'
@@ -88,6 +88,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'onemanstartup/vim-slim', { 'for': ['slim', 'slime', 'slimleex'] }
 Plug 'gaogao1030/vim-skim', { 'for': ['skim'] }
+Plug 'digitaltoad/vim-pug'
 
 Plug 'elixir-editors/vim-elixir'
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' }
@@ -121,11 +122,11 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'fatih/vim-nginx'
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'shime/vim-livedown', { 'for': 'markdown' }
-Plug 'reedes/vim-lexical'
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toc_autofit = 1
-let g:lexical#spelllang = ['en_us', 'ru_ru']
+" Plug 'reedes/vim-lexical'
+" let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_frontmatter = 1
+" let g:vim_markdown_toc_autofit = 1
+" let g:lexical#spelllang = ['en_us', 'ru_ru']
 
 " Clojure
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
@@ -190,6 +191,7 @@ let g:NERDTreeIndicatorMapCustom = {
 " }}}
 
 
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
@@ -255,7 +257,8 @@ Plug 'AndrewRadev/switch.vim'
 " {{{
 let g:switch_mapping = '\'
 " }}}
-
+"
+Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/vim-textobj-url'
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'kana/vim-textobj-user'
@@ -271,6 +274,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
       \ 'coc-html',
+      \ 'coc-go',
       \ 'coc-git',
       \ 'coc-elixir',
       \ 'coc-lists',
@@ -289,18 +293,18 @@ let g:coc_global_extensions = [
       \ 'coc-highlight',
       \ 'coc-ultisnips',
       \ 'coc-snippets',
-      \ 'coc-pairs',
       \ 'coc-diagnostic',
       \ 'coc-rls',
-      \ 'coc-eslint',
       \ 'coc-docker',
       \ 'coc-jest',
-      \ 'coc-tsserver',
-      \ 'coc-tslint',
-      \ 'coc-spell-checker',
-      \ 'coc-cspell-dicts',
-      \ 'coc-explorer'
       \]
+      " \ 'coc-tsserver',
+      " \ 'coc-explorer',
+      " \ 'coc-tslint',
+      " \ 'coc-pairs',
+      " \ 'coc-eslint',
+      " \ 'coc-spell-checker',
+      " \ 'coc-cspell-dicts',
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
       \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -436,7 +440,8 @@ Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 1000
 
 Plug 'janko-m/vim-test'
-let test#neovim#term_position = "topleft"
+let test#neovim#term_position = "bottom"
+let test#neovim#term_position = "botright 30"
 let test#strategy = "asyncrun"
 let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
 
@@ -593,6 +598,7 @@ nnoremap <silent> <Leader>7 :call NumberToggle()<cr>
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff origin/HEAD<CR>
+nnoremap <silent> <leader>gc :GBranches<CR>
 nnoremap <silent> <Leader>gv :GV!<CR>
 nnoremap <silent> <Leader>e :A<CR>
 nnoremap <silent> <Leader>r :R<CR>

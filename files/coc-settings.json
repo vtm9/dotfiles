@@ -3,7 +3,6 @@
   "suggest.triggerCompletionWait": 300,
   "suggest.autoTrigger": "trigger",
   "suggest.maxCompleteItemCount": 30,
-
   "git.addedSign.text": "++",
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.text": "~~",
@@ -14,6 +13,19 @@
   "git.changeRemovedSign.text": "==",
   "git.changeRemovedSign.hlGroup": "GitGutterChange",
   "git.addGBlameToVirtualText": true,
+
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "initializationOptions": {}
+    },
+    "sql": {
+      "command": "sql-language-server",
+      "args": ["up", "--method", "stdio"],
+      "filetypes": ["sql", "mysql"]
+    }
+  },
 
   "diagnostic.infoSign": "？",
   "diagnostic.warningSign": "⚠",

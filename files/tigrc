@@ -1,4 +1,6 @@
 bind status D !@rm %(file)
 bind status P !git push origin
+bind generic C >git commit --verbose
 set main-options = --exclude=refs/stash --exclude=refs/pr --all
+
 
