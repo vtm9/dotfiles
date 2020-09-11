@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - name: Add users to docker group
+      shell: usermod -aG docker $USER
+      become: yes

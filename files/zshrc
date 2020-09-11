@@ -236,6 +236,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export PATH=$PATH:~/.cabal/bin
 export LOG_DEBUG=1
 
+source $HOME/.asdf/completions/asdf.bash
 # . $HOME/.asdf/asdf.sh
 # export PATH="$HOME/.asdf/bin:$PATH"
 # eval "$(asdf exec direnv hook zsh)"
