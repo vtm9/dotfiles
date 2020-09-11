@@ -208,9 +208,7 @@ alias lt='ls --tree'
 alias r='ranger'
 # SHORE ALIASES
 alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/stage'
-alias k8sso='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/staging'
 alias k8sp='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/prod'
-alias k8spo='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/production'
 alias rabbitstage='kubectl port-forward --namespace shore svc/rabbitmq 15672:15672'
 
 bindkey '^[^ ' autosuggest-execute

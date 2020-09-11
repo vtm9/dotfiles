@@ -168,15 +168,12 @@ let g:NERDTreeCascadeOpenSingleChildDir = 1
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeMouseMode=3
 let g:NERDTreeShowHidden=1
-
 let NERDTreeMapJumpNextSibling='<C-N>'
 let NERDTreeMapJumpPrevSibling='<C-O>'
 
-
 nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
 nmap <silent> <Leader>\ :NERDTreeFind<CR>
-
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
       \ "Modified"  : "●",
       \ "Staged"    : "✔",
       \ "Untracked" : "✭",
@@ -192,6 +189,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 Plug 'stsewd/fzf-checkout.vim'
+Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
