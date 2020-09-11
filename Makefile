@@ -67,3 +67,13 @@ nvim_configure:
 
 install_dotfiles:
 	ansible-playbook dotfiles.yml -i local -vvv -e curdir=$(CURDIR) -K
+
+dump-gnome:
+	dconf dump /org/gnome/desktop/wm/keybindings/ > gnome/wm_keybingdings.ini
+	dconf dump /org/gnome/mutter/keybindings/ > gnome/mutter_keybingdings.ini
+	dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ > gnome/c0_keybingdings.ini
+
+load-gnome:
+	dconf dump /org/gnome/desktop/wm/keybindings/ > gnome/wm_keybingdings.ini
+	dconf dump /org/gnome/mutter/keybindings/ > gnome/mutter_keybingdings.ini
+	dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ > gnome/c0_keybingdings.ini
