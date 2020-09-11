@@ -1,14 +1,13 @@
 TAGS := all
 
 install_yay:
-	yay -S ansible \
+	yay -S --needed ansible \
 		ripgrep the_silver_searcher zsh fzf jq \
-		tmux alacritty kitty \
-		libpq-dev python-dev python3-dev \
-		zsh git curl  tzdata \
+		tmux alacritty kitty neovim vim \
+		zsh git curl tzdata \
 		slack-desktop google-chrome chromium telegram-desktop \
 		ca-certificates vlc cowsay \
-		kubetail k9s kubectl-bin kubernetes-helm-bin \
+		kubetail k9s kubectl-bin \
 		htop docker  antibody-bin asdf-vm  \
 		ttf-opensans ttf-jetbrains-mono postman zoom
 
