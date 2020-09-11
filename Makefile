@@ -74,6 +74,6 @@ dump-gnome:
 	dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ > gnome/c0_keybingdings.ini
 
 load-gnome:
-	dconf dump /org/gnome/desktop/wm/keybindings/ > gnome/wm_keybingdings.ini
-	dconf dump /org/gnome/mutter/keybindings/ > gnome/mutter_keybingdings.ini
-	dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ > gnome/c0_keybingdings.ini
+	dconf load /org/gnome/desktop/wm/keybindings/ < gnome/wm_keybingdings.ini
+	dconf load /org/gnome/mutter/keybindings/ < gnome/mutter_keybingdings.ini
+	dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ < gnome/c0_keybingdings.ini
