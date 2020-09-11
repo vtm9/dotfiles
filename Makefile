@@ -1,6 +1,19 @@
 TAGS := all
 
-all:
+install_yay:
+	yay -S ansible \
+		ripgrep the_silver_searcher zsh fzf jq \
+		tmux alacritty kitty \
+		libpq-dev python-dev python3-dev \
+		zsh git curl  tzdata \
+		slack-desktop google-chrome chromium telegram-desktop \
+		ca-certificates vlc cowsay \
+		kubetail k9s kubectl-bin kubernetes-helm-bin \
+		htop docker  antibody-bin asdf-vm  \
+		ttf-opensans ttf-jetbrains-mono postman zoom
+
+
+all-playbooks:
 	ansible-playbook all.yml -i local -vv -K
 
 install_distribs:
@@ -14,9 +27,6 @@ install_npm:
 
 install_pip:
 	ansible-playbook distribs.yml -i local -v --tags py
-
-install_pacman:
-	ansible-playbook distribs.yml -i local -v --tags arch
 
 install_elixir:
 	ansible-playbook distribs.yml -i local -v --tags elixir
