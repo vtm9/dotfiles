@@ -4,13 +4,13 @@ install_yay:
 	yay -S --needed ansible binutils fakeroot \
 		ripgrep the_silver_searcher zsh fzf jq \
 		tmux alacritty kitty neovim vim \
-		antibody-bin lsd bat github-cli-bin \
-		zsh git curl tzdata patch gcc \
+		antibody-bin lsd bat github-cli \
+		zsh git curl tzdata patch gcc postgresql-libs \
 		slack-desktop google-chrome chromium telegram-desktop \
 		ca-certificates vlc cowsay inorify-tools \
 		kubetail k9s kubectl-bin tig hub-bin \
 		htop docker docker-compose antibody-bin \
-		ttf-opensans ttf-jetbrains-mono postman zoom
+		ttf-opensans ttf-jetbrains-mono postman-bin zoom
 
 
 setup:
