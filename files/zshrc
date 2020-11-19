@@ -7,7 +7,7 @@ ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SL
 export EDITOR='nvim'
 export ELIXIR_EDITOR="nvim"
 export TERM="xterm-256color"
-export BAT_THEME="Monokai Extended Light"
+# export BAT_THEME="Monokai Extended Light"
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
 export ANDROID_HOME=/opt/android-sdk
@@ -111,6 +111,9 @@ alias ta='tmux attach || tmux new'
 alias tn='tmux new'
 alias s='tig status'
 alias n='nautilus .'
+alias pc='gh pr create'
+alias pv='gh pr view --web'
+alias rv='gh repo view --web'
 alias c='git commit --verbose'
 alias c!='git commit --verbose --amend'
 alias gcd='git checkout development'
@@ -197,8 +200,8 @@ alias mx='mix xref'
 alias mf='mix format'
 alias gdmb="!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
 alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
-alias ip="curl ipinfo.io/ip"
-alias ipl="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+alias ipc="curl ipinfo.io/ip"
+alias ipl="ip addr | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
 alias ls='lsd'
 alias l='ls -l'
@@ -207,9 +210,8 @@ alias lla='ls -la'
 alias lt='ls --tree'
 alias r='ranger'
 # SHORE ALIASES
-alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/stage'
+alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/staging'
 alias k8sp='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/prod'
-alias rabbitstage='kubectl port-forward --namespace shore svc/rabbitmq 15672:15672'
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
@@ -220,7 +222,7 @@ function exists { which $1 &> /dev/null }
 setopt hist_ignore_dups
 export FZF_CTRL_R_OPTS='--sort'
 # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
-export FZF_DEFAULT_OPTS=' --color light'
+export FZF_DEFAULT_OPTS=' --color dark'
 export PGUSER='postgres'
 export PGPASSWORD='password'
 export PGHOST='localhost'

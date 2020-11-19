@@ -91,9 +91,9 @@ Plug 'rhysd/vim-clang-format'
 
 " Javascript
 
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
+" Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
@@ -263,6 +263,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
+      \ 'coc-emoji',
       \ 'coc-html',
       \ 'coc-go',
       \ 'coc-git',
@@ -271,7 +272,6 @@ let g:coc_global_extensions = [
       \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
-      \ 'coc-go',
       \ 'coc-stylelint',
       \ 'coc-json',
       \ 'coc-solargraph',
@@ -287,6 +287,10 @@ let g:coc_global_extensions = [
       \ 'coc-rls',
       \ 'coc-docker',
       \ 'coc-jest',
+      \ 'coc-explorer',
+      \ 'coc-clock',
+      \ 'https://github.com/xabikos/vscode-react',
+      \ 'https://github.com/xabikos/vscode-javascript'
       \]
       " \ 'coc-tsserver',
       " \ 'coc-explorer',
@@ -442,9 +446,9 @@ nnoremap <silent> <Leader>tl :TestLast<CR>
 nnoremap <silent> <Leader>tv :TestVisit<CR>
 
 Plug 'sunaku/vim-ruby-minitest'
-" Plug 'nanotech/jellybeans.vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'NLKNguyen/papercolor-theme'
 
 Plug 'mattn/emmet-vim'
 " {{{
@@ -460,11 +464,11 @@ call plug#end()
 " set background=light
 " set background=dark
 " colorscheme PaperColor
-" colorscheme jellybeans
-set t_Co=256   " This is may or may not needed.
+colorscheme jellybeans
+" set t_Co=256   " This is may or may not needed.
 
-set background=light
-colorscheme PaperColor
+set background=dark
+" colorscheme PaperColor
 
 set cursorline     " highlight current line
 set colorcolumn=120 " highlight column
