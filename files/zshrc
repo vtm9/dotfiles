@@ -7,7 +7,8 @@ ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SL
 export EDITOR='nvim'
 export ELIXIR_EDITOR="nvim"
 export TERM="xterm-256color"
-# export BAT_THEME="Monokai Extended Light"
+export BAT_THEME="Nord"
+
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
 export ANDROID_HOME=/opt/android-sdk
@@ -231,6 +232,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:~/.local/bin
 export ERL_AFLAGS="-kernel shell_history enabled"
+export LDFLAGS=-lX11
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
