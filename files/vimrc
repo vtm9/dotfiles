@@ -8,6 +8,7 @@ let $PATH = $PATH . ':' . expand("~/.local/bin")
 
 call plug#begin('~/.nvim/plugged')
 
+
 Plug 'vtm9/vim-pry'
 Plug 'vtm9/vim-interpolation'
 
@@ -28,6 +29,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-liquid'
 Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-ragtag'
 " {{{
 let g:ragtag_global_maps = 1
@@ -43,13 +46,25 @@ let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 " }}}
 
+
+Plug 'honza/vim-snippets'
+Plug 'mhinz/vim-startify'
+Plug 'windwp/nvim-autopairs'
+
+" Plug 'rlue/vim-barbaric'
+Plug 'puremourning/vimspector'
+Plug 'wellle/targets.vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+let g:VM_leader = '}'
+
+
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jgdavey/tslime.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'christoomey/vim-run-interactive'
 Plug 'itchyny/lightline.vim'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 " {{{
 let g:ctrlsf_ackprg = 'rg'
@@ -151,6 +166,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vtm9/nerdtree-ag'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " {{{
+"
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize = 31
 let g:NERDTreeChDirMode = 2
@@ -164,7 +180,6 @@ let NERDTreeMapJumpNextSibling='<C-N>'
 let NERDTreeMapJumpPrevSibling='<C-O>'
 
 nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
-nmap <silent> <Leader>\ :NERDTreeFind<CR>
 let g:NERDTreeGitStatusIndicatorMapCustom = {
       \ "Modified"  : "●",
       \ "Staged"    : "✔",
@@ -242,13 +257,8 @@ let g:clever_f_smart_case = 1
 " let delimitMate_expand_space = 1 " {|} => { | }
 " }}}
 
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'AndrewRadev/switch.vim'
-" {{{
-let g:switch_mapping = '\'
-" }}}
 "
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/vim-textobj-url'
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'kana/vim-textobj-user'
@@ -263,7 +273,15 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 nnoremap <silent> <leader>a :<C-u>CocList -A --normal yank<CR>
 let g:coc_global_extensions = [
+      \ 'coc-cspell-dicts',
+      \ 'coc-spell-checker',
+      \ 'coc-xml',
+      \ 'coc-stylelint',
+      \ 'coc-vimlsp',
+      \ 'coc-eslint',
+      \ 'coc-pyright',
       \ 'coc-emoji',
+      \ 'coc-markdownlint',
       \ 'coc-html',
       \ 'coc-go',
       \ 'coc-git',
@@ -272,10 +290,12 @@ let g:coc_global_extensions = [
       \ 'coc-phpls',
       \ 'coc-sh',
       \ 'coc-css',
+      \ 'coc-prettier',
       \ 'coc-stylelint',
       \ 'coc-json',
       \ 'coc-solargraph',
-      \ 'coc-prettier',
+      \ 'coc-tslint',
+      \ 'coc-tsserver',
       \ 'coc-word',
       \ 'coc-python',
       \ 'coc-java',
@@ -292,16 +312,7 @@ let g:coc_global_extensions = [
       \ 'https://github.com/xabikos/vscode-react',
       \ 'https://github.com/xabikos/vscode-javascript'
       \]
-      " \ 'coc-tsserver',
-      " \ 'coc-explorer',
-      " \ 'coc-tslint',
-      " \ 'coc-pairs',
-      " \ 'coc-eslint',
-      " \ 'coc-spell-checker',
-      " \ 'coc-cspell-dicts',
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-      \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -322,9 +333,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -430,13 +438,16 @@ endfunction
 
 
 Plug 'bogado/file-line'
+Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 let g:asyncrun_open = 1000
+" let g:asyncrun_open = 6
+Plug 'tpope/vim-dispatch'
 
 Plug 'janko-m/vim-test'
 let test#neovim#term_position = "bottom"
 let test#neovim#term_position = "botright 30"
-let test#strategy = "asyncrun"
+let test#strategy = "asyncrun_background_term"
 let test#python#pytest#executable = 'pytest -vv --disable-pytest-warnings'
 
 nnoremap <silent> <Leader>tf :TestFile<CR>
@@ -457,17 +468,27 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
+" {{{
+let g:switch_mapping = '\'
+" }}}
 
+
+augroup nord-overrides
+  autocmd!
+  autocmd ColorScheme nord highlight rubySymbol ctermfg=1
+  autocmd ColorScheme nord highlight elixirAtom ctermfg=1
+augroup END
 call plug#end()
 " colorscheme jellybeans
 " colorscheme PaperColor
 colorscheme nord
-" set background=dark
-set cursorline     " highlight current line
+" set cursorline     " highlight current line
 set colorcolumn=120 " highlight column
 " highlight! ColorColumn ctermbg=233 guibg=#131313
 
-highlight! link elixirAtom rubySymbol
+" highlight! link elixirAtom rubySymbol
 set guifont=JetBrains\ Mono\ Regular\ 12
 set backspace=2   " Backspace deletes like most programs in insert mode
 set history=500
@@ -530,6 +551,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+noremap <Leader>1 1gt<CR>
+noremap <Leader>2 2gt<CR>
+noremap <Leader>3 3gt<CR>
 
 noremap <Leader>s :update<CR>
 noremap <Leader>S :wq<CR>
@@ -637,6 +662,12 @@ set cursorcolumn
 nmap j gj
 nmap k gk
 
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
+nnoremap <expr> л (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> о (v:count == 0 ? 'gj' : 'j')
+
 " augroup common
 " autocmd BufEnter * EnableStripWhitespaceOnSave
 " augroup END
@@ -698,4 +729,10 @@ highlight link CocErrorSign GruvboxRed
 "       \ 'spinner': ['fg', 'Label'],
 "       \ 'header':  ['fg', 'Comment'] }
 
-:inoremap <S-Tab> <C-V><Tab>
+inoremap <S-Tab> <C-V><Tab>
+nnoremap <C-n> :NERDTreeFind<CR>
+
+
+let g:VM_maps = {}
+let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n

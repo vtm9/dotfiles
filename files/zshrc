@@ -241,6 +241,7 @@ export PATH=$PATH:~/.cabal/bin
 export LOG_DEBUG=1
 
 source $HOME/.asdf/completions/asdf.bash
+source /usr/bin/aws_zsh_completer.sh
 # . $HOME/.asdf/asdf.sh
 # export PATH="$HOME/.asdf/bin:$PATH"
 # eval "$(asdf exec direnv hook zsh)"

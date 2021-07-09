@@ -1,4 +1,3 @@
 ---
 - include: 'nvim.yml'
-- include: 'distribs.yml'
 - include: 'dotfiles.yml'

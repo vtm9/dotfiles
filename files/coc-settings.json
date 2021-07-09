@@ -13,12 +13,18 @@
   "git.changeRemovedSign.text": "==",
   "git.changeRemovedSign.hlGroup": "GitGutterChange",
   "git.addGBlameToVirtualText": true,
-
   "languageserver": {
     "terraform": {
-      "command": "terraform-lsp",
-      "filetypes": ["terraform"],
-      "initializationOptions": {}
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     },
     "sql": {
       "command": "sql-language-server",
@@ -26,30 +32,50 @@
       "filetypes": ["sql", "mysql"]
     }
   },
-
+  "cSpellExt.enableDictionaries": ["russian"],
+  "cSpell.enabledLanguageIds": [
+    "markdown",
+    "plaintext",
+    "yml",
+    "php",
+    "node",
+    "python",
+    "html",
+    "css",
+    "ruby",
+    "elixir"
+  ],
+  "cSpell.language": "en,ru",
+  "prettier.printWidth": 120,
+  "prettier.trailingComma": "all",
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+  "prettier.singleQuote": true,
   "diagnostic.infoSign": "？",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✕",
-  "diagnostic-languageserver.filetypes": {
-    "markdown": ["write-good", "markdownlint"],
-    "ruby": ["solargraph"],
-    "javascript": ["eslint"],
-    "typescript": ["eslint"],
-    "javascriptreact": ["eslint"],
-    "javascript.jsx": ["eslint"],
-    "typescriptreact": ["eslint"],
-    "typescript.jsx": ["eslint"],
-    "sh": "shellcheck"
-  },
-  "diagnostic.filetypeMap": {
-    "markdown": ["write-good", "markdownlint"],
-    "sh": "shellcheck"
-  },
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextPrefix": " -->",
   "solargraph.commandPath": "/home/vtm/.asdf/shims/solargraph",
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
-  "solargraph.hover": true
+  "solargraph.hover": true,
+  "cSpell.userWords": [
+    "Upsert",
+    "availbilities",
+    "datetime",
+    "displayname",
+    "firstname",
+    "jsonb",
+    "klier",
+    "lastname",
+    "middlename",
+    "noreply",
+    "phonenumbers",
+    "tillhub",
+    "upserts",
+    "usec",
+    "vitaly"
+  ]
 }

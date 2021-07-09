@@ -12,7 +12,6 @@ install_yay:
 		htop docker docker-compose antibody-bin \
 		ttf-opensans ttf-jetbrains-mono postman-bin zoom
 
-
 setup:
 	ansible-playbook setup.yml -i local -vv -K
 
@@ -47,20 +46,28 @@ install_asdf:
 all-playbooks:
 	ansible-playbook all.yml -i local -vv -K
 
-install_distribs:
-	ansible-playbook distribs.yml -i local -vv -K --tags $(TAGS)
-
 install_gems:
-	ansible-playbook distribs.yml -i local -v --tags ruby
+	gem install solargraph rubocop neovim bundler rake sqlint mailcatcher
+	gem install rubocop-rspec rubocop-rails rubocop-performance rubocop-rake
+	gem install sorbet sorbet-runtime
+	gem install haml_lint slim_lint
+	gem install brakeman reek
 
 install_npm:
-	ansible-playbook distribs.yml -i local -v --tags js
+	npm install -g neovim
+	npm install -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
+	npx install-peerdeps -g eslint-config-airbnb
+	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
+	npm install -g yaml-language-server markdownlint bash-language-server
+	npm install -g dockerfile-language-server-nodejs
+	npm install -g livedown yarn pug-lint
+	npm install -g typings yarn pug-lint
+
 
 install_pip:
-	ansible-playbook distribs.yml -i local -v --tags py
-
-install_elixir:
-	ansible-playbook distribs.yml -i local -v --tags elixir
+	pip3 install --upgrade pynvim
+	pip3 install --upgrade vim-vint
+	pip3 install --upgrade autopep8 flake8 bandit pytype # black
 
 nvim_configure:
 	ansible-playbook nvim.yml -i local -vvv -e curdir=$(CURDIR) -K
