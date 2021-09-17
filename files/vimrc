@@ -51,6 +51,7 @@ Plug 'honza/vim-snippets'
 Plug 'mhinz/vim-startify'
 Plug 'windwp/nvim-autopairs'
 
+
 " Plug 'rlue/vim-barbaric'
 Plug 'puremourning/vimspector'
 Plug 'wellle/targets.vim'
@@ -85,7 +86,7 @@ let g:rooter_patterns = ['Gemfile', 'mix.exs',  '.git/',  'docker-compose.yml', 
 
 Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim', 'slimleex'] }
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -242,11 +243,6 @@ command! -bang -nargs=* Rg
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
       \   <bang>0)
-" }}}
-
-Plug 'rhysd/clever-f.vim'
-" {{{
-let g:clever_f_smart_case = 1
 " }}}
 
 " double brackets
@@ -474,6 +470,12 @@ Plug 'AndrewRadev/switch.vim'
 let g:switch_mapping = '\'
 " }}}
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
+Plug 'camgraff/telescope-tmux.nvim'
 
 augroup nord-overrides
   autocmd!
@@ -634,7 +636,7 @@ set nofoldenable
 set wrap
 set linebreak
 set number
-set ignorecase
+" set ignorecase
 set smartcase
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
@@ -736,3 +738,12 @@ nnoremap <C-n> :NERDTreeFind<CR>
 let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+
+

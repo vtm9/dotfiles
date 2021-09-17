@@ -69,6 +69,7 @@ antibody bundle johanhaleby/kubetail.git
 
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
 HIST_IGNORE_ALL_DUPS=true
+HISTDUP=erase
 HISTSIZE=50000
 SAVEHIST=50000
 
@@ -231,6 +232,7 @@ export PAGER=less
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/bin
 export ERL_AFLAGS="-kernel shell_history enabled"
 export LDFLAGS=-lX11
 
