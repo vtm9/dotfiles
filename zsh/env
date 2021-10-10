@@ -1,0 +1,30 @@
+# vi-mode go to differents modes faser
+export KEYTIMEOUT=1
+# add brew and packages to PATH
+export PATH="/usr/local/bin:$PATH"
+# Preferred editor for local sessions
+export EDITOR="nvim"
+export ELIXIR_EDITOR="nvim"
+export BAT_THEME="Nord"
+# LANG=""
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export FZF_CTRL_R_OPTS='--sort'
+export FZF_DEFAULT_OPTS=' --color dark'
+export PGUSER='postgres'
+export PGPASSWORD='password'
+export PGHOST='localhost'
+export PAGER=less
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/bin
+export ERL_AFLAGS="-kernel shell_history enabled"
+export LDFLAGS=-lX11
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+#bin
+export PATH=$PATH:~/.cabal/bin
+export LOG_DEBUG=1

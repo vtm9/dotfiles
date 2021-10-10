@@ -1,255 +1,29 @@
-zmodload zsh/zprof
-DISABLE_AUTO_UPDATE=true
+# Enable Powerlevel10k instant prompt. Should stay close to the top of zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 xset r rate 175 67
-source <(antibody init)
-ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
-
-export EDITOR='nvim'
-export ELIXIR_EDITOR="nvim"
-export TERM="xterm-256color"
-export BAT_THEME="Nord"
-
-
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
-export ANDROID_HOME=/opt/android-sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
-
-bindkey "\e." insert-last-word
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
-
-ZSH_THEME='robbyrussell'
-# ZSH_THEME='agnoster'
-antibody bundle robbyrussell/oh-my-zsh
-set -o vi
-
-HYPHEN_INSENSITIVE="true"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="true"
-
-# **********************************************************
-# *************************THEME**************************
-# **********************************************************
-# antibody bundle bhilburn/powerlevel9k
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir vcs vi_mode)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-
-# **********************************************************
-# *************************PLUGINS**************************
-# **********************************************************
-
-antibody bundle robbyrussell/oh-my-zsh path:plugins/asdf
-antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/github
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/aws
-antibody bundle robbyrussell/oh-my-zsh path:plugins/mix
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/helm
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/bundler
-
-antibody bundle robbyrussell/oh-my-zsh path:plugins/vi-mode
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/archlinux
-antibody bundle robbyrussell/oh-my-zsh path:plugins/extract
-antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/docker-compose
-antibody bundle robbyrussell/oh-my-zsh path:plugins/bgnotify
-antibody bundle robbyrussell/oh-my-zsh path:plugins/command-not-found
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
-antibody bundle zsh-users/zsh-completions.git
-antibody bundle felixr/docker-zsh-completion.git
-antibody bundle zsh-users/zsh-autosuggestions.git
-antibody bundle zsh-users/zsh-syntax-highlighting.git
-# antibody bundle littleq0903/gcloud-zsh-completion
-
-antibody bundle johanhaleby/kubetail.git
-
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=15
-HIST_IGNORE_ALL_DUPS=true
-HISTDUP=erase
-HISTSIZE=50000
-SAVEHIST=50000
-
-autoload -Uz compinit
-compinit
-# Completion for kitty
-# kitty + complete setup zsh | source /dev/stdin
-
-# aliases
-
-alias rg='rg --hidden'
-alias open='xdg-open'
-alias k='kubectl'
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-alias bi='bundle install --jobs 20 --retry 5'
-alias bu='bundle update --jobs 20 --retry 5'
-alias ssrv='spring server'
-alias sn='/usr/bin/shutdown now'
-alias st='spring stop'
-alias rp='bin/rake rspec'
-alias rr='bin/rake routes | fzf'
-alias rdm='bin/rake db:migrate'
-alias rdd='bin/rake db:drop'
-alias rdc='bin/rake db:create'
-alias rds='bin/rake db:setup'
-alias rdsd='bin/rake db:seed'
-alias rdr='bin/rake db:rollback'
-alias rdst='bin/rake db:drop db:create db:migrate db:seed'
-alias rbc='rubocop -a'
-alias di='docker images'
-alias de='docker exec -i -t'
-alias da='docker attach'
-alias dr='docker run -i -t'
-alias dsta='docker stop $(docker ps -a -q)'
-alias dra='docker rm -f $(docker ps -a -q)'
-alias dps='docker ps | cut -c-$(tput cols)'
-alias doc='docker-compose'
-alias docu='docker-compose up -d'
-alias ta='tmux attach || tmux new'
-alias tn='tmux new'
-alias s='tig status'
-alias n='nautilus .'
-alias pc='gh pr create'
-alias pv='gh pr view --web'
-alias rv='gh repo view --web'
-alias c='git commit --verbose'
-alias c!='git commit --verbose --amend'
-alias gcd='git checkout development'
-alias gfu='git fetch upstream'
-alias p='ps aux G'
-alias tg='tar -czvf'
-alias ds='du -sckh * | sort -h'
-alias dss='du -sckh .[!.]* * | sort -h'
-alias today='calendar -A 0 -f /usr/share/calendar/calendar.mark | sort'
-alias cat='bat'
-alias v='nvim'
-alias v.='nvim .'
-alias veh='sudoedit /etc/hosts'
-alias sv='sudo nvim'
-alias z='nvim ~/.zshrc'
-alias vr='nvim ~/.config/nvim/init.vim'
-alias vt='nvim ~/.tmux.conf'
-alias vk='nvim ~/.config/kitty/kitty.conf'
-alias va='nvim ~/.config/alacritty/alacritty.yml'
-alias cl='clear'
-alias path='echo $PATH | tr -s ":" "\n"'
-alias i='iex'
-alias ips='iex -S mix phx.server'
-alias ism='iex -S mix'
-alias m='mix'
-alias mab='mix archive.build'
-alias mai='mix archive.install'
-alias mat='mix app.tree'
-alias mc='mix compile'
-alias mcf='mix compile --force'
-alias mcv='mix compile --verbose'
-alias mcl='mix clean'
-alias mca='mix do clean, deps.clean --all'
-alias mco='mix coveralls'
-alias mcoh='mix coveralls.html'
-alias mdoc='mix docs'
-alias mdl='mix dialyzer'
-alias mdlp='mix dialyzer --plt'
-alias mcr='mix credo'
-alias mcrs='mix credo --strict'
-alias mcx='mix compile.xref'
-alias mdc='mix deps.compile'
-alias mdg='mix deps.get'
-alias mdgc='mix do deps.get, deps.compile'
-alias mdu='mix deps.update'
-alias mdt='mix deps.tree'
-alias mdua='mix deps.update --all'
-alias mdun='mix deps.unlock'
-alias mduu='mix deps.unlock --unused'
-alias meb='mix escript.build'
-alias mec='mix ecto.create'
-alias mecm='mix do ecto.create, ecto.migrate'
-alias med='mix ecto.drop'
-alias mem='mix ecto.migrate'
-alias megm='mix ecto.gen.migration'
-alias merb='mix ecto.rollback'
-alias mers='mix ecto.reset'
-alias mes='mix ecto.setup'
-alias mge='mix gettext.extract'
-alias mgem='mix gettext.extract --merge'
-alias mgm='mix gettext.merge priv/gettext'
-alias mho='mix hex.outdated'
-alias mlh='mix local.hex'
-alias mn='mix new'
-alias mns='mix new --sup'
-alias mpd='mix phx.digest'
-alias mpgc='mix phx.gen.channel'
-alias mpgh='mix phx.gen.html'
-alias mpgj='mix phx.gen.json'
-alias mpgm='mix phx.gen.model'
-alias mpgs='mix phx.gen.secret'
-alias mpn='mix phx.new'
-alias mpr='mix phx.routes'
-alias mps='mix phx.server'
-alias mr='mix run'
-alias mrnh='mix run --no-halt'
-alias mrl='mix release'
-alias mt='mix test'
-alias mtc='mix test --cover'
-alias mtf='mix test --failed'
-alias mts='mix test --stale'
-alias mtw='mix test.watch'
-alias mx='mix xref'
-alias mf='mix format'
-alias gdmb="!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
-alias ipc="curl ipinfo.io/ip"
-alias ipl="ip addr | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
-alias ls='lsd'
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
-alias r='ranger'
-# SHORE ALIASES
-alias k8ss='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/staging'
-alias k8sp='kubectl config use-context arn:aws:eks:eu-central-1:448433501390:cluster/prod'
-
-bindkey '^[^ ' autosuggest-execute
-bindkey "\e " autosuggest-accept
-function exists { which $1 &> /dev/null }
+# zmodload zsh/zprof
+source $HOME/dotfiles/zsh/env
+source $HOME/dotfiles/zsh/prompt
+source $HOME/dotfiles/zsh/settings
+source $HOME/dotfiles/zsh/plugins
+source $HOME/dotfiles/zsh/aliases
+source $HOME/dotfiles/zsh/functions
+source $HOME/dotfiles/zsh/fzf
+# zprof
+unsetopt share_history
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-setopt hist_ignore_dups
-export FZF_CTRL_R_OPTS='--sort'
-# export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
-export FZF_DEFAULT_OPTS=' --color dark'
-export PGUSER='postgres'
-export PGPASSWORD='password'
-export PGHOST='localhost'
-export PAGER=less
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/bin
-export ERL_AFLAGS="-kernel shell_history enabled"
-export LDFLAGS=-lX11
-
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-
-export PATH=$PATH:~/.cabal/bin
-export LOG_DEBUG=1
-
-source $HOME/.asdf/completions/asdf.bash
-source /usr/bin/aws_zsh_completer.sh
-# . $HOME/.asdf/asdf.sh
-# export PATH="$HOME/.asdf/bin:$PATH"
-# eval "$(asdf exec direnv hook zsh)"
-
-
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[^ ' autosuggest-execute
+bindkey "\e " autosuggest-accept
 bindkey '^[.' insert-last-word
 
-eval "$(gh completion -s zsh)"
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+autoload -Uz compinit
+compinit

@@ -19,7 +19,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux"
+    - 'tmux'
 
 font:
   normal:
@@ -30,7 +30,6 @@ font:
   bold:
     family: JetBrains mono
     style: Bold
-
   italic:
     family: JetBrains mono
     style: Italic
@@ -74,43 +73,41 @@ selection:
   # clipboard.
   save_to_clipboard: true
 
-
 key_bindings:
   - { key: Q, mods: Control|Shift, action: Quit }
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
 
-
 # PaperColor
 # Colors (Gruvbox dark)
 # colors:
-  # Default colors
-  # primary:
-  #   background: "#eeeeee"
-  #   foreground: "#444444"
+# Default colors
+# primary:
+#   background: "#eeeeee"
+#   foreground: "#444444"
 
-  # # Normal colors
-  # normal:
-  #   black: "#eeeeee"
-  #   red: "#af0000"
-  #   green: "#008700"
-  #   yellow: "#5f8700"
-  #   blue: "#0087af"
-  #   magenta: "#878787"
-  #   cyan: "#005f87"
-  #   white: "#444444"
+# # Normal colors
+# normal:
+#   black: "#eeeeee"
+#   red: "#af0000"
+#   green: "#008700"
+#   yellow: "#5f8700"
+#   blue: "#0087af"
+#   magenta: "#878787"
+#   cyan: "#005f87"
+#   white: "#444444"
 
-  # # Bright colors
-  # bright:
-  #   black: "#bcbcbc"
-  #   red: "#d70000"
-  #   green: "#d70087"
-  #   yellow: "#8700af"
-  #   blue: "#d75f00"
-  #   magenta: "#d75f00"
-  #   cyan: "#005faf"
-  #   white: "#005f87"
+# # Bright colors
+# bright:
+#   black: "#bcbcbc"
+#   red: "#d70000"
+#   green: "#d70087"
+#   yellow: "#8700af"
+#   blue: "#d75f00"
+#   magenta: "#d75f00"
+#   cyan: "#005faf"
+#   white: "#005f87"
 
 colors:
   primary:

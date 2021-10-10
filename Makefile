@@ -54,15 +54,9 @@ install_gems:
 	gem install brakeman reek
 
 install_npm:
-	npm install -g neovim
-	npm install -g prettier eslint babel-eslint eslint-plugin-import eslint-plugin-node
-	npx install-peerdeps -g eslint-config-airbnb
-	npm install -g stylelint stylelint-config-recommended stylelint-config-standard
-	npm install -g yaml-language-server markdownlint bash-language-server
-	npm install -g dockerfile-language-server-nodejs
-	npm install -g livedown yarn pug-lint
-	npm install -g typings yarn pug-lint
-
+	npm install -g neovim yarn
+	npm install -g prettier eslint stylelint
+	npm install -g livedown
 
 install_pip:
 	pip3 install --upgrade pynvim

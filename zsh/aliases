@@ -1,0 +1,151 @@
+# Shortcuts
+alias work="cd $HOME/Work"
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+alias gb="git for-each-ref --sort='-committerdate' --format='%(committerdate) %(refname)%09' refs/heads | sed -e 's-refs/heads/--' | awk -F ' ' '{print \$2;print \$3; print \$4; print \$5; print \$7}' | xargs -n5"
+# Other
+alias n="nvim"
+
+alias gs="nvim +Git '+wincmd w' +q"
+
+alias -- -='cd -'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+alias md='mkdir -p'
+
+alias cc="clear"
+alias cl='clear'
+alias tf="terraform"
+
+alias font='echo -e "\nnormal flower\n\e[1mboldflower\e[0m\n\e[3mitalic flower\e[0m\n\e[3m\e[1mbold italic flower\e[0m\n\e[4munderline flower\e[0m\n\e[9mstrikethrough flower\e[0m\n\e[4:3mcurly underline flower\e[4:0m\n\e[4:3\e[58:mcurlyunderlinewithcolor flower\e[59m\e[4:0m"'
+
+alias open='xdg-open'
+alias k='kubectl'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+alias rr='bin/rake routes | fzf'
+alias rdm='bin/rake db:migrate'
+alias rdd='bin/rake db:drop'
+alias rdc='bin/rake db:create'
+alias rds='bin/rake db:setup'
+alias rdsd='bin/rake db:seed'
+alias rdr='bin/rake db:rollback'
+alias rdst='bin/rake db:drop db:create db:migrate db:seed'
+
+alias di='docker images'
+alias de='docker exec -i -t'
+alias da='docker attach'
+alias dr='docker run -i -t'
+alias dsta='docker stop $(docker ps -a -q)'
+alias dra='docker rm -f $(docker ps -a -q)'
+alias dps='docker ps | cut -c-$(tput cols)'
+alias doc='docker-compose'
+alias docu='docker-compose up -d'
+
+alias ta='tmux attach || tmux new'
+alias tn='tmux new'
+
+alias pc='gh pr create'
+alias pv='gh pr view --web'
+alias rv='gh repo view --web'
+alias c='git commit --verbose'
+alias c!='git commit --verbose --amend'
+alias gcd='git checkout development'
+alias s='tig status'
+
+alias v='nvim'
+alias v.='nvim .'
+alias sv='sudo nvim'
+alias z='nvim ~/.zshrc'
+alias vr='nvim ~/.config/nvim/init.vim'
+alias vt='nvim ~/.tmux.conf'
+alias va='nvim ~/.config/alacritty/alacritty.yml'
+alias path='echo $PATH | tr -s ":" "\n"'
+alias p='ps aux | fzf'
+
+alias i='iex'
+alias ips='iex -S mix phx.server'
+alias ism='iex -S mix'
+alias m='mix'
+alias mab='mix archive.build'
+alias mai='mix archive.install'
+alias mat='mix app.tree'
+alias mc='mix compile'
+alias mcf='mix compile --force'
+alias mcv='mix compile --verbose'
+alias mcl='mix clean'
+alias mca='mix do clean, deps.clean --all'
+alias mdl='mix dialyzer'
+alias mdlp='mix dialyzer --plt'
+alias mcr='mix credo'
+alias mcrs='mix credo --strict'
+alias mcx='mix compile.xref'
+alias mdc='mix deps.compile'
+alias mdg='mix deps.get'
+alias mdgc='mix do deps.get, deps.compile'
+alias mdu='mix deps.update'
+alias mdt='mix deps.tree'
+alias mdua='mix deps.update --all'
+alias mdun='mix deps.unlock'
+alias mduu='mix deps.unlock --unused'
+alias meb='mix escript.build'
+alias mec='mix ecto.create'
+alias mecm='mix do ecto.create, ecto.migrate'
+alias med='mix ecto.drop'
+alias mem='mix ecto.migrate'
+alias megm='mix ecto.gen.migration'
+alias merb='mix ecto.rollback'
+alias mers='mix ecto.reset'
+alias mes='mix ecto.setup'
+alias mge='mix gettext.extract'
+alias mgem='mix gettext.extract --merge'
+alias mgm='mix gettext.merge priv/gettext'
+alias mho='mix hex.outdated'
+alias mlh='mix local.hex'
+alias mn='mix new'
+alias mns='mix new --sup'
+alias mpd='mix phx.digest'
+alias mpgc='mix phx.gen.channel'
+alias mpgh='mix phx.gen.html'
+alias mpgj='mix phx.gen.json'
+alias mpgm='mix phx.gen.model'
+alias mpgs='mix phx.gen.secret'
+alias mpn='mix phx.new'
+alias mpr='mix phx.routes'
+alias mps='mix phx.server'
+alias mr='mix run'
+alias mrnh='mix run --no-halt'
+alias mrl='mix release'
+alias mt='mix test'
+alias mtc='mix test --cover'
+alias mtf='mix test --failed'
+alias mts='mix test --stale'
+alias mtw='mix test.watch'
+alias mx='mix xref'
+alias mf='mix format'
+
+alias ipc="curl ipinfo.io/ip"
+alias ipl="ip addr | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
+
+alias r='ranger'
+alias n='nautilus .'
+
+alias ds='du -sckh * | sort -h'
+alias dss='du -sckh .[!.]* * | sort -h'
