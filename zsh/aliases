@@ -56,8 +56,8 @@ alias dr='docker run -i -t'
 alias dsta='docker stop $(docker ps -a -q)'
 alias dra='docker rm -f $(docker ps -a -q)'
 alias dps='docker ps | cut -c-$(tput cols)'
-alias doc='docker-compose'
-alias docu='docker-compose up -d'
+alias doc='docker compose'
+alias docu='docker compose up -d'
 
 alias ta='tmux attach || tmux new'
 alias tn='tmux new'
@@ -74,7 +74,7 @@ alias v='nvim'
 alias v.='nvim .'
 alias sv='sudo nvim'
 alias z='nvim ~/.zshrc'
-alias vr='nvim ~/.config/nvim/init.vim'
+alias vr='nvim ~/.config/nvim/init.lua'
 alias vt='nvim ~/.tmux.conf'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -146,6 +146,15 @@ alias ipl="ip addr | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 alias r='ranger'
 alias n='nautilus .'
+alias vd='v ~/dotfiles'
 
 alias ds='du -sckh * | sort -h'
 alias dss='du -sckh .[!.]* * | sort -h'
+#alias v='nvim -u ~/dotfiles/files/vimrc'
+# alias v.='nvim -u ~/dotfiles/files/vimrc .'
+
+ # start a shell session authenticated to AWS
+alias aws-shell='aws-vault exec -d 8h -n'
+
+# login to AWS console
+alias aws-login='aws-vault login -d 8h'

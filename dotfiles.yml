@@ -3,7 +3,7 @@
   tasks:
     - file:
         force: yes
-        src: "{{ curdir }}/files/{{ item }}"
+        src: '{{ curdir }}/files/{{ item }}'
         dest: ~/.{{ item }}
         state: link
       with_items:
@@ -17,7 +17,7 @@
 
     - file:
         force: yes
-        src: "{{ curdir }}/files/flake8"
+        src: '{{ curdir }}/files/flake8'
         dest: ~/.config/flake8
         state: link
 
@@ -28,7 +28,7 @@
 
     - file:
         force: yes
-        src: "{{ curdir }}/files/alacritty.yml"
+        src: '{{ curdir }}/files/alacritty.yml'
         dest: ~/.config/alacritty/alacritty.yml
         state: link
 
@@ -39,13 +39,17 @@
 
     - file:
         force: yes
-        src: "{{ curdir }}/files/kitty.conf"
+        src: '{{ curdir }}/files/kitty.conf'
         dest: ~/.config/kitty/kitty.conf
         state: link
-          
-    - git:
-        repo: https://github.com/zsh-users/antigen.git
-        dest: ~/.zsh/antigen
 
+    - file:
+        force: yes
+        path: ~/.config/gitui
+        state: directory
 
-
+    - file:
+        force: yes
+        src: '{{ curdir }}/files/gitui.ron'
+        dest: ~/.config/gitui/key_config.ron
+        state: link

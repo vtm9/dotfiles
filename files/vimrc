@@ -71,12 +71,12 @@ Plug 'dyng/ctrlsf.vim'
 let g:ctrlsf_ackprg = 'rg'
 let g:ctrlsf_case_sensitive = 'smart'
 
-nmap     <C-F>f <Plug>CtrlSFPrompt
-nmap     <C-F>w <Plug>CtrlSFCwordExec
-vmap     <C-F> <Plug>CtrlSFVwordExec
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+" nmap     <C-F>f <Plug>CtrlSFPrompt
+" nmap     <C-F>w <Plug>CtrlSFCwordExec
+" vmap     <C-F> <Plug>CtrlSFVwordExec
+" nnoremap <C-F>o :CtrlSFOpen<CR>
+" nnoremap <C-F>t :CtrlSFToggle<CR>
+" inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 " }}}
 Plug 'farmergreg/vim-lastplace'
 Plug 'airblade/vim-rooter'
@@ -163,36 +163,36 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 
-Plug 'scrooloose/nerdtree'
-Plug 'vtm9/nerdtree-ag'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree'
+" Plug 'vtm9/nerdtree-ag'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " {{{
 "
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize = 31
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeCascadeOpenSingleChildDir = 1
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeMouseMode=3
-let g:NERDTreeShowHidden=1
-let NERDTreeMapJumpNextSibling='<C-N>'
-let NERDTreeMapJumpPrevSibling='<C-O>'
+" let g:NERDTreeMinimalUI = 1
+" let g:NERDTreeWinSize = 31
+" let g:NERDTreeChDirMode = 2
+" let g:NERDTreeAutoDeleteBuffer = 1
+" let g:NERDTreeShowBookmarks = 1
+" let g:NERDTreeCascadeOpenSingleChildDir = 1
+" let g:NERDTreeDirArrows = 1
+" let g:NERDTreeMouseMode=3
+" let g:NERDTreeShowHidden=1
+" let NERDTreeMapJumpNextSibling='<C-N>'
+" let NERDTreeMapJumpPrevSibling='<C-O>'
 
-nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-      \ "Modified"  : "●",
-      \ "Staged"    : "✔",
-      \ "Untracked" : "✭",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "❗",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "~",
-      \ "Clean"     : "✔︎",
-      \ 'Ignored'   : '☒',
-      \ "Unknown"   : "❓"
-      \ }
+" nmap <silent> <Leader><Leader> :NERDTreeToggle<CR>
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"       \ "Modified"  : "●",
+"       \ "Staged"    : "✔",
+"       \ "Untracked" : "✭",
+"       \ "Renamed"   : "➜",
+"       \ "Unmerged"  : "❗",
+"       \ "Deleted"   : "✖",
+"       \ "Dirty"     : "~",
+"       \ "Clean"     : "✔︎",
+"       \ 'Ignored'   : '☒',
+"       \ "Unknown"   : "❓"
+"       \ }
 " }}}
 
 
@@ -574,7 +574,6 @@ vmap <C-j> :m '>+1<CR>gv=gv
 vmap <C-k> :m '<-2<CR>gv=gv
 nmap <silent> <C-_> gcc
 vmap <silent> <C-_> gc
-nnoremap <Leader>f :%s///g<Left><Left>
 
 nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] -<Space>
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -732,7 +731,6 @@ highlight link CocErrorSign GruvboxRed
 "       \ 'header':  ['fg', 'Comment'] }
 
 inoremap <S-Tab> <C-V><Tab>
-nnoremap <C-n> :NERDTreeFind<CR>
 
 
 let g:VM_maps = {}
@@ -740,10 +738,14 @@ let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 
+
+" nnoremap <C-n> :NERDTreeFind<CR>
+" lua require('init')
+" nnoremap <Leader>f :%s///g<Left><Left>
