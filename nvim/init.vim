@@ -37,15 +37,6 @@ command! -bang -nargs=* Rg
 
 command! -nargs=0 Format :call CocAction('format')
 
-nnoremap <Leader>l :Format<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>; :Rg!<space>
-nnoremap <silent> <Leader>h :History<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <C-q> :Files<CR>
-nnoremap <silent> L :call SearchWordWithAg()<CR>
-nnoremap <silent> <Leader>gl :Commits<CR>
-nnoremap <silent> <Leader>ga :BCommits<CR>
 
 vnoremap <silent> L :call SearchVisualSelectionWithAg()<CR>
 
@@ -83,3 +74,61 @@ function! ChangePaste(type, ...)
 endfunction
 
 let g:switch_mapping = '\'
+
+nnoremap <Leader>f :%s///g<Left><Left>
+
+let g:rooter_patterns = ['Gemfile', 'mix.lock', '.git/',  'docker-compose.yml']
+
+nnoremap <Leader>l :Format<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>; :Rg!<space>
+nnoremap <silent> <Leader>h :History<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-q> :Files<CR>
+nnoremap <silent> L :call SearchWordWithAg()<CR>
+nnoremap <silent> <Leader>gl :Commits<CR>
+nnoremap <silent> <Leader>ga :BCommits<CR>
+
+vnoremap <silent> * :<C-U>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy/<C-R><C-R>=substitute(
+      \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy?<C-R><C-R>=substitute(
+      \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+nnoremap <silent> <Leader>gv :GV!<CR>
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+nmap <silent> <Leader><Leader> :NvimTreeToggle<CR>
+
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+call textobj#user#plugin('entire', {
+\      '-': {
+\        'select-a': 'ae',  'select-a-function': 'textobj#entire#select_a',
+\        'select-i': 'ie',  'select-i-function': 'textobj#entire#select_i'
+\      }
+\    })
+
+
+nnoremap <silent> <F7> :read !git rev-parse --abbrev-ref HEAD<CR>kddi[<ESC>A] -<Space>
+nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>0 :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <Leader>8 :set invnumber<CR>
+nnoremap <silent> <Leader>7 :call NumberToggle()<cr>
+
+nnoremap <silent> <Leader>gb :Git blame<CR>
+nnoremap <silent> <Leader>gs :Git status<CR>
+nnoremap <silent> <leader>gd :Git diff origin/HEAD<CR>
+nnoremap <silent> <Leader>gv :GV!<CR>
+nnoremap <silent> <Leader>e :A<CR>
+nnoremap <silent> <Leader>w :R<CR>

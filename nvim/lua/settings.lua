@@ -5,6 +5,8 @@ for key, val in pairs(
     {
         -- clipboard = "unnamedplus", -- enable yank/paste to/from system clipboard
         mouse = "a", -- to visually select and copy from vim without line numbers
+        splitbelow = true,
+        splitright = true,
         lazyredraw = true,
         -- Don't redraw while executing macros (good performance config)
         ttyfast = true, -- Don't redraw while executing macros (good performance config)
@@ -45,7 +47,7 @@ for key, val in pairs(
         wrap = false, -- when line is longer than the screen, it continues on the next line
         linebreak = true, -- but do not break words, only 'by words'
         number = true, -- show absolute line number
-        relativenumber = true, -- show relative line number for current line
+        -- relativenumber = true, -- show relative line number for current line
         cursorline = true -- Highlight the screen line of the cursor with CursorLine
     }
 ) do
@@ -113,3 +115,6 @@ end
 au("BufNewFile, BufRead", "*.slim", "set filetype=slim")
 au("BufNewFile, BufRead", "*.slime", "set filetype=slim")
 au("BufNewFile, BufRead", "*.slimleex", "set filetype=slim")
+vim.api.nvim_set_keymap("n", "<c-_>", "<Plug>kommentary_line_default", {})
+vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
+vim.api.nvim_set_keymap("x", "<c-_>", "<Plug>kommentary_visual_default<Esc>", {})

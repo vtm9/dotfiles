@@ -28,7 +28,8 @@ return function()
     }
     require "nvim-tree".setup {
         auto_close = false,
-        open_on_setup = false
+        open_on_setup = false,
+        disable_netrw = false
     }
 end
 

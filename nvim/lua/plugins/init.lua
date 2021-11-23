@@ -22,10 +22,14 @@ local packer = {
 
 local textObjects = {
     "kana/vim-textobj-user",
-    "glts/vim-textobj-comment",
+    "kana/vim-textobj-entire",
     "kana/vim-textobj-indent",
+    "glts/vim-textobj-comment",
+    "andyl/vim-textobj-elixir",
+    "andymass/vim-matchup",
+    "mattn/vim-textobj-url",
+    "nelstrom/vim-textobj-rubyblock",
     "wellle/targets.vim",
-    {"chaoren/vim-wordmotion", config = require("plugins.vim-wordmotion")}
 }
 
 local core = {
@@ -38,12 +42,21 @@ local core = {
     -- allows repeat via dot for some plugins like surround
     "tpope/vim-repeat",
     -- add\update\remove surround stuff like ''{}''
-    -- "tpope/vim-surround",
-    "machakann/vim-sandwich",
+    "tpope/vim-surround",
+    -- "machakann/vim-sandwich",
     -- auto brackets
     -- "cohama/lexima.vim",
     --  shiftwidth/expandtab/etc
     "tpope/vim-sleuth",
+    'tpope/vim-eunuch',
+    'tpope/vim-projectionist',
+    'tpope/vim-bundler',
+    'tpope/vim-rails', 
+    'tpope/vim-rhubarb',
+    'tpope/vim-speeddating',
+    'tpope/vim-jdaddy',
+    'tpope/vim-endwise',
+
     -- close all buffers but current
     {"schickling/vim-bufonly", config = require("plugins.vim-bufonly")},
     -- close buffer
@@ -65,6 +78,8 @@ local core = {
     "skywind3000/asynctasks.vim",
     "skywind3000/asyncrun.vim",
     "airblade/vim-rooter",
+    "elixir-editors/vim-elixir",
+    "c-brenn/phoenix.vim",
 }
 
 local git = {
@@ -123,6 +138,7 @@ local fuzzyFinder = {
 
 local coding = {
     -- add commenting for different langs
+    "b3nj5m1n/kommentary",
     {"tpope/vim-commentary", config = require("plugins.vim-commentary")},
     -- plugin which allows vim to work with common editorconfig
     "editorconfig/editorconfig-vim",
@@ -212,7 +228,9 @@ local other = {
         "NTBBloodbath/rest.nvim",
         requires = {"nvim-lua/plenary.nvim"},
         config = require("plugins.rest-nvim")
-    }
+    },
+    {"junegunn/vim-easy-align"},
+    {"junegunn/gv.vim"},
 }
 
 return require "packer".startup {

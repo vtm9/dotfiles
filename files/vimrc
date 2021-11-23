@@ -583,13 +583,12 @@ nnoremap <silent> <Leader>9 :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>8 :set invnumber<CR>
 nnoremap <silent> <Leader>7 :call NumberToggle()<cr>
 
-nnoremap <silent> <Leader>gb :Gblame<CR>
-nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff origin/HEAD<CR>
-nnoremap <silent> <leader>gc :GBranches<CR>
+nnoremap <silent> <Leader>gb :Git blame<CR>
+nnoremap <silent> <Leader>gs :Git status<CR>
+nnoremap <silent> <leader>gd :Git diff origin/HEAD<CR>
 nnoremap <silent> <Leader>gv :GV!<CR>
 nnoremap <silent> <Leader>e :A<CR>
-nnoremap <silent> <Leader>r :R<CR>
+nnoremap <silent> <Leader>w :R<CR>
 
 nmap <Leader>o o<Esc>k
 nmap <Leader>O O<Esc>j
@@ -749,3 +748,5 @@ let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
 " nnoremap <C-n> :NERDTreeFind<CR>
 " lua require('init')
 " nnoremap <Leader>f :%s///g<Left><Left>
+"
+autocmd FileType scss setl iskeyword+=@-@

@@ -145,7 +145,8 @@ alias ipc="curl ipinfo.io/ip"
 alias ipl="ip addr | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 alias r='ranger'
-alias n='nautilus .'
+alias n='nautilus&'
+alias n.='nautilus .&'
 alias vd='v ~/dotfiles'
 
 alias ds='du -sckh * | sort -h'

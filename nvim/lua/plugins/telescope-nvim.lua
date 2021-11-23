@@ -59,11 +59,11 @@ return function()
             verticalLayoutConfig .. "})<CR>"
     )
 
-    map(
+    --[[ map(
         "n",
         "<leader>b",
         "<CMD>lua require('telescope.builtin').buffers({sort_lastused=true," .. horizontalLayoutConfig .. "})<CR>"
-    )
+    ) ]]
 
     map("n", "gr", "<CMD>lua require('telescope.builtin').resume()<CR>")
 end
