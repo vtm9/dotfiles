@@ -26,7 +26,6 @@ local textObjects = {
     "kana/vim-textobj-indent",
     "glts/vim-textobj-comment",
     "andyl/vim-textobj-elixir",
-    "andymass/vim-matchup",
     "mattn/vim-textobj-url",
     "nelstrom/vim-textobj-rubyblock",
     "wellle/targets.vim",
@@ -102,11 +101,11 @@ local tmuxAndSplits = {
     -- {"alex-popov-tech/shade.nvim", config = require("plugins.shade-nvim")}
 }
 
-local term = {
+-- local term = {
     -- open terminal in floating window
-    "voldikss/vim-floaterm",
-    config = require("plugins.vim-floaterm")
-}
+    -- "voldikss/vim-floaterm",
+    -- config = require("plugins.vim-floaterm")
+-- }
 
 local filetree = {
     -- file tree
@@ -175,11 +174,11 @@ local ui = {
 }
 
 local treesitter = {
-    {"slim-template/vim-slim", ft = {'slim', 'slime', 'slimleex' }},
-    {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins.nvim-treesitter")},
+    {"slim-template/vim-slim", ft = {'slim', 'slime', 'slimleex' }}
+    -- {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins.nvim-treesitter")},
     -- { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins.nvim-treesitter") },
     -- { "theHamsta/nvim-treesitter-pairs", },
-    {"David-Kunz/treesitter-unit", config = require("plugins.treesitter-unit")}
+    -- {"David-Kunz/treesitter-unit", config = require("plugins.treesitter-unit")}
 }
 
 local lsp = {
@@ -203,13 +202,10 @@ local lsp = {
             "hrsh7th/cmp-path",
             -- "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
             "hrsh7th/cmp-emoji"
         }
     },
     -- snippeds
-    {"hrsh7th/vim-vsnip", requires = "hrsh7th/vim-vsnip-integ", config = require("plugins.vim-vsnip")},
     -- colors for lsp if your theme have not
     -- "folke/lsp-colors.nvim",
     -- {"tami5/lspsaga.nvim", config = require("plugins.lspsaga")},
@@ -224,6 +220,8 @@ local lsp = {
 local other = {
     {"dstein64/vim-startuptime", cmd = {"StartupTime"}},
     {"iamcco/markdown-preview.nvim"},
+    {"shime/vim-livedown"},
+
     {
         "NTBBloodbath/rest.nvim",
         requires = {"nvim-lua/plenary.nvim"},
@@ -231,6 +229,15 @@ local other = {
     },
     {"junegunn/vim-easy-align"},
     {"junegunn/gv.vim"},
+}
+
+local spotify =  {
+    'KadoBOT/nvim-spotify', 
+    requires = 'nvim-telescope/telescope.nvim',
+    config = function()
+        local spotify = require'nvim-spotify'
+    end,
+    run = 'make'
 }
 
 return require "packer".startup {
@@ -241,13 +248,14 @@ return require "packer".startup {
         use(git)
         use(session)
         use(tmuxAndSplits)
-        use(term)
+        -- use(term)
         use(filetree)
         use(fuzzyFinder)
         use(coding)
         use(ui)
-        use(treesitter)
+        -- use(treesitter)
         use(lsp)
+        use(spotify)
         use(other)
     end,
     config = {

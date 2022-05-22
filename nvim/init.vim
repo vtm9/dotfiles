@@ -77,7 +77,7 @@ let g:switch_mapping = '\'
 
 nnoremap <Leader>f :%s///g<Left><Left>
 
-let g:rooter_patterns = ['Gemfile', 'mix.lock', '.git/',  'docker-compose.yml']
+let g:rooter_patterns = ['Gemfile.lock']
 
 nnoremap <Leader>l :Format<CR>
 nnoremap <Leader>b :Buffers<CR>
@@ -105,7 +105,6 @@ nnoremap <silent> <Leader>gv :GV!<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-nmap <silent> <Leader><Leader> :NvimTreeToggle<CR>
 
 vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
@@ -132,3 +131,6 @@ nnoremap <silent> <leader>gd :Git diff origin/HEAD<CR>
 nnoremap <silent> <Leader>gv :GV!<CR>
 nnoremap <silent> <Leader>e :A<CR>
 nnoremap <silent> <Leader>w :R<CR>
+
+nnoremap <C-n> :NvimTreeFindFile<CR>
+nmap <silent> <Leader><Leader> :NvimTreeToggle<CR>
