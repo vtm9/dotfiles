@@ -1,4 +1,4 @@
-return function()
+--[[ return function()
     require "bufferline".setup(
         {
             options = {
@@ -51,4 +51,4 @@ return function()
 
     map("n", "<S-Up>", ":BufferLineCycleNext<cr>")
     map("n", "<S-Down>", ":BufferLineCyclePrev<cr>")
-end
+end ]]

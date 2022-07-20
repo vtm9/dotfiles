@@ -155,7 +155,7 @@ local coding = {
 
 local ui = {
     -- top buff line
-    {"akinsho/nvim-bufferline.lua", config = require("plugins.nvim-bufferline")},
+    -- {"akinsho/nvim-bufferline.lua", config = require("plugins.nvim-bufferline")},
     -- statusline
     {
         "glepnir/galaxyline.nvim",
@@ -173,13 +173,20 @@ local ui = {
     } -- highlight hex colors in buffer
 }
 
-local treesitter = {
-    {"slim-template/vim-slim", ft = {'slim', 'slime', 'slimleex' }}
-    -- {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins.nvim-treesitter")},
-    -- { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins.nvim-treesitter") },
-    -- { "theHamsta/nvim-treesitter-pairs", },
-    -- {"David-Kunz/treesitter-unit", config = require("plugins.treesitter-unit")}
-}
+--[[ local treesitter = {
+    {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = require('plugins.nvim-treesitter')
+    },
+    {
+        'windwp/nvim-ts-autotag',
+        config = function() require('nvim-ts-autotag').setup() end
+    },
+    {'JoosepAlviste/nvim-ts-context-commentstring'},
+    {'nvim-treesitter/playground'},
+    {'m-demare/hlargs.nvim', config = function() require'hlargs'.setup {} end}
+} ]]
 
 local lsp = {
     -- lsp configs placed here
@@ -229,15 +236,7 @@ local other = {
     },
     {"junegunn/vim-easy-align"},
     {"junegunn/gv.vim"},
-}
-
-local spotify =  {
-    'KadoBOT/nvim-spotify', 
-    requires = 'nvim-telescope/telescope.nvim',
-    config = function()
-        local spotify = require'nvim-spotify'
-    end,
-    run = 'make'
+    {"mattn/emmet-vim"},
 }
 
 return require "packer".startup {
@@ -255,7 +254,6 @@ return require "packer".startup {
         use(ui)
         -- use(treesitter)
         use(lsp)
-        use(spotify)
         use(other)
     end,
     config = {

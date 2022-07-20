@@ -13,7 +13,8 @@ fzf_opts=(
   '--color=fg+:#d0d0d0,bg+:#282828,hl+:#5fd7ff'
   '--color=info:#282828,prompt:#d7005f,pointer:#af5fff'
 )
-export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git' --exclude 'node_modules'"
+export FZF_DEFAULT_COMMAND="fd --hidden --no-ignore --follow --exclude '.git' --exclude 'node_modules'"
+
 export FZF_DEFAULT_OPTS=$fzf_opts
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find

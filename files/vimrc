@@ -86,7 +86,7 @@ let g:rooter_patterns = ['Gemfile', 'mix.exs',  '.git/',  'docker-compose.yml', 
 
 Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim', 'slimleex'] }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'haml', 'eruby', 'slim'] }
 Plug 'kristijanhusak/vim-carbon-now-sh'
 Plug 'stephpy/vim-yaml', { 'for': 'yaml' }
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -681,6 +681,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slime setlocal filetype=slim
   autocmd BufNewFile,BufRead *.slimleex setlocal filetype=slim
+  autocmd BufNewFile,BufRead *.heex setlocal filetype=html
   " au BufEnter *.js setl ts=2 sw=2 sts=2
   " au BufEnter *.html setl ts=4 sw=4 sts=4
   " au BufEnter *.tex setl wrap tw=79 fo=tcqor

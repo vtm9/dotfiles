@@ -115,6 +115,7 @@ end
 au("BufNewFile, BufRead", "*.slim", "set filetype=slim")
 au("BufNewFile, BufRead", "*.slime", "set filetype=slim")
 au("BufNewFile, BufRead", "*.slimleex", "set filetype=slim")
+au("BufNewFile, BufRead", "*.heex", "set filetype=html")
 vim.api.nvim_set_keymap("n", "<c-_>", "<Plug>kommentary_line_default", {})
 vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
 vim.api.nvim_set_keymap("x", "<c-_>", "<Plug>kommentary_visual_default<Esc>", {})

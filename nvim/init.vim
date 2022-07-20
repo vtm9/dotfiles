@@ -77,7 +77,8 @@ let g:switch_mapping = '\'
 
 nnoremap <Leader>f :%s///g<Left><Left>
 
-let g:rooter_patterns = ['Gemfile.lock']
+let g:rooter_patterns = ['Gemfile.lock', '.iex.exs' ]
+let g:user_emmet_expandabbr_key = '<C-e>'
 
 nnoremap <Leader>l :Format<CR>
 nnoremap <Leader>b :Buffers<CR>
