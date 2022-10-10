@@ -25,3 +25,4 @@ alias lt='exa --tree --icons'
 zinit ice as"program" from"gh-r" mv"rg* -> rg" pick"rg/rg" lucid
 zinit light BurntSushi/ripgrep
 zinit load asdf-vm/asdf
+alias google-chrome=google-chrome-stable

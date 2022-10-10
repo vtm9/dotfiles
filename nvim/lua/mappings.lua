@@ -1,3 +1,5 @@
+local keymap = vim.keymap.set
+
 for _, mappings in pairs(
     {
         {"n", "<c-w>", ":w<cr>"},
@@ -42,3 +44,8 @@ map("n", "<leader>O", "O<esc>j")
 
 map("v", "<leader>d", "\"_d")
 map("v", "<leader>y", "\"+y")
+
+
+
+keymap("n", "<Leader>r", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", options)
+keymap("v", "<Leader>pr", "<cmd>lua require('spectre').open_visual()<CR>")

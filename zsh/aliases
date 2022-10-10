@@ -159,3 +159,8 @@ alias aws-shell='aws-vault exec -d 8h -n'
 
 # login to AWS console
 alias aws-login='aws-vault login -d 8h'
+
+alias pgs='psql --port=15438'
+alias pgp='psql --port=15441'
+alias metabase='java -jar ~/bin/metabase.jar'
+alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"

@@ -17,6 +17,8 @@ source $HOME/dotfiles/zsh/fzf
 # zprof
 unsetopt share_history
 
+# export ANDROID_HOME='~/Android/Sdk'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bindkey '^[[1;5D' backward-word
@@ -27,3 +29,5 @@ bindkey '^[.' insert-last-word
 
 autoload -Uz compinit
 compinit
+
+

@@ -9,12 +9,14 @@ export ELIXIR_EDITOR="nvim"
 export TERM="xterm-256color"
 export BAT_THEME="Nord"
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/jre/
-export ANDROID_HOME=/opt/android-sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export ANDROID_HOME=/opt/android-sdk
+# export PATH=$PATH:$ANDROID_HOME/tools
+# export PATH=$PATH:$ANDROID_HOME/tools/bin
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$ANDROID_HOME/emulator:$PATH
+# alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
 
 bindkey "\e." insert-last-word
 bindkey '^[[1;5D' backward-word
@@ -199,7 +201,6 @@ alias mtw='mix test.watch'
 alias mx='mix xref'
 alias mf='mix format'
 alias gdmb="!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"
 alias ipc="curl ipinfo.io/ip"
 alias ipl="ip addr | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 alias speedtest="wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip"
@@ -209,6 +210,7 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 alias r='ranger'
+alias google-chrome=google-chrome-stable
 
 bindkey '^[^ ' autosuggest-execute
 bindkey "\e " autosuggest-accept
@@ -221,7 +223,7 @@ export FZF_CTRL_R_OPTS='--sort'
 # export FZF_DEFAULT_COMMAND='rg --no-ignore --hidden --follow ""'
 export FZF_DEFAULT_OPTS=' --color dark'
 export PGUSER='postgres'
-export PGPASSWORD='password'
+export PGPASSWORD='postgres'
 export PGHOST='localhost'
 export PAGER=less
 export GOPATH=$HOME/go
