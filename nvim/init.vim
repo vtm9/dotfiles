@@ -4,7 +4,27 @@ function! SearchWordWithAg()
   execute 'Rg!' expand('<cword>')
 endfunction
 
-vnoremap <silent> L "zy:Telescope grep_string default_text=<C-r>z<cr>
+" vnoremap <silent> L "zy:Telescope grep_string default_text=<C-r>z<cr>
+function! SearchVisualSelectionWithAg() range
+  let old_reg = getreg('"')
+  let old_regtype = getregtype('"')
+  let old_clipboard = &clipboard
+  set clipboard&
+  normal! ""gvy
+  let selection = getreg('"')
+  call setreg('"', old_reg, old_regtype)
+  let &clipboard = old_clipboard
+  execute 'Rg!' selection
+endfunction
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --fixed-strings --smart-case --hidden --follow --glob "!.git/*" '.shellescape(<q-args>),
+      \ 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+
+vnoremap <silent> L :call SearchVisualSelectionWithAg()<CR>
 
 nmap <silent> cp "_ciw<C-R>"<Esc>
 nmap <silent> cP :set opfunc=ChangePaste<CR>g@
@@ -27,14 +47,14 @@ nnoremap <Leader>f :%s///g<Left><Left>
 let g:rooter_patterns = ['Gemfile.lock', '.iex.exs' ]
 let g:user_emmet_expandabbr_key = '<C-e>'
 
-nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>b :Buffers!<CR>
 nnoremap <silent> <Leader>; :Rg!<space>
-nnoremap <silent> <Leader>h :History<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <C-q> :Files<CR>
+nnoremap <silent> <Leader>h :History!<CR>
+nnoremap <silent> <C-p> :GFiles!<CR>
+nnoremap <silent> <C-q> :Files!<CR>
 nnoremap <silent> L :call SearchWordWithAg()<CR>
-nnoremap <silent> <Leader>gl :Commits<CR>
-nnoremap <silent> <Leader>ga :BCommits<CR>
+nnoremap <silent> <Leader>gl :Commits!<CR>
+nnoremap <silent> <Leader>ga :BCommits!<CR>
 
 vnoremap <silent> * :<C-U>
       \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -80,3 +100,5 @@ nmap <silent> <Leader><Leader> :NvimTreeToggle<CR>
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+
+let g:fzf_preview_window = ['right,40%,<70(up,60%)']
