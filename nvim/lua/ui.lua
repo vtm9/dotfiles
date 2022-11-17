@@ -1,3 +1,9 @@
--- vim.g.material_style = "deep ocean"
-vim.g.material_style = "palenight"
-cmd('colorscheme material')
+--[[ require("github-theme").setup({
+    theme_style = "light_default",
+    -- theme_style = "dark",
+}) ]]
+-- require('onenord').setup({
+-- theme = "light",
+-- })
+--
+vim.cmd.colorscheme "catppuccin-latte"

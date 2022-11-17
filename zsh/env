@@ -5,13 +5,12 @@ export PATH="/usr/local/bin:$PATH"
 # Preferred editor for local sessions
 export EDITOR="nvim"
 export ELIXIR_EDITOR="nvim"
-export BAT_THEME="Nord"
+export BAT_THEME="latte"
 # LANG=""
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export FZF_CTRL_R_OPTS='--sort'
-export FZF_DEFAULT_OPTS=' --color dark'
 export PGUSER='postgres'
 export PGPASSWORD='postgres'
 export PGHOST='localhost'

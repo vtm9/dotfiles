@@ -149,7 +149,9 @@ local coding = {
 }
 
 local ui = {
-  { 'marko-cerovac/material.nvim' },
+  -- { 'marko-cerovac/material.nvim' },
+  -- { 'projekt0n/github-nvim-theme' },
+  --
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
@@ -305,6 +307,7 @@ return require "packer".startup {
     use(fuzzyFinder)
     use(coding)
     use(ui)
+    use { "catppuccin/nvim", as = "catppuccin" }
     use(treesitter)
     -- use(lsp)
     use(other)

@@ -4,5 +4,5 @@ return function()
     g.floaterm_title = ""
     map("n", "<F11>", ":FloatermToggle<cr>")
     map("t", "<F11>", "<c-\\><c-n>:FloatermToggle<cr>")
-    hi("FloatermBorder", {guibg = "none", guifg = "none"})
+    hi("FloatermBorder", { guibg = "none", guifg = "none" })
 end

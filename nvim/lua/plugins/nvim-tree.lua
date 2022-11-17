@@ -9,36 +9,35 @@ return function()
     g.nvim_tree_allow_resize = 1
 
 
-require "nvim-tree".setup {
-    open_on_setup = true,
-    disable_netrw = false,
-    git = {
-        ignore = false
-    },
-    filters = {
-        dotfiles = false
-    },
-    renderer = {
-        highlight_git = true,
-        icons = {
-            show = {git = true, folder = true, file = true},
-            glyphs = {
-                default = "",
-                symlink = "",
-                git = {
-                    unstaged = "✗",
-                    staged = "✓",
-                    unmerged = "",
-                    renamed = "➜",
-                    untracked = "★"
-                },
-                folder = {
-                    default = "",
-                    open = ""
-                }
-            }
+    require "nvim-tree".setup {
+        open_on_setup = true,
+        disable_netrw = false,
+        git = {
+            ignore = false
         },
+        filters = {
+            dotfiles = false
+        },
+        renderer = {
+            highlight_git = true,
+            icons = {
+                show = { git = true, folder = true, file = true },
+                glyphs = {
+                    default = "",
+                    symlink = "",
+                    git = {
+                        unstaged = "✗",
+                        staged = "✓",
+                        unmerged = "",
+                        renamed = "➜",
+                        untracked = "★"
+                    },
+                    folder = {
+                        default = "",
+                        open = ""
+                    }
+                }
+            },
+        }
     }
-}
 end
-
