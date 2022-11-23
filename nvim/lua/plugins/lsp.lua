@@ -70,7 +70,7 @@ function M.run(use)
         local bind = vim.keymap.set
 
         bind("n", "<leader>l", vim.lsp.buf.format, opts)
-        bind('n', '<space>rn', vim.lsp.buf.rename, opts)
+        bind('n', 'gr', vim.lsp.buf.rename, opts)
         bind('n', '<leader>ca', vim.lsp.buf.code_action, opts)
         bind('n', 'gd', vim.lsp.buf.definition, opts)
         bind('n', 'K', vim.lsp.buf.hover, opts)
