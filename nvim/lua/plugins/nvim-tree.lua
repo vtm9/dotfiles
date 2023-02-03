@@ -10,7 +10,6 @@ return function()
 
 
     require "nvim-tree".setup {
-        open_on_setup = true,
         disable_netrw = false,
         git = {
             ignore = false

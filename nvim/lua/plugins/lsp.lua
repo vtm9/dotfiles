@@ -39,11 +39,11 @@ function M.run(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      {
+      --[[ {
         'folke/trouble.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
         config = require('plugins.trouble-nvim')
-      },
+      }, ]]
 
       -- Autocompletion
       'hrsh7th/nvim-cmp',
@@ -59,6 +59,11 @@ function M.run(use)
       'rafamadriz/friendly-snippets',
     },
     config = function()
+      require('mason.settings').set({
+        ui = {
+          border = 'rounded'
+        }
+      })
       local lsp = require('lsp-zero')
       lsp.preset('recommended')
 
@@ -82,18 +87,41 @@ function M.run(use)
       vim.cmd [[sign define DiagnosticSignError text= texthl= numhl=DiagnosticSignError linehl=]]
 
       -- set global diagnostic config
-      vim.diagnostic.config({
+      --[[ vim.diagnostic.config({
         signs = true,
         underline = true,
         virtual_text = { prefix = '<' },
         float = { scope = 'line', border = 'rounded', focusable = false },
         severity_sort = true
+      }) ]]
+
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = true,
       })
 
-      -- add borders to some floating things
-      -- vim.lsp.handlers['textDocument/hover'] = lsp.with(vim.lsp.handlers.hover, { border = 'rounded', focusable = false })
-      -- vim.lsp.handlers['textDocument/signatureHelp'] =
-      -- lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded', focusable = false })
+
+      --[[ -- add borders to some floating things
+      vim.lsp.handlers['textDocument/hover'] =
+      lsp.with(vim.lsp.handlers.hover, { border = 'rounded', focusable = false })
+      vim.lsp.handlers['textDocument/signatureHelp'] =
+      lsp.with(vim.lsp.handlers.signature_help,
+        { border = 'rounded', focusable = false })
+
+      -- table from lsp severity to vim severity.
+      local severity = {
+        "error",
+        "warn",
+        "info",
+        "info", -- map both hint and info to info?
+      }
+      vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id)
+        vim.notify(method.message, severity[params.type])
+      end ]]
 
       lsp.setup()
 
