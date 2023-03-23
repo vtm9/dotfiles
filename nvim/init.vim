@@ -44,7 +44,7 @@ let g:switch_mapping = '\'
 
 nnoremap <Leader>f :%s///g<Left><Left>
 
-let g:rooter_patterns = ['Gemfile.lock', '.iex.exs' ]
+let g:rooter_patterns = ['Gemfile.lock', 'mix.lock', '.root' ]
 let g:user_emmet_expandabbr_key = '<C-e>'
 
 nnoremap <Leader>b :Buffers!<CR>
@@ -102,3 +102,5 @@ let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 
 let g:fzf_preview_window = ['right,40%,<70(up,60%)']
+
+autocmd vimenter * NvimTreeOpen

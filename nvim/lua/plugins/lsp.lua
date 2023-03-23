@@ -19,7 +19,6 @@ function M.run(use)
     'solargraph',
     'sorbet',
     'sqlls',
-    'sumneko_lua',
     'stylelint_lsp',
     'terraformls',
     'vimls',
@@ -29,7 +28,6 @@ function M.run(use)
     'eslint',
     'jsonls',
     'solargraph',
-    'sumneko_lua',
   }
 
   use {

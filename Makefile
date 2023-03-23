@@ -56,7 +56,6 @@ install_gems:
 install_npm:
 	npm install -g neovim yarn
 	npm install -g prettier eslint stylelint
-	npm install -g livedown
 
 install_pip:
 	pip3 install --upgrade pynvim

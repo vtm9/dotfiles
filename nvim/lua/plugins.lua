@@ -279,8 +279,8 @@ local lsp = {
 
 local other = {
   { "dstein64/vim-startuptime", cmd = { "StartupTime" } },
-  { "iamcco/markdown-preview.nvim" },
-  { "shime/vim-livedown" },
+  { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
 
   {
     "NTBBloodbath/rest.nvim",
