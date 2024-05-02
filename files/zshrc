@@ -23,11 +23,16 @@ unsetopt share_history
 
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-bindkey '^[^ ' autosuggest-execute
-bindkey "\e " autosuggest-accept
+bindkey "\e " autosuggest-execute
 bindkey '^[.' insert-last-word
 
 autoload -Uz compinit
 compinit
 
 
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/home/vtm/yandex-cloud/path.bash.inc' ]; then source '/home/vtm/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/home/vtm/yandex-cloud/completion.zsh.inc' ]; then source '/home/vtm/yandex-cloud/completion.zsh.inc'; fi

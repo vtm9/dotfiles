@@ -77,7 +77,7 @@ alias sv='sudo nvim'
 alias z='nvim ~/.zshrc'
 alias vr='nvim ~/.config/nvim/init.lua'
 alias vt='nvim ~/.tmux.conf'
-alias va='nvim ~/.config/alacritty/alacritty.yml'
+alias va='nvim ~/.config/alacritty/alacritty.toml'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias p='ps aux | fzf'
 
@@ -161,7 +161,7 @@ alias aws-shell='aws-vault exec -d 8h -n'
 # login to AWS console
 alias aws-login='aws-vault login -d 8h'
 
-alias pgs='psql --port=15438'
-alias pgp='psql --port=15441'
+alias pgs='psql --port=10029'
+alias pgp='psql --port=10031'
 alias metabase='java -jar ~/bin/metabase.jar'
 alias run-emu="$ANDROID_HOME/emulator/emulator @pixel"

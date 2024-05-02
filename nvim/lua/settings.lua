@@ -1,121 +1,110 @@
-g.mapleader = " "
-cmd("nmap <bs> <leader>")
+for key, val in pairs({
+    laststatus = 3,
+    cmdheight = 0, -- hide by default cmd line
+    clipboard = 'unnamedplus', -- enable yank/paste to/from system clipboard
+    mouse = 'a', -- to visually select and copy from vim without line numbers
+    lazyredraw = true, -- Don't redraw while executing macros (good performance config)
+    ttyfast = true, -- Don't redraw while executing macros (good performance config)
+    hlsearch = false, -- keep searched chunks highlighted
+    ignorecase = true, -- search case-insensitive
+    smartcase = true, -- if on with ignorecase, when a pattern contains an uppercase letter, it is case sensitive, otherwise it is not
+    writebackup = false, -- Turn backup off, since most stuff is in SVN, git et.c anyway...
+    swapfile = false, -- disable backups
+    backup = false, -- disable backups
+    showcmd = true, -- show what commands you typing, what you select in visual mode, etc.
+    autowrite = true, -- Automatically :write before running commands
+    scrolloff = 3, -- how many lines till window border to see when scrolling
+    sidescrolloff = 10, -- same as above but for columns
+    shell = '/usr/bin/zsh',
+    inccommand = 'nosplit', -- incremental search ( enabled by default )
+    updatetime = 100, -- timeout for showing cursorhold events, etc
+    hidden = true, -- Enable modified buffers in background
+    background = 'dark',
+    encoding = 'UTF-8',
+    showmode = false, -- dont show mode since we have a statusline
+    splitkeep = 'screen', -- stabilize buffers position when using splits
+    fillchars = {
+        eob = ' ',
+        fold = ' ',
+        foldopen = '',
+        foldsep = ' ',
+        foldclose = '',
+        stlnc = '-',
+        vert = '|'
+    }, -- splits char
+    -- virtualedit = "all", -- make all area 'editable'-ish
+    -- listchars = {tab = '-->', eol = ''}, -- replace chars
+    list = true, -- Show some invisible characters (tabs...
+    signcolumn = 'yes', -- things to the left of line number
+    foldenable = true, -- don't fold by default
+    foldcolumn = '0',
+    foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
+    foldlevelstart = 99,
+    -- foldnestmax = 10, -- deepest fold is 10 levels
+    -- foldmethod = "expr", -- fold text using syntax
+    -- foldexpr = 'nvim_treesitter#foldexpr()',
+    wrap = false, -- when line is longer than the screen, it continues on the next line
+    linebreak = true, -- but do not break words, only 'by words'
+    number = true, -- show absolute line number
+    numberwidth = 1, -- by default 4, and because of that there is empty space to the right to line numbers except current
+    relativenumber = false, -- show relative line number for current line
+    colorcolumn = '', -- "80,120", -- highlight some column length
+    cursorcolumn = true, -- highlight for current column
+    cursorline = true, -- Highlight the screen line of the cursor with CursorLine
+    completeopt = 'menu,menuone,noselect', -- completion select options
+    conceallevel = 3, -- Hide * markup for bold and italic
+    confirm = true, -- confirm to save changes before exiting modified buffer
+    expandtab = true, -- Use spaces instead of tabs
+    smartindent = true, -- Insert indents automatically
+    shiftround = true, -- Round indent
+    shiftwidth = 4, -- Size of an indent
+    tabstop = 2, -- Number of spaces tabs count for
+    termguicolors = true, -- True color support
+    splitright = true,
+    timeoutlen = 500, -- Time in milliseconds to wait for a mapped sequence to complete.
+    wildmode = 'longest:full,full', -- Command-line completion mode
+    spelllang = 'en_us',
+    spell = true -- native spelling, z= to suggest, zg to mark as good
+}) do vim.opt[key] = val end
 
-for key, val in pairs(
-    {
-        -- clipboard = "unnamedplus", -- enable yank/paste to/from system clipboard
-        mouse = "a", -- to visually select and copy from vim without line numbers
-        splitbelow = true,
-        splitright = true,
-        lazyredraw = true,
-        -- Don't redraw while executing macros (good performance config)
-        ttyfast = true, -- Don't redraw while executing macros (good performance config)
-        hlsearch = true, -- keep searched chunks hightlighted
-        ignorecase = true, -- search case-insensitive
-        smartcase = true, -- if on with ignorecase, when a pattern contains an uppercase letter, it is case sensitive, otherwise it is not
-        writebackup = false, -- Turn backup off, since most stuff is in SVN, git et.c anyway...
-        swapfile = false,
-        backup = false,
-        showcmd = true, -- show what commands you typing, what you select in visual mode, etc.
-        autowrite = true, -- Automatically :write before running commands
-        scrolloff = 2, -- how many lines till window border to see when scrolling
-        sidescrolloff = 10, -- same as above but for columns
-        shell = "/usr/bin/zsh",
-        inccommand = "nosplit",
-        updatetime = 300, -- timeout for showing completions, cursorhold events, etc
-        completeopt = "menu,noinsert,noselect", -- how window for completion will look like
-        shortmess = vim.o.shortmess .. "s", -- better messages
-        -- TextEdit might fail if hidden is not set.
-        hidden = true,
-        termguicolors = true,
-        background = "dark",
-        encoding = "UTF-8",
-        list = true,
-        listchars = "space:·,tab:»»,eol:↩", -- replace chars
-        fillchars = "stlnc:-,vert:¦" -- splits char
+-- TODO fix it
+-- vim.opt.shortmess:append({ "s" }) -- better messages
+
+-- vim.opt.formatoptions = "jcroqlnt" -- tcqj
+-- vim.opt.grepformat = "%f:%l:%c:%m"
+-- vim.opt.pumblend = 10 -- Popup blend
+-- vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+-- vim.opt.diffopt:append({ "linematch:60" }) -- splits char
+
+vim.g.markdown_recommended_style = 0 -- fix markdown indentation settings
+vim.o.shortmess = 'filnxtToOFWIcC'
+
+vim.filetype.add({
+    extension = {
+        png = 'png',
+        jpeg = 'jpeg',
+        jpg = 'jpg',
+        pug = 'pug',
+        jade = 'pug'
     }
-) do
-    vim.o[key] = val
-end
-for key, val in pairs(
-    {
-        signcolumn = "no", -- nothing to the left of line number
-        cursorcolumn = true, -- highlight for current column
-        foldnestmax = 10, -- deepest fold is 10 levels
-        foldenable = false, -- don't fold by default
-        foldmethod = "syntax", -- fold text using syntax
-        wrap = false, -- when line is longer than the screen, it continues on the next line
-        linebreak = true, -- but do not break words, only 'by words'
-        number = true, -- show absolute line number
-        -- relativenumber = true, -- show relative line number for current line
-        cursorline = true -- Highlight the screen line of the cursor with CursorLine
-    }
-) do
-    vim.wo[key] = val
-end
--- add chars to '%'
-vim.bo.matchpairs = "(:),{:},[:],<:>"
+})
 
--- blink search matches, not leave them visible
-au("cursorhold", "*", "set nohlsearch")
-map("n", "n", ":set hlsearch <cr>n")
-map("n", "N", ":set hlsearch <cr>N")
-map("n", "/", ":set hlsearch <cr>/")
-map("n", "?", ":set hlsearch <cr>?")
--- Keep undo history across sessions, by storing in file.
--- Only works all the time.
-if fn.has("persistent_undo") then
-    os.execute("mkdir " .. os.getenv("HOME") .. "/.vim/backups > /dev/null 2>&1")
-    vim.o.undodir = os.getenv("HOME") .. "/.vim/backups"
-    vim.o.undofile = true
-end
+vim.cmd('cnoreabbrev W noa w')
+vim.cmd('cnoreabbrev WA noa wa')
 
--- write path when save file if needed
-au("BufNewFile", "*", ":exe ': !mkdir -p ' . escape(fnamemodify(bufname('%'),':p:h'),'#% \\')")
-
-cmd("syntax on")
-
--- tmux-like zoom in vim
-function _toggleZoom()
-    if 1 == vim.fn.winnr("$") then
-        return
-    end
-    local restoreCmd = vim.fn.winrestcmd()
-    cmd("wincmd |")
-    cmd("wincmd _")
-    -- If the layout did not change, it's an un-zoom.
-    if restoreCmd == vim.fn.winrestcmd() then
-        cmd("exe t:zoom_restore")
-    else
-        vim.t.zoom_restore = restoreCmd
-    end
-    return
-end
-map("n", "<leader>z", ":lua _toggleZoom()<cr>")
-function _AorS()
-    local lineContent = cmd('echo getline(".")')
-    if lineContent == "" then
-        cmd("norm! S")
-    else
-        cmd("norm! a")
-    end
-end
-
--- au("BufNewFile, BufReadPost", "*.pug", "set filetype=pug")
--- au('bufreadpost', '*.pug', 'set filetype=pug')
--- au("BufNewFile, BufReadPost", "*.jade", "set filetype=pug")
--- au('BufNewFile', '*.jade', 'set filetype=pug')
--- au('bufreadpost', '*.jade', 'set filetype=pug')
-
--- au('BufNewFile', '*.tf', 'set filetype=terraform')
--- au('bufreadpost', '*.tf', 'set filetype=terraform')
--- au('BufNewFile', '*.tf', 'set filetype=terraform')
--- au('bufreadpost', '*.tf', 'set filetype=terraform')
---
-au("BufNewFile, BufRead", "*.slim", "set filetype=slim")
-au("BufNewFile, BufRead", "*.slime", "set filetype=slim")
-au("BufNewFile, BufRead", "*.slimleex", "set filetype=slim")
-au("BufNewFile, BufRead", "*.heex", "set filetype=html")
-vim.api.nvim_set_keymap("n", "<c-_>", "<Plug>kommentary_line_default", {})
-vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
-vim.api.nvim_set_keymap("x", "<c-_>", "<Plug>kommentary_visual_default<Esc>", {})
+os.execute("mkdir " .. os.getenv("HOME") .. "/.vim/backups > /dev/null 2>&1")
+vim.o.undodir = os.getenv("HOME") .. "/.vim/backups"
+vim.o.undofile = true
+-- vim.o.statuscolumn =
+--     '%s' -- .. '%{%v:lua.ScAppropriateLineNo(v:lnum, v:relnum)%}'
+--     .. '%=' .. '%{%' -- evaluate this, and then evaluate what it returns
+--     .. '&number ?' .. '(v:relnum ?' ..
+--         'printf("%"..len(line("$")).."s", v:relnum)' -- when showing relative numbers, make sure to pad so things don't shift as you move the cursor
+--     .. ':' .. 'v:lnum' .. ')' .. ':' .. '""' .. ' ' -- space between lines and fold
+--     .. '%}' .. '%=' .. '%#FoldColumn#%{' -- expression for showing fold expand/colapse
+--     .. 'foldlevel(v:lnum) > foldlevel(v:lnum - 1)' -- any folds?
+--     .. '? (foldclosed(v:lnum) == -1' -- currently open?
+--     .. '? ""' -- point down
+--     .. ': ""' -- point to right
+--     .. ')' .. ': " "' -- blank for no fold, or inside fold
+--     .. '}'

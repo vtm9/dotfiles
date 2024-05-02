@@ -28,8 +28,8 @@
 
     - file:
         force: yes
-        src: '{{ curdir }}/files/alacritty.yml'
-        dest: ~/.config/alacritty/alacritty.yml
+        src: '{{ curdir }}/files/alacritty.toml'
+        dest: ~/.config/alacritty/alacritty.toml
         state: link
 
     - file:

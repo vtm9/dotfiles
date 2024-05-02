@@ -1,145 +1,28 @@
-local M = {}
-
-function M.run(use)
-  servers = {
-    'tsserver',
-    'ansiblels',
-    'bashls',
-    'dockerls',
-    'elixirls',
-    'gopls',
-    'grammarly',
-    'gradle_ls',
-    'graphql',
-    'groovyls',
-    'jdtls',
-    'kotlin_language_server',
-    'omnisharp',
-    'pyright',
-    'solargraph',
-    'sorbet',
-    'sqlls',
-    'stylelint_lsp',
-    'terraformls',
-    'vimls',
-    'yamlls',
-    'html',
-    'cssls',
-    'eslint',
-    'jsonls',
-    'solargraph',
-  }
-
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    requires = {
-      -- LSP Support
-      'neovim/nvim-lspconfig',
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      --[[ {
+return {
+    -- diagnostics in separate buffer
+    {
         'folke/trouble.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = require('plugins.trouble-nvim')
-      }, ]]
-
-      -- Autocompletion
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-
-      -- Snippets
-      'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets',
+        cmd = {'TroubleToggle'},
+        dependencies = {'nvim-tree/nvim-web-devicons'},
+        config = function()
+            require('trouble').setup({
+                auto_close = true,
+                use_diagnostic_signs = true,
+                mode = 'document_diagnostics' -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+            })
+        end
     },
-    config = function()
-      require('mason.settings').set({
-        ui = {
-          border = 'rounded'
-        }
-      })
-      local lsp = require('lsp-zero')
-      lsp.preset('recommended')
 
-      lsp.ensure_installed(servers)
+    -- code action pretty menu
+    {
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+        keys = {{'\'a', '<cmd>CodeActionMenu<cr>'}}
+    },
+    -- organize imports for typescript
+    {
+        'jose-elias-alvarez/nvim-lsp-ts-utils',
+        ft = {'typescript', 'typescriptreact'}
+    }
 
-      lsp.on_attach(function(client, bufnr)
-        local opts = { buffer = bufnr, remap = false }
-
-        local bind = vim.keymap.set
-
-        bind("n", "<leader>l", vim.lsp.buf.format, opts)
-        bind('n', 'gr', vim.lsp.buf.rename, opts)
-        bind('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-        bind('n', 'gd', vim.lsp.buf.definition, opts)
-        bind('n', 'K', vim.lsp.buf.hover, opts)
-      end)
-
-
-      -- define line number hl for lines with Lsp errors
-      vim.cmd [[sign define DiagnosticSignWarn text= texthl= numhl=DiagnosticSignWarn linehl=]]
-      vim.cmd [[sign define DiagnosticSignError text= texthl= numhl=DiagnosticSignError linehl=]]
-
-      -- set global diagnostic config
-      --[[ vim.diagnostic.config({
-        signs = true,
-        underline = true,
-        virtual_text = { prefix = '<' },
-        float = { scope = 'line', border = 'rounded', focusable = false },
-        severity_sort = true
-      }) ]]
-
-      vim.diagnostic.config({
-        virtual_text = true,
-        signs = true,
-        update_in_insert = false,
-        underline = true,
-        severity_sort = true,
-        float = true,
-      })
-
-
-      --[[ -- add borders to some floating things
-      vim.lsp.handlers['textDocument/hover'] =
-      lsp.with(vim.lsp.handlers.hover, { border = 'rounded', focusable = false })
-      vim.lsp.handlers['textDocument/signatureHelp'] =
-      lsp.with(vim.lsp.handlers.signature_help,
-        { border = 'rounded', focusable = false })
-
-      -- table from lsp severity to vim severity.
-      local severity = {
-        "error",
-        "warn",
-        "info",
-        "info", -- map both hint and info to info?
-      }
-      vim.lsp.handlers["window/showMessage"] = function(err, method, params, client_id)
-        vim.notify(method.message, severity[params.type])
-      end ]]
-
-      lsp.setup()
-
-      local cmp = require('cmp')
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-      local sources = lsp.defaults.cmp_sources()
-      table.insert(sources, { name = 'nvim_lsp_signature_help' })
-
-      local cmp_config = lsp.defaults.cmp_config({
-        sources = sources,
-        mapping = {
-          ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-          ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        },
-      })
-
-      cmp.setup(cmp_config)
-
-    end
-  }
-end
-
-return M
+}
