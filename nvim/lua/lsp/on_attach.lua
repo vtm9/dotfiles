@@ -38,8 +38,7 @@ return function(client, bufnr)
             vim.lsp.buf.implementation()
         end
     end, options)
-    vim.keymap
-        .set('n', '\'gd', function() vim.lnp.buf.definition() end, options)
+    vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, options)
 
     vim.keymap.set('n', '\'rn', function() vim.lsp.buf.rename() end, options)
 
