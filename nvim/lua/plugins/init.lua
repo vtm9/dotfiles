@@ -35,7 +35,7 @@ return {
             })
         end
     }, -- after yank leave cursor on its place
-    -- test 
+    -- test
     {"skywind3000/asynctasks.vim", event = 'VeryLazy'},
     {"skywind3000/asyncrun.vim", event = 'VeryLazy'}, {
         'vim-test/vim-test',
@@ -373,8 +373,8 @@ return {
             })
         end
     }, -- colorscheme
-    --     { "catppuccin/nvim", 
-    --     name = "catppuccin", 
+    --     { "catppuccin/nvim",
+    --     name = "catppuccin",
     --     priority = 1000,
     --     config = function()
     --         require("catppuccin").setup({
@@ -412,6 +412,7 @@ return {
         event = 'BufReadPost',
         build = ':TSUpdate',
         config = function()
+            require('nvim-ts-autotag').setup()
             local parser_configs =
                 require('nvim-treesitter.parsers').get_parser_configs()
             parser_configs.http = {
@@ -431,7 +432,6 @@ return {
                     use_languagetree = true
                 },
                 context_commentstring = {enable = true},
-                autotag = {enable = true},
                 matchup = {
                     enable = true -- mandatory, false will disable the whole extension
                 }
@@ -486,7 +486,7 @@ return {
     --         --     notify(message or "", level, opts)
     --         -- end
     --     end
-    -- }, -- copilot 
+    -- }, -- copilot
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",

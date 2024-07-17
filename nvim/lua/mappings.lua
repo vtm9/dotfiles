@@ -1,9 +1,9 @@
 for _, mappings in pairs({
 
-    {"n", "<leader>1", "1gt"}, 
-    {"n", "<leader>2", "2gt"}, 
+    {"n", "<leader>1", "1gt"},
+    {"n", "<leader>2", "2gt"},
     {"n", "<leader>3", "3gt"},
-    {"n", "<leader>s", ":update<cr>"}, 
+    {"n", "<leader>s", ":update<cr>"},
     {"n", "<leader>S", ":wq<cr>"},
     {"n", "<leader>q", ":quit<cr>"},
     {"n", "<leader>Q", ":quit!<cr>"},
@@ -82,7 +82,6 @@ for _, mappings in pairs({
     --  {"n", "J", "mzJ`z"},
     -- do not yank on x/X
     {'n', 'x', '"_dl'}, {'n', 'X', '"_dh'}, -- magic search mappnigs
-    {'n', '/', '/\\v', {noremap = true}},
     {'v', ':s/', ':s/\\v', {noremap = true}},
     {'c', '%s/', '%s/\\v', {noremap = true}},
     {'c', '%s/', '%s/\\v', {noremap = true}}, {
