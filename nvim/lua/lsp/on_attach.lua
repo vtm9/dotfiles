@@ -66,7 +66,7 @@ return function(client, bufnr)
         -- end
         vim.lsp.buf.format({
             timeout_ms = 10000,
-            async = false,
+            async = true,
             filter = function(filterClient)
                 return filterClient.name == 'null-ls'
             end

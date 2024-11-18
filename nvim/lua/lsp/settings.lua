@@ -23,6 +23,9 @@ vim.diagnostic.config({
     severity_sort = true
 })
 
+
+require('lspconfig').dartls.setup {}
+
 local md_namespace = vim.api.nvim_create_namespace 'alex_popov_tech/lsp_float'
 
 local methods = vim.lsp.protocol.Methods
@@ -107,10 +110,7 @@ vim.lsp.handlers[methods.textDocument_signatureHelp] =
 
 -- table from lsp severity to vim severity.
 local severity = {
-    'error',
-    'warn',
-    'info',
-    'info' -- map both hint and info to info?
+    'error', 'warn', 'info', 'info' -- map both hint and info to info?
 }
 -- vim.lsp.handlers['window/showMessage'] =
 --     function(err, method, params, client_id)
